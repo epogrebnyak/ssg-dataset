@@ -76,7 +76,7 @@ def md_link(word, url):
     return f"[{word}]({url})"
 
 
-allowed_languages = ["go", "js", "ruby", "python", "rust"]
+allowed_languages = ["go", "js", "ruby", "python", "rust", "R", "swift", "julia", "haskell"]
 
 
 def get_dataframe(yaml_filename):
