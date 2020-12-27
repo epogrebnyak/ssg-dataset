@@ -2,7 +2,7 @@
 
 Static site generators are tools to create blogs, landing pages and documentation.
 
-![](plot.png)
+![](images/plot.png)
 
 |                                                                  |   '000 stars | Language   |
 |------------------------------------------------------------------|--------------|------------|

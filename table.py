@@ -8,6 +8,6 @@ def make_presentation(df):
     zf.columns = ["'000 stars", "Language"]
     return zf
 
-df = make_presentation(get_dataframe("ssg.yaml"))
+df = make_presentation(get_dataframe("data/ssg.yaml"))
 print(df.to_markdown(tablefmt="github", floatfmt=".1f"))
 

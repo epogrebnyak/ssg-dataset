@@ -1,7 +1,7 @@
 import altair as alt
 from stars import get_dataframe
 
-df = get_dataframe("ssg.yaml")
+df = get_dataframe("data/ssg.yaml")
 df['stars'] = df.stars.divide(1000).round(1)
 print(df)
 
