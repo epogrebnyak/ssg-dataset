@@ -20,4 +20,4 @@ Static site generators are tools to create blogs, landing pages and documentatio
 | [nikola](https://github.com/getnikola/nikola/)                   |          2.1 | python     |
 | [jupyter-book](https://github.com/executablebooks/jupyter-book/) |          2.0 | python     |
 
-[CSV file](data/ssg.csv)
+[CSV file](https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/ssg.csv)
