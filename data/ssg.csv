@@ -6,6 +6,7 @@ hexo,31900,js,https://github.com/hexojs/hexo/
 vuepress,18069,js,https://github.com/vuejs/vuepress/
 mkdocs,11277,python,https://github.com/mkdocs/mkdocs/
 pelican,10100,python,https://github.com/getpelican/pelican/
+octopress,9432,ruby,https://github.com/imathis/octopress/
 eleventy,8064,js,https://github.com/11ty/eleventy/
 metalsmith,7588,js,https://github.com/segmentio/metalsmith/
 middleman,6708,ruby,https://github.com/middleman/middleman/
@@ -15,8 +16,10 @@ zola,4685,rust,https://github.com/getzola/zola/
 sphinx,3690,python,https://github.com/sphinx-doc/sphinx/
 wintersmith,3504,js,https://github.com/jnordberg/wintersmith/
 lektor,3375,python,https://github.com/lektor/lektor/
+Cactus,3369,python,https://github.com/eudicots/Cactus/
 Publish,3042,swift,https://github.com/JohnSundell/Publish/
 bookdown,2242,r,https://github.com/rstudio/bookdown/
 nikola,2057,python,https://github.com/getnikola/nikola/
 jupyter-book,1985,python,https://github.com/executablebooks/jupyter-book/
+nanoc,1910,ruby,https://github.com/nanoc/nanoc/
 cobalt.rs,898,rust,https://github.com/cobalt-org/cobalt.rs/

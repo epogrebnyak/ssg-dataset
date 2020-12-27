@@ -50,4 +50,11 @@ JohnSundell/Publish:
   lang: swift
 'cobalt-org/cobalt.rs':   
   lang: rust
-  
+eudicots/Cactus:
+  lang: python
+  comment: 'last commit in 2017'      
+imathis/octopress:
+  lang: ruby
+nanoc/nanoc: 
+  lang: ruby
+  site: nanoc.ws  
