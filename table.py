@@ -8,6 +8,9 @@ def make_presentation(df):
     zf.columns = ["'000 stars", "Language"]
     return zf
 
-df = make_presentation(get_dataframe("data/ssg.yaml"))
-print(df.to_markdown(tablefmt="github", floatfmt=".1f"))
+df = get_dataframe("data/ssg.yaml")
+tf = make_presentation(df)
+print(tf.to_markdown(tablefmt="github", floatfmt=".1f"))
+
+df[['stars', 'url']].to_csv("data/ssg.csv")
 
