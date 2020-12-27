@@ -12,5 +12,5 @@ df = get_dataframe("data/ssg.yaml")
 tf = make_presentation(df)
 print(tf.to_markdown(tablefmt="github", floatfmt=".1f"))
 
-df[['stars', 'url']].to_csv("data/ssg.csv")
+df[['stars', 'lang', 'url']].to_csv("data/ssg.csv")
 
