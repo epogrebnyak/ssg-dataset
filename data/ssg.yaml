@@ -35,7 +35,7 @@ rust-lang/mdBook:
 executablebooks/jupyter-book:
   lang: python
 rstudio/bookdown:
-  lang: R
+  lang: r
 segmentio/metalsmith:
   lang: js
 middleman/middleman:
