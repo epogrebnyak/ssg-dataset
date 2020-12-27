@@ -48,4 +48,6 @@ lektor/lektor:
   lang: python
 JohnSundell/Publish:  
   lang: swift
+'cobalt-org/cobalt.rs':   
+  lang: rust
   
