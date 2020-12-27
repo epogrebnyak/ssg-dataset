@@ -23,6 +23,7 @@ getpelican/pelican:
   lang: js
 sphinx-doc/sphinx:
   lang: python
+  site: www.sphinx-doc.org
 getnikola/nikola:
   lang: python    
 getzola/zola:
@@ -32,4 +33,19 @@ rust-lang/mdBook:
   lang: rust    
   exec: True
 executablebooks/jupyter-book:
-  lang: python  
+  lang: python
+rstudio/bookdown:
+  lang: R
+segmentio/metalsmith:
+  lang: js
+middleman/middleman:
+  lang: ruby
+getgridea/gridea:    
+  lang: js
+jnordberg/wintersmith:
+  lang: js
+lektor/lektor:  
+  lang: python
+JohnSundell/Publish:  
+  lang: swift
+  
