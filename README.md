@@ -19,3 +19,5 @@ Static site generators are tools to create blogs, landing pages and documentatio
 | [sphinx](https://github.com/sphinx-doc/sphinx/)                  |          3.7 | python     |
 | [nikola](https://github.com/getnikola/nikola/)                   |          2.1 | python     |
 | [jupyter-book](https://github.com/executablebooks/jupyter-book/) |          2.0 | python     |
+
+[CSV file](data/ssg.csv)
