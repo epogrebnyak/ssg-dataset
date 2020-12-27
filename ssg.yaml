@@ -1,10 +1,16 @@
 gohugoio/hugo:
   lang: go
   exec: True
+  site: gohugo.io
+  twitter: gohugoio
 jekyll/jekyll:
   lang: ruby
+  site: jekyllrb.com
+  twitter: jekyllrb
 gatsbyjs/gatsby:
   lang: js
+  site: www.gatsbyjs.com 
+  twitter: gatsbyjs
 hexojs/hexo:
   lang: js
 vuejs/vuepress:
