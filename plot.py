@@ -7,10 +7,10 @@ df["stars"] = df.stars.divide(1000).round(1)
 print(df)
 
 
-ch = (
+chart = (
     alt.Chart(
         df,
-        title="Static site generators popularity (26.12.2020)",
+        title="Static site generators popularity",
     )
     .mark_bar()
     .encode(
@@ -27,4 +27,6 @@ ch = (
         ),
     )
 )
-ch.save("plot.html")
+
+# will need "conda install -c conda-forge altair_saver"
+chart.save('images/plot.png')

@@ -1,8 +1,5 @@
-"""Popularity statisctics for SSG - static site generators.
-   Used as blogs, landing pages and documentation tools
-   
-   Install dependencies:
-     pip3 install PyGithub requests_cache pandas
+"""Popularity statistics for static site generators (SSG).
+   SSG used for creating blogs, landing pages and documentation.
 """
 
 from dataclasses import dataclass
