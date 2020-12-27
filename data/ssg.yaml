@@ -13,6 +13,8 @@ gatsbyjs/gatsby:
   twitter: gatsbyjs
 hexojs/hexo:
   lang: js
+  site: hexo.io
+  twitter: hexojs
 vuejs/vuepress:
   lang: js  
 mkdocs/mkdocs:
