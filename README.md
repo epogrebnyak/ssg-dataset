@@ -17,13 +17,23 @@ Static site generators are tools to create blogs, landing pages and documentatio
 | [vuepress](https://github.com/vuejs/vuepress/)                   |         18.1 | js         |
 | [mkdocs](https://github.com/mkdocs/mkdocs/)                      |         11.3 | python     |
 | [pelican](https://github.com/getpelican/pelican/)                |         10.1 | python     |
+| [octopress](https://github.com/imathis/octopress/)               |          9.4 | ruby       |
 | [eleventy](https://github.com/11ty/eleventy/)                    |          8.1 | js         |
+| [metalsmith](https://github.com/segmentio/metalsmith/)           |          7.6 | js         |
+| [middleman](https://github.com/middleman/middleman/)             |          6.7 | ruby       |
+| [gridea](https://github.com/getgridea/gridea/)                   |          6.7 | js         |
 | [mdBook](https://github.com/rust-lang/mdBook/)                   |          5.5 | rust       |
 | [zola](https://github.com/getzola/zola/)                         |          4.7 | rust       |
 | [sphinx](https://github.com/sphinx-doc/sphinx/)                  |          3.7 | python     |
+| [wintersmith](https://github.com/jnordberg/wintersmith/)         |          3.5 | js         |
+| [lektor](https://github.com/lektor/lektor/)                      |          3.4 | python     |
+| [Cactus](https://github.com/eudicots/Cactus/)                    |          3.4 | python     |
+| [Publish](https://github.com/JohnSundell/Publish/)               |          3.0 | swift      |
+| [bookdown](https://github.com/rstudio/bookdown/)                 |          2.2 | r          |
 | [nikola](https://github.com/getnikola/nikola/)                   |          2.1 | python     |
 | [jupyter-book](https://github.com/executablebooks/jupyter-book/) |          2.0 | python     |
-
+| [nanoc](https://github.com/nanoc/nanoc/)                         |          1.9 | ruby       |
+| [cobalt.rs](https://github.com/cobalt-org/cobalt.rs/)            |          0.9 | rust       |
 
 ## Try live
 
@@ -43,7 +53,7 @@ Main ideas:
  - people from different backgrounds adopt different tools
  - themes not transferable between SSG due to semantics
  
-Usecases:
+Use cases:
 
  - live book (mdbook, jupyter-book)
  - documentation
