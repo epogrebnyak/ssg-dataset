@@ -10,6 +10,7 @@ import pandas as pd
 import requests_cache
 from dataclasses import dataclass
 import yaml
+from pathlib import Path
 
 requests_cache.install_cache('cache_1')
 
@@ -44,8 +45,11 @@ def url(handle):
 def name(r):
     return r.split("/")[1]
 
-def ssg_from_string(s):
-    return yaml.load(s, Loader=yaml.SafeLoader)
+def read_text(filename):
+    return Path(filename).read_text()    
+
+def ssg_from_string(text: str):
+    return yaml.load(text, Loader=yaml.SafeLoader)
 
 def to_dicts(source_dict):
     return [dict(name=name(r), 
@@ -64,48 +68,9 @@ def make_raw_df(dicts):
 def md_link(word, url):
     return f"[{word}]({url})"
    
+allowed_languages = ['go', 'js', 'ruby', 'python', 'rust']    
 
-allowed_languages = ['go', 'js', 'ruby', 'python', 'rust']
-    
-if __name__== "__main__":
-    
-    doc="""
-    gohugoio/hugo:
-      lang: go
-      exec: True
-    jekyll/jekyll:
-      lang: ruby
-    gatsbyjs/gatsby:
-      lang: js
-    hexojs/hexo:
-      lang: js
-    vuejs/vuepress:
-      lang: js  
-    mkdocs/mkdocs:
-      lang: python  
-    getpelican/pelican:
-      lang: python
-    11ty/eleventy:
-      lang: js
-    sphinx-doc/sphinx:
-      lang: python
-    getnikola/nikola:
-      lang: python    
-    getzola/zola:
-      lang: rust
-      exec: True    
-    rust-lang/mdBook:
-      lang: rust    
-      exec: True
-    executablebooks/jupyter-book:
-      lang: python  
-    """
-    
-    dicts = to_dicts(ssg_from_string(doc))
-    raw_df = make_raw_df(dicts)
-    df = raw_df[['stars', 'lang', 'url']]
-    df['stars'] = df.stars.divide(1000).round(1)
-    df.index=raw_df.apply(lambda x: md_link(x.name, x.url), result_type='expand', axis=1)  
-    del df['url']
-    print(raw_df)
-    
+def get_dataframe(yaml_filename):
+  text = read_text(yaml_filename)
+  dicts = to_dicts(ssg_from_string(text))
+  return make_raw_df(dicts)

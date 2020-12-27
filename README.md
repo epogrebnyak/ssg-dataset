@@ -1,8 +1,8 @@
 # Popularity of static site generators
 
-Static site generators are tools to create blogs, landing pages and documentation.
+![](plot.png)
 
-Popularity by Github stars as of Dec 16, 2020:
+Static site generators are tools to create blogs, landing pages and documentation.
 
 |                                                                  |  '000 stars | Language  |
 |:-----------------------------------------------------------------|--------:|:------:|
