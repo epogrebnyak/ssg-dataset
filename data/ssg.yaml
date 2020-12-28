@@ -59,4 +59,8 @@ imathis/octopress:
   lang: ruby
 nanoc/nanoc: 
   lang: ruby
-  site: nanoc.ws  
+  site: nanoc.ws
+fastai/fastpages:
+  lang: python
+  comment: "Interacts with Github Pages Jekyll engine"
+
