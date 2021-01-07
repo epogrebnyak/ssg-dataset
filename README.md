@@ -2,7 +2,7 @@
 
 Static site generators are tools to create blogs, landing pages and documentation.
 
-![](images/plot.png)
+![](docs/_static/plot.png)
 
 ## Dataset
 
