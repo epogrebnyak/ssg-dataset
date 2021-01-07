@@ -19,11 +19,11 @@ Static site generators are tools to create blogs, landing pages and documentatio
 
 @st.cache
 def get_data():
-    return pd.read_csv(url)
+    df = pd.read_csv(url)
+    df["stars"] = df.stars.divide(1000).round(1)
+    return df
 
-
-df = get_data()
-df["stars"] = df.stars.divide(1000).round(1)
+df = get_data() 
 
 chart = (
     alt.Chart(
