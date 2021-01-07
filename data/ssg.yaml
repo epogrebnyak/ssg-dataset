@@ -17,6 +17,7 @@ hexojs/hexo:
   twitter: hexojs
 vuejs/vuepress:
   lang: js  
+  twitter: vuepressjs
 mkdocs/mkdocs:
   lang: python  
 getpelican/pelican:
@@ -50,7 +51,7 @@ lektor/lektor:
   lang: python
 JohnSundell/Publish:  
   lang: swift
-'cobalt-org/cobalt.rs':   
+cobalt-org/cobalt.rs:
   lang: rust
 eudicots/Cactus:
   lang: python
@@ -67,6 +68,8 @@ digitallyinduced/ihp:
   lang: haskell
 tlienart/Franklin.jl:
   lang: julia
+  twitter: t_lienart
 jaspervdj/hakyll:
   lang: haskell
   site: jaspervdj.be/hakyll
+  twitter: jaspervdj
