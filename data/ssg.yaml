@@ -67,3 +67,6 @@ digitallyinduced/ihp:
   lang: haskell
 tlienart/Franklin.jl:
   lang: julia
+jaspervdj/hakyll:
+  lang: haskell
+  site: jaspervdj.be/hakyll
