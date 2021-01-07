@@ -1,3 +1,5 @@
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/epogrebnyak/ssg/main)
+
 # Popularity of static site generators
 
 Static site generators are tools to create blogs, landing pages and documentation.

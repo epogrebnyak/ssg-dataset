@@ -2,7 +2,7 @@ package := "ssg"
 
 # launch streamlit app
 st:
-  streamlit run streamlit_app.py
+  poetry run streamlit run streamlit_app.py
 
 # black and isort
 lint:  
