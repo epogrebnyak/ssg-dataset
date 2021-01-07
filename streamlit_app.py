@@ -49,15 +49,12 @@ chart = (
 st.altair_chart(chart, use_container_width=True)
 
 st.subheader("Links")
-
 st.write("\n".join(f"- [{name}]({url})" for name, url in zip(df.name, df.url)))
 
-st.subheader("Data")
 
+st.subheader("Data")
+st.dataframe(df)
 f"""
 Data collected with [epogrebnyak/ssg](https://github.com/epogrebnyak/ssg). Static CSV file: [ssg.csv]({url})
-
-
 """
 
-st.dataframe(df)
