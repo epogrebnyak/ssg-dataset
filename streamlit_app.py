@@ -48,6 +48,10 @@ chart = (
 
 st.altair_chart(chart, use_container_width=True)
 
+st.subheader("Links")
+
+st.write("\n".join(f"- [{name}]({url})" for name, url in zip(df.name, df.url)))
+
 st.subheader("Data")
 
 f"""
