@@ -63,4 +63,5 @@ nanoc/nanoc:
 fastai/fastpages:
   lang: python
   comment: "Interacts with Github Pages Jekyll engine"
-
+digitallyinduced/ihp:
+  lang: haskell 
