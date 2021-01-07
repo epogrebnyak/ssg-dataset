@@ -1,5 +1,4 @@
 import altair as alt
-
 from stars import get_dataframe
 
 df = get_dataframe("data/ssg.yaml")
@@ -29,4 +28,4 @@ chart = (
 )
 
 # will need "conda install -c conda-forge altair_saver"
-chart.save('images/plot.png')
+chart.save("images/plot.png")

@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from ssg import get_dataframe
 
 data_folder = Path(__name__).parent / "data"
