@@ -64,4 +64,6 @@ fastai/fastpages:
   lang: python
   comment: "Interacts with Github Pages Jekyll engine"
 digitallyinduced/ihp:
-  lang: haskell 
+  lang: haskell
+tlienart/Franklin.jl:
+  lang: julia
