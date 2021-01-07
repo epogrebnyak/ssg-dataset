@@ -18,18 +18,29 @@ Static site generators are tools to create blogs, landing pages and documentatio
 """
 
 
+def pretty(s: str) -> str:
+    try:
+        return dict(js="JavaScript")[s]
+    except KeyError:
+        return s.capitalize()
+
+
 @st.cache
 def get_data():
     df = pd.read_csv(url)
     df["stars"] = df.stars.divide(1000).round(1)
+    df["lang"] = df.lang.map(pretty)
     return df
 
 
 df = get_data()
 
-# FIXME: should be able to reset https://discuss.streamlit.io/t/reset-multiselect-to-default-values-using-a-checkbox/1941
+
+# FIXME: should be able to reset as in https://discuss.streamlit.io/t/reset-multiselect-to-default-values-using-a-checkbox/1941
 all_langs = df.lang.unique().tolist()
-langs = st.multiselect("Programming languages", options=all_langs, default=all_langs)
+langs = st.multiselect(
+    "Programming languages", options=all_langs, default=all_langs, format_func=pretty
+)
 plot_df = df[df.lang.isin(langs)]
 
 chart = (
