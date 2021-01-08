@@ -1,5 +1,7 @@
-from stars import get_dataframe, md_link
+from ssg import get_dataframe
 
+def md_link(text, url):
+    return f"[{text}]({url})
 
 def make_presentation(df):
     zf = df[["stars", "lang", "url"]]
@@ -13,5 +15,3 @@ def make_presentation(df):
 df = get_dataframe("data/ssg.yaml")
 tf = make_presentation(df)
 print(tf.to_markdown(tablefmt="github", floatfmt=".1f"))
-
-df[["stars", "lang", "url"]].to_csv("data/ssg.csv")
