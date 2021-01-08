@@ -10,6 +10,8 @@ import requests
 import requests_cache  # type: ignore
 import yaml
 from dotenv import load_dotenv
+from datetime import datetime
+import json
 
 # FIXME: need stable location for the file - may appear in different folders for example and tests
 requests_cache.install_cache("cache_1")
@@ -154,10 +156,14 @@ def get_dataframe(yaml_filename: str) -> pd.DataFrame:
     return make_dataframe(dicts2)
 
 
+def metadata():
+    return {'created': datetime.today().date().isoformat()}
+
 def yaml_to_csv(
     folder,
     yaml_filename="ssg.yaml",
     csv_filename="ssg.csv",
+    meta_filename="metadata.json",
     columns=[
         "handle",
         "created",
@@ -170,10 +176,12 @@ def yaml_to_csv(
         "url",
     ],
 ):
-    yaml_path = os.path.join(folder, yaml_filename)
-    csv_path = os.path.join(folder, csv_filename)
-    df = get_dataframe(yaml_path)
-    df[columns].to_csv(csv_path)
+    def there(filename):
+        return os.path.join(folder, filename)
+    df = get_dataframe(there(yaml_filename))
+    df[columns].to_csv(there(csv_filename))
+    with open(there(meta_filename), "w") as f:
+      json.dump(metadata(), f)
     return df
 
 
