@@ -70,7 +70,7 @@ st.altair_chart(chart, use_container_width=True)
 st.header("Forks")
 """
 Forks are copies of orginal repo made by users to submit code additions 
-to original repo or work on own version of the software. 
+or to work on own version of the software. 
 More forks indicate either active development of the package 
 or code reuse in other projects.
 """
@@ -93,16 +93,19 @@ st.altair_chart(scatter, use_container_width=True)
 """
 Idea: if there are two groups of SSG users - front-end engineers (FE) 
 and non-specialised (NS), common users, more forks would come from FE group, 
-while NS would use the software as is and will not fork.
+while NS would use the software as is and will not fork. 
+See some discussion below in a tweeter thread. 
 
 More forks:
 
  - Jekyll, Octopress (all Ruby)
- - Sphinx, bookdown
+ - Sphinx (backbone project)
+ - bookdown
 
 Less forks:
-  - Hugo (ships as binary)
-  - eleventy 
+
+  - Hugo (ships as an executable file)
+  - eleventy (pehaps, appeals "as is" to users)
 """
 
 st.header("Discussion")
