@@ -68,6 +68,7 @@ def to_dicts(source_dict):
         for r, a in source_dict.items()
     ]
 
+
 # FIXME: must reuse repo instance to limit API calls
 def make_raw_df(dicts):
     raw_df = pd.DataFrame(dicts)

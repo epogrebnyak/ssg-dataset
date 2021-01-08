@@ -28,7 +28,6 @@ def pretty(s: str) -> str:
 @st.cache
 def get_data():
     df = pd.read_csv(url)
-    df["stars"] = df.stars.divide(1000).round(1)
     df["lang"] = df.lang.map(pretty)
     return df
 
@@ -42,6 +41,7 @@ langs = st.multiselect(
     "Programming languages", options=all_langs, default=all_langs, format_func=pretty
 )
 plot_df = df[df.lang.isin(langs)]
+plot_df["stars"] = plot_df.stars.divide(1000).round(1)
 
 chart = (
     alt.Chart(
@@ -65,6 +65,45 @@ chart = (
 )
 
 st.altair_chart(chart, use_container_width=True)
+
+
+st.header("Forks")
+"""
+Forks are copies of orginal repo made by users to submit code additions 
+to original repo or work on own version of the software. 
+More forks indicate either active development of the package 
+or code reuse in other projects.
+"""
+
+scatter = (
+    alt.Chart(df, title="Stars vs forks")
+    .mark_circle(size=60)
+    .encode(
+        x='stars',
+        #alt.X("stars", scale=alt.Scale(type="log")),
+        y='forks',
+        #alt.Y("forks", scale=alt.Scale(type="log")),
+        color="lang",
+        tooltip=["name", "stars", "forks"],
+    )
+)
+
+st.altair_chart(scatter, use_container_width=True)
+
+"""
+Idea: if there are two groups of SSG users - front-end engineers (FE) 
+and non-specialised (NS), common users, more forks would come from FE group, 
+while NS would use the software as is and will not fork.
+
+More forks:
+
+ - Jekyll, Octopress (all Ruby)
+ - Sphinx, bookdown
+
+Less forks:
+  - Hugo (ships as binary)
+  - eleventy 
+"""
 
 st.header("Discussion")
 
