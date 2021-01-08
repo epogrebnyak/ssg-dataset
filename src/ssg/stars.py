@@ -8,8 +8,9 @@ from pathlib import Path
 import pandas as pd
 import requests_cache
 import yaml
-from github import Github
+from github import Github, RateLimitExceededException
 
+# FIXME: need stable location for the file
 requests_cache.install_cache("cache_1")
 
 
@@ -22,14 +23,15 @@ class Repo(GithubAccess):
     handle: str
 
     def __post_init__(self):
-        try:
-            self.repo = self.g.get_repo(self.handle)
-        except:
-            raise ValueError(f"Cannot read {self.handle}")
+        self.repo = self.g.get_repo(self.handle)
 
     @property
     def n_stars(self):
         return self.repo.stargazers_count
+
+    @property
+    def n_forks(self):
+        return self.repo.forks_count
 
     @property
     def url(self):
@@ -38,6 +40,10 @@ class Repo(GithubAccess):
 
 def n_stars(handle: str):
     return Repo(handle).n_stars
+
+
+def n_forks(handle: str):
+    return Repo(handle).n_forks
 
 
 def url(handle):
@@ -62,10 +68,11 @@ def to_dicts(source_dict):
         for r, a in source_dict.items()
     ]
 
-
+# FIXME: must reuse repo instance to limit API calls
 def make_raw_df(dicts):
     raw_df = pd.DataFrame(dicts)
     raw_df["stars"] = raw_df.handle.map(n_stars)
+    raw_df["forks"] = raw_df.handle.map(n_forks)
     raw_df["url"] = raw_df.handle.map(url)
     raw_df = raw_df.sort_values("stars", ascending=False)
     raw_df.index = raw_df.name
@@ -82,7 +89,7 @@ allowed_languages = [
     "ruby",
     "python",
     "rust",
-    "R",
+    "r",
     "swift",
     "julia",
     "haskell",
