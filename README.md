@@ -72,3 +72,7 @@ Sample:
 | [cobalt.rs](https://github.com/cobalt-org/cobalt.rs/)            |          0.9 | rust       |
 | [Franklin.jl](https://github.com/tlienart/Franklin.jl/)          |          0.4 | julia      |
 | [bridgetown](https://github.com/bridgetownrb/bridgetown/)        |          0.3 | ruby       |
+
+## Citation
+
+Evgeny Pogrebnyak. (2021). Github data for static site generators (SSG) popularity (Version 0.1.2) [Data set]. Zenodo. http://doi.org/10.5281/zenodo.4429834

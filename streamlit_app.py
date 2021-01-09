@@ -269,8 +269,8 @@ st.header("Citation")
 
 """
 ```
-Evgeniy Pogrebnyak (2021). Static site generators Github popularity dataset. 
-URL: <https://github.com/epogrebnyak/ssg>. 
+Evgeny Pogrebnyak. (2021). Github data for static site generators (SSG) popularity (Version 0.1.2) [Data set]. 
+Zenodo. http://doi.org/10.5281/zenodo.4429834
 ```
 """
 

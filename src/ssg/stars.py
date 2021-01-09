@@ -159,7 +159,7 @@ def get_dataframe(yaml_filename: str) -> pd.DataFrame:
 
 def metadata():
     return {
-        "name": "Github data for static site generators projects",
+        "name": "Github data for static site generators popularity",
         "created": datetime.today().date().isoformat(),
         "date_columns": ["created", "modified"],
         "repo_url": "https://github.com/epogrebnyak/ssg-dataset/",
