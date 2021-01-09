@@ -1,4 +1,8 @@
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/epogrebnyak/ssg/main)
+[![Download CSV](https://img.shields.io/badge/download-csv-brightgreen)]({url_csv})
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/epogrebnyak/ssg-dataset/main)
+[![Demo in Google Colab](https://img.shields.io/badge/colab-open-orange)][colab]
+
+[colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
 
 # Popularity of static site generators
 
@@ -43,8 +47,4 @@ Static site generators are tools to create blogs, landing pages and documentatio
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/epogrebnyak/ssg/main)
 
-
-<a href="https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta?usp=sharing">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
-
+[![Demo in Google Colab](https://img.shields.io/badge/colab-open-orange)][colab]
