@@ -1,4 +1,4 @@
-![pytest](https://github.com/epogrebnyak/ssg-dataset/workflows/Tests/badge.svg)
+![pytest](https://github.com/epogrebnyak/ssg-dataset/workflows/pytest/badge.svg)
 
 # Popularity of static site generators
 
