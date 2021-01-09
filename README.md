@@ -67,7 +67,9 @@ Sample:
 | [nikola](https://github.com/getnikola/nikola/)                   |          2.1 | python     |
 | [fastpages](https://github.com/fastai/fastpages/)                |          2.1 | python     |
 | [jupyter-book](https://github.com/executablebooks/jupyter-book/) |          2.0 | python     |
+| [scully](https://github.com/scullyio/scully/)                    |          2.0 | js         |
 | [nanoc](https://github.com/nanoc/nanoc/)                         |          1.9 | ruby       |
 | [ihp](https://github.com/digitallyinduced/ihp/)                  |          1.7 | haskell    |
 | [cobalt.rs](https://github.com/cobalt-org/cobalt.rs/)            |          0.9 | rust       |
 | [Franklin.jl](https://github.com/tlienart/Franklin.jl/)          |          0.4 | julia      |
+| [bridgetown](https://github.com/bridgetownrb/bridgetown/)        |          0.3 | ruby       |

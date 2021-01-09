@@ -28,4 +28,8 @@ apidoc:
 # update csv file (project-specific) 
 update:
   poetry run python example/update.py
-     
+
+# print table for README file (project-specific)
+table:
+  poetry run python example/table.py
+          
