@@ -8,4 +8,3 @@ def test_version():
 
 def test_n_forks():
     assert Repo("epogrebnyak/haskell-intro").n_forks() >= 5
-    
