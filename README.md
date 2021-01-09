@@ -39,26 +39,10 @@ Static site generators are tools to create blogs, landing pages and documentatio
 
 ## Try live
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/epogrebnyak/ssg/main)
+
+
 <a href="https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta?usp=sharing">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-## Discussion
-
-First thread: https://twitter.com/PogrebnyakE/status/1343105678261555200
-
-Main ideas:
-
- - front-end (FE) engineers would care less about main theme for SSG
- - non-frontend people are big user group, ready-made themes are important for them
- - Next.js and Wordpress are site-building and server-side, not exactly SSG
- - people from different backgrounds adopt different tools
- - themes not transferable between SSG due to semantics
- 
-Use cases:
-
- - live book (mdbook, jupyter-book)
- - documentation
- - blog
- - langing page
- - combination of the above

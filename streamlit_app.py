@@ -1,9 +1,10 @@
 import altair as alt
 import pandas as pd
+import requests
 import streamlit as st
 
 st.set_page_config(
-    page_title="Github stars for static site generators (SSG)",
+    page_title="Github data on static site generators (SSG)",
     page_icon=None,
     layout="centered",
     initial_sidebar_state="collapsed",
@@ -13,8 +14,18 @@ url = "https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/ssg.csv"
 
 st.header("Static site generators popularity  :thermometer: :star:")
 
+
 """
-Static site generators are tools to create blogs, landing pages and documentation.
+Static site generators (SSG) are tools to create blogs, landing pages and documentation.
+"""
+
+st.header("Github data")
+
+st.subheader("1. Stars")
+"""
+Number of stars in a Github repository is a proxy for SSG popularity, at least among developers.
+Surely a lot of people can use a SSG without ever looking at the Github repo, but the stars 
+count cannot be ignored.
 """
 
 
@@ -30,6 +41,10 @@ def get_data():
     df = pd.read_csv(url)
     df["lang"] = df.lang.map(pretty)
     return df
+
+@st.cache
+def date_created():
+    return requests.get("https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/metadata.json").json()
 
 
 df = get_data()
@@ -67,7 +82,7 @@ chart = (
 st.altair_chart(chart, use_container_width=True)
 
 
-st.header("Forks")
+st.subheader("2. Forks")
 """
 Forks are copies of orginal repo made by users to submit code additions 
 or to work on own version of the software. 
@@ -91,37 +106,105 @@ scatter = (
 st.altair_chart(scatter, use_container_width=True)
 
 """
-Idea: if there are two groups of SSG users - front-end engineers (FE) 
-and non-specialised (NS), common users, more forks would come from FE group, 
-while NS would use the software as is and will not fork. 
-See some discussion below in a tweeter thread. 
+Consider there are two groups of SSG users: front-end engineers (FE) 
+and non-specialised (NS) users doing backend work, data analysis or 
+blog writing. More forks would come from FE group, while NS 
+would likely to use the software as is and will not fork.
 
-More forks:
+Jekyll, Octopress (end of life project), Sphinx (backbone project) 
+and bookdown seem to have more forks.
 
- - Jekyll, Octopress (all Ruby)
- - Sphinx (backbone project)
- - bookdown
-
-Less forks:
-
-  - Hugo (ships as an executable file)
-  - eleventy (pehaps, appeals "as is" to users)
+There are relatively less forks for Hugo (maybe because it ships as 
+an executable file) and eleventy (perhaps, the intent to offer it "as is"
+to users).
 """
+
+st.subheader("Links")
+
+st.write(" - ".join(f"[{name}]({url})" for name, url in zip(df.name, df.url)))
+
+
 
 st.header("Discussion")
 
 """
-[![](https://user-images.githubusercontent.com/9265326/103943179-ae5db400-5142-11eb-90be-111c8c520f93.png)][link]
+Users:
 
-[link]: https://twitter.com/PogrebnyakE/status/1343105678261555200
+ - people from different backgrounds adopt different tools
+ - front-end (FE) engineers would also care less about main theme for SSG, but would fork
+ - non-frontend people are a big user group, ready-made themes are important for them, they don't fork
+
+Theme popularity:
+
+- top Hugo themes  even+learn+coder+academic each have 1-1.1k github stars, while @GoHugoIO
+  itself is 49k stars
+- Jekyll (41k) -> Mimimal Mistakes (7k) 
+- mkdocs (11k) ->  mkdocs-material by @squidfunk (5.2k)
+- themes not transferable between SSGs due to semantics
+
+Total universe:
+
+- Next.js and Wordpress popular for site-building, but htey are server-side, not exactly SSG
+- many CMS
+
+Twitter threads:
+
+- [Dec 27, 2020](https://twitter.com/PogrebnyakE/status/1343105678261555200)
+- [Jan 8, 2021](https://twitter.com/PogrebnyakE/status/1347508424674783234)
+
+Facebook:
+
+- [Jan 8, 2021](https://www.facebook.com/e.pogrebnyak/posts/10218455975936127)
+
+Open questions:
+
+1. Do 'created' vs 'modified' repo dates ring any bell? (Hint: depreciations, project life, stars/day rate)
+2. Imagine you knew the total user base per programming language, how would you use it?
+3. Imagine you had a theme list per SSG, what would you do?
+
 """
 
-st.subheader("Links")
-st.write("\n".join(f"- [{name}]({url})" for name, url in zip(df.name, df.url)))
-
-
-st.subheader("Data")
+st.header("Data")
 st.dataframe(df)
-f"""
-Static CSV file: [ssg.csv]({url}) (collected with [epogrebnyak/ssg](https://github.com/epogrebnyak/ssg)).
+
 """
+[![](https://img.shields.io/badge/download-csv-brightgreen)](https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/ssg.csv)
+"""
+
+f"""
+Static CSV file [ssg.csv]({url}) is prepared by [epogrebnyak/ssg](https://github.com/epogrebnyak/ssg).
+"""
+
+
+f"""
+Dataset created on {date_created()}.
+"""
+
+"""
+To download:
+
+```python
+import pandas as pd
+url = "https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/ssg.csv"
+df = pd.read_csv(url)
+```
+"""
+
+st.header("Citation")
+
+"""
+```
+Evgeniy Pogrebnyak (2021). Static site generators popularity dataset. 
+URL: <https://github.com/epogrebnyak/ssg>. 
+```
+"""
+
+st.header("Contacts")
+
+"""
+If you happen to have a good idea or comment about the SSG dataset, please drop 
+me a line. I appreciate the feedback and look forward to hearing to SSG
+use cases, dataset applications and other. [Twitter](https://twitter.com/PogrebnyakE)
+ is probably the easiest way to contact me.
+"""
+
