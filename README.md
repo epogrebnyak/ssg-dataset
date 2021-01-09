@@ -1,9 +1,3 @@
-[![Download CSV](https://img.shields.io/badge/download-csv-brightgreen)]({url_csv})
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/epogrebnyak/ssg-dataset/main)
-[![Demo in Google Colab](https://img.shields.io/badge/Colab-open-orange)][colab]
-
-[colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
-
 # Popularity of static site generators
 
 Static site generators are tools to create blogs, landing pages and documentation.
@@ -16,13 +10,16 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)][st]
 [![Demo in Google Colab](https://img.shields.io/badge/colab-open-orange)][colab]
 
-[st]: https://share.streamlit.io/epogrebnyak/ssg-dataset/main
-
-
 [Streamlit app][st] lays out a data story about SSGs with several visualisations. 
 [Colab][colab] is a try and see playground with some code for chart.
 
+[st]: https://share.streamlit.io/epogrebnyak/ssg-dataset/main
+[colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
+
+
 ## Dataset
+
+[![Download CSV](https://img.shields.io/badge/download-csv-brightgreen)]({url_csv})
 
 The stable URL for dataset is:
 
