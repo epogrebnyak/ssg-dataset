@@ -10,24 +10,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-url = "https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/ssg.csv"
-
-st.header("Static site generators popularity  :thermometer: :star:")
-
-
-"""
-Static site generators (SSG) are tools to create blogs, landing pages and documentation.
-"""
-
-st.header("Github data")
-
-st.subheader("1. Stars")
-"""
-Number of stars in a Github repository is a proxy for SSG popularity, at least among developers.
-Surely a lot of people can use a SSG without ever looking at the Github repo, but the stars 
-count cannot be ignored.
-"""
-
+url_csv = "https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/ssg.csv"
+url_metadata = "https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/metadata.json"
 
 def pretty(s: str) -> str:
     try:
@@ -38,17 +22,35 @@ def pretty(s: str) -> str:
 
 @st.cache
 def get_data():
-    df = pd.read_csv(url)
+    df = pd.read_csv(url_csv)
     df["lang"] = df.lang.map(pretty)
     return df
 
 @st.cache
-def date_created():
-    return requests.get("https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/metadata.json").json()
+def get_meta():
+    return requests.get(url_metadata).json()
 
 
 df = get_data()
+meta = get_meta()
 
+
+st.header("Static site generators popularity  :thermometer: :star:")
+
+
+"""
+Static site generators (SSG) are open source tools to create blogs, 
+landing pages and documentation.
+"""
+
+st.header("Github stars")
+"""
+Number of stars in a Github repository is a proxy for SSG popularity, 
+at least among developers. Surely many people can use a SSG without 
+looking at the Github repo (by using the package repository and
+consulting the homepage for download documentation), but the stars 
+are quick available metric.
+"""
 
 # FIXME: should be able to reset as in https://discuss.streamlit.io/t/reset-multiselect-to-default-values-using-a-checkbox/1941
 all_langs = df.lang.unique().tolist()
@@ -82,7 +84,7 @@ chart = (
 st.altair_chart(chart, use_container_width=True)
 
 
-st.subheader("2. Forks")
+st.header("Forks")
 """
 Forks are copies of orginal repo made by users to submit code additions 
 or to work on own version of the software. 
@@ -107,88 +109,61 @@ st.altair_chart(scatter, use_container_width=True)
 
 """
 Consider there are two groups of SSG users: front-end engineers (FE) 
-and non-specialised (NS) users doing backend work, data analysis or 
-blog writing. More forks would come from FE group, while NS 
-would likely to use the software as is and will not fork.
+and non-specialised (NS) users doing backend work, data analysis, 
+blog writing or maintaining documentation. More forks would come from FE group, 
+while NS would likely to use the software as is and will not fork.
 
 Jekyll, Octopress (end of life project), Sphinx (backbone project) 
 and bookdown seem to have more forks.
 
-There are relatively less forks for Hugo (maybe because it ships as 
-an executable file) and eleventy (perhaps, the intent to offer it "as is"
-to users).
+There are relatively fewer forks for Hugo (maybe because it ships as 
+an executable file) and eleventy (perhaps, as intended by project concept).
 """
 
-st.subheader("Links")
+st.header("Links")
 
 st.write(" - ".join(f"[{name}]({url})" for name, url in zip(df.name, df.url)))
 
-
-
-st.header("Discussion")
+st.header("Other insights")
 
 """
-Users:
+With this dataset you can also look at following repo detail:
 
- - people from different backgrounds adopt different tools
- - front-end (FE) engineers would also care less about main theme for SSG, but would fork
- - non-frontend people are a big user group, ready-made themes are important for them, they don't fork
-
-Theme popularity:
-
-- top Hugo themes  even+learn+coder+academic each have 1-1.1k github stars, while @GoHugoIO
-  itself is 49k stars
-- Jekyll (41k) -> Mimimal Mistakes (7k) 
-- mkdocs (11k) ->  mkdocs-material by @squidfunk (5.2k)
-- themes not transferable between SSGs due to semantics
-
-Total universe:
-
-- Next.js and Wordpress popular for site-building, but htey are server-side, not exactly SSG
-- many CMS
-
-Twitter threads:
-
-- [Dec 27, 2020](https://twitter.com/PogrebnyakE/status/1343105678261555200)
-- [Jan 8, 2021](https://twitter.com/PogrebnyakE/status/1347508424674783234)
-
-Facebook:
-
-- [Jan 8, 2021](https://www.facebook.com/e.pogrebnyak/posts/10218455975936127)
-
-Open questions:
-
-1. Do 'created' vs 'modified' repo dates ring any bell? (Hint: depreciations, project life, stars/day rate)
-2. Imagine you knew the total user base per programming language, how would you use it?
-3. Imagine you had a theme list per SSG, what would you do?
-
-"""
+ - date created 
+ - last commit date
+ - number of open issues at repo
 
 st.header("Data")
-st.dataframe(df)
-
-"""
-[![](https://img.shields.io/badge/download-csv-brightgreen)](https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/ssg.csv)
 """
 
 f"""
-Static CSV file [ssg.csv]({url}) is prepared by [epogrebnyak/ssg](https://github.com/epogrebnyak/ssg).
-"""
+[![](https://img.shields.io/badge/download-csv-brightgreen)]({url_csv})
 
+Static CSV file [ssg.csv]({url_csv}) is prepared and posted via [epogrebnyak/ssg](https://github.com/epogrebnyak/ssg).
 
-f"""
-Dataset created on {date_created()}.
-"""
+Dataset created on {meta["created"]}.
 
-"""
 To download:
 
 ```python
 import pandas as pd
-url = "https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/ssg.csv"
+url = "{url_csv}"
 df = pd.read_csv(url)
 ```
+
+To reproduce:
+
+```python
+from ssg import 
+import pandas as pd
+url = "{url_csv}"
+df = pd.read_csv(url)
+```
+
+
 """
+
+st.dataframe(df)
 
 st.header("Citation")
 
@@ -204,7 +179,8 @@ st.header("Contacts")
 """
 If you happen to have a good idea or comment about the SSG dataset, please drop 
 me a line. I appreciate the feedback and look forward to hearing to SSG
-use cases, dataset applications and other. [Twitter](https://twitter.com/PogrebnyakE)
- is probably the easiest way to contact me.
-"""
+use cases and this dataset applications. 
 
+[Twitter](https://twitter.com/PogrebnyakE) is probably the easiest way 
+to contact me, also my e-mail is e.pogrebnyak @ gmail dot com.
+"""
