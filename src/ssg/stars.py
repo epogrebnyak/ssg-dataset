@@ -1,7 +1,9 @@
 """Popularity of static site generators (SSG) as measured by Github data."""
 
+import json
 import os
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Any, List
 
@@ -10,8 +12,6 @@ import requests
 import requests_cache  # type: ignore
 import yaml
 from dotenv import load_dotenv
-from datetime import datetime
-import json
 
 # Comment: need stable location for the file - may appear in different folders for example and tests
 requests_cache.install_cache("cache_1")
@@ -158,8 +158,10 @@ def get_dataframe(yaml_filename: str) -> pd.DataFrame:
 
 
 def metadata():
-    return {"created": datetime.today().date().isoformat(),
-            "date_columns": ["created", "modified"]}
+    return {
+        "created": datetime.today().date().isoformat(),
+        "date_columns": ["created", "modified"],
+    }
 
 
 def yaml_to_csv(
@@ -175,7 +177,7 @@ def yaml_to_csv(
         "forks",
         "open_issues",
         "lang",
-        "language",
+        "repo_lang",
         "url",
     ],
 ):
@@ -188,10 +190,9 @@ def yaml_to_csv(
     metadata_dict = metadata()
     with open(there(meta_filename), "w") as f:
         json.dump(metadata_dict, f)
-    print("Wrote", there(meta_filename))    
+    print("Wrote", there(meta_filename))
     return df
 
 
 if __name__ == "__main__":
     pass
-    

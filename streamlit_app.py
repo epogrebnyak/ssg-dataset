@@ -10,8 +10,11 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-url_csv = "https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/ssg.csv"
-url_metadata = "https://raw.githubusercontent.com/epogrebnyak/ssg/main/data/metadata.json"
+url_csv = "https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv"
+url_metadata = (
+    "https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/metadata.json"
+)
+
 
 def pretty(s: str) -> str:
     try:
@@ -26,6 +29,7 @@ def get_data():
     df["lang"] = df.lang.map(pretty)
     return df
 
+
 @st.cache
 def get_meta():
     return requests.get(url_metadata).json()
@@ -33,7 +37,15 @@ def get_meta():
 
 _df = get_data()
 meta = get_meta()
+calver = "--".join(meta["created"].split("-"))
 
+f"""
+[![Download CSV](https://img.shields.io/badge/download-csv-brightgreen)]({url_csv})
+![Release](https://img.shields.io/badge/release-{calver}-blue)
+[![GitHub Repo stars](https://img.shields.io/github/stars/epogrebnyak/ssg-dataset?style=social)][gh]
+
+[gh]: https://github.com/epogrebnyak/ssg-dataset
+"""
 
 st.header("Static site generators popularity  :thermometer: :star:")
 
@@ -82,7 +94,6 @@ chart = (
     )
 )
 
-        
 
 st.altair_chart(chart, use_container_width=True)
 
@@ -99,8 +110,8 @@ scatter = (
     alt.Chart(_df, title="Stars vs forks")
     .mark_circle(size=60)
     .encode(
-        x='stars',
-        y='forks',
+        x="stars",
+        y="forks",
         color="lang",
         tooltip=["name", "stars", "forks"],
     )
@@ -132,27 +143,29 @@ accumulated technical debt.
 """
 
 ratios = _df.copy()
-ratios["fork_ratio"] = (100*ratios.forks/ratios.stars).round(2)
-ratios["issues_ratio"] = (100*ratios.open_issues/ratios.stars).round(2)
+ratios["fork_ratio"] = (100 * ratios.forks / ratios.stars).round(2)
+ratios["issues_ratio"] = (100 * ratios.open_issues / ratios.stars).round(2)
 
-scale_down = st.checkbox('Zoom in', value = False)
+scale_down = st.checkbox("Zoom in", value=False)
 
 if scale_down:
-  plot_df2 = ratios[(ratios.issues_ratio < 10) & (ratios.fork_ratio < 30)]
-else:  
-  plot_df2 = ratios
-  
+    plot_df2 = ratios[(ratios.issues_ratio < 10) & (ratios.fork_ratio < 30)]
+else:
+    plot_df2 = ratios
+
 scatter2 = (
     alt.Chart(plot_df2, title="Open issues")
     .mark_circle()
     .encode(
-        x=alt.X("fork_ratio",
-                title="Forks ÷ stars * 100%",
-                ),
-        y=alt.Y("issues_ratio", 
-                title="Open issues ÷ stars * 100%",                 
-                ),        
-        size=alt.Size('stars',legend=alt.Legend(title="Github stars")),
+        x=alt.X(
+            "fork_ratio",
+            title="Forks ÷ stars * 100%",
+        ),
+        y=alt.Y(
+            "issues_ratio",
+            title="Open issues ÷ stars * 100%",
+        ),
+        size=alt.Size("stars", legend=alt.Legend(title="Github stars")),
         color=alt.Color("lang", legend=alt.Legend(title="Language")),
         tooltip=["name", "stars", "forks"],
     )
@@ -166,18 +179,21 @@ st.header("Project lifetime")
 The longest-running static site generators are based on Ruby. 
 The newest SSG are fastpages (Python) and Publish (Swift).
 """
-def lapsed(x, today=meta['created']):
-  t = pd.to_datetime(today)
-  return (t-x).days
+
+
+def lapsed(x, today=meta["created"]):
+    t = pd.to_datetime(today)
+    return (t - x).days
+
 
 t = _df.copy()
-t['years']  = (t.modified - t.created).map(lambda x: x.days).divide(365).round(1)
-t['silent'] = t.modified.map(lambda x: lapsed(x))
-df = t.sort_values(['lang', 'years'], ascending=[True, False])
+t["years"] = (t.modified - t.created).map(lambda x: x.days).divide(365).round(1)
+t["silent"] = t.modified.map(lambda x: lapsed(x))
+df = t.sort_values(["lang", "years"], ascending=[True, False])
 
 ch = (
     alt.Chart(
-        t.sort_values(['lang', 'years'], ascending=[True, False]),
+        t.sort_values(["lang", "years"], ascending=[True, False]),
         title="Project lifetime",
     )
     .mark_bar()
@@ -193,7 +209,7 @@ ch = (
             legend=alt.Legend(title="Language"),
             scale=alt.Scale(scheme="tableau10"),
         ),
-    tooltip=["name", "stars", "years"],        
+        tooltip=["name", "stars", "years"],
     )
 )
 st.altair_chart(ch, use_container_width=True)
@@ -219,7 +235,7 @@ ch = (
             legend=alt.Legend(title="Language"),
             scale=alt.Scale(scheme="tableau10"),
         ),
-    tooltip=["name", "stars", "years", "silent"],        
+        tooltip=["name", "stars", "years", "silent"],
     )
 )
 st.altair_chart(ch, use_container_width=True)
@@ -243,7 +259,7 @@ To download:
 ```python
 import pandas as pd
 url = "{url_csv}"
-df = pd.read_csv(url)
+df = pd.read_csv(url_csv, parse_dates=["created", "modified"])
 ```
 """
 
@@ -270,4 +286,3 @@ use cases, project development stories and applications of this dataset.
 
 (C) Evgeniy Pogrebnyak, 2021
 """
-

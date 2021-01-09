@@ -1,7 +1,9 @@
 from ssg import get_dataframe
 
+
 def md_link(text, url):
-    return f"[{text}]({url})
+    return f"[{text}]({url})"
+
 
 def make_presentation(df):
     zf = df[["stars", "lang", "url"]]

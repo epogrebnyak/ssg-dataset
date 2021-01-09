@@ -1,5 +1,5 @@
 from ssg import __version__
-from ssg.stars import n_forks
+from ssg.stars import Repo
 
 
 def test_version():
@@ -7,4 +7,5 @@ def test_version():
 
 
 def test_n_forks():
-    assert n_forks("epogrebnyak/haskell-intro") >= 5
+    assert Repo("epogrebnyak/haskell-intro").n_forks() >= 5
+    
