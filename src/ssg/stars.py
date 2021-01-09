@@ -145,7 +145,7 @@ def add_github_data(dicts):
         d["open_issues"] = r.open_issues()
         d["created"] = r.created_at()
         d["homepage"] = r.homepage()
-        d["language"] = r.language()
+        d["repo_lang"] = r.language()
         print("Retrieved data for", handle)
     return dicts
 
@@ -158,7 +158,8 @@ def get_dataframe(yaml_filename: str) -> pd.DataFrame:
 
 
 def metadata():
-    return {"created": datetime.today().date().isoformat()}
+    return {"created": datetime.today().date().isoformat(),
+            "date_columns": ["created", "modified"]}
 
 
 def yaml_to_csv(
@@ -192,6 +193,5 @@ def yaml_to_csv(
 
 
 if __name__ == "__main__":
-    df = yaml_to_csv("D:\\github\\ssg-stats\\data")
-    # to dicsuss:
-    (df.stars / (df.modified - df.created).map(lambda x: x.days)).sort_values()
+    pass
+    
