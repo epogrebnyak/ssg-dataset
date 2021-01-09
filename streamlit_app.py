@@ -4,7 +4,7 @@ import requests
 import streamlit as st
 
 st.set_page_config(
-    page_title="Github data on static site generators (SSG)",
+    page_title="Static site generators dataset",
     page_icon=None,
     layout="centered",
     initial_sidebar_state="collapsed",
@@ -22,7 +22,7 @@ def pretty(s: str) -> str:
 
 @st.cache
 def get_data():
-    df = pd.read_csv(url_csv)
+    df = pd.read_csv(url_csv, parse_dates=["created", "modified"])
     df["lang"] = df.lang.map(pretty)
     return df
 
@@ -31,7 +31,7 @@ def get_meta():
     return requests.get(url_metadata).json()
 
 
-df = get_data()
+_df = get_data()
 meta = get_meta()
 
 
@@ -53,11 +53,11 @@ are quick available metric.
 """
 
 # FIXME: should be able to reset as in https://discuss.streamlit.io/t/reset-multiselect-to-default-values-using-a-checkbox/1941
-all_langs = df.lang.unique().tolist()
+all_langs = _df.lang.unique().tolist()
 langs = st.multiselect(
     "Programming languages", options=all_langs, default=all_langs, format_func=pretty
 )
-plot_df = df[df.lang.isin(langs)]
+plot_df = _df[_df.lang.isin(langs)]
 plot_df["stars"] = plot_df.stars.divide(1000).round(1)
 
 chart = (
@@ -78,8 +78,11 @@ chart = (
             legend=alt.Legend(title="Language"),
             scale=alt.Scale(scheme="category10"),
         ),
+        tooltip=["name", "stars", "lang"],
     )
 )
+
+        
 
 st.altair_chart(chart, use_container_width=True)
 
@@ -93,13 +96,11 @@ or code reuse in other projects.
 """
 
 scatter = (
-    alt.Chart(df, title="Stars vs forks")
+    alt.Chart(_df, title="Stars vs forks")
     .mark_circle(size=60)
     .encode(
         x='stars',
-        #alt.X("stars", scale=alt.Scale(type="log")),
         y='forks',
-        #alt.Y("forks", scale=alt.Scale(type="log")),
         color="lang",
         tooltip=["name", "stars", "forks"],
     )
@@ -108,33 +109,127 @@ scatter = (
 st.altair_chart(scatter, use_container_width=True)
 
 """
-Consider there are two groups of SSG users: front-end engineers (FE) 
-and non-specialised (NS) users doing backend work, data analysis, 
-blog writing or maintaining documentation. More forks would come from FE group, 
-while NS would likely to use the software as is and will not fork.
+Consider there are two groups of SSG users: front-end engineers (FE),
+usually proficient with HTML, CSS and JavaScript and non-specialised (NS) 
+users who do other work (eg backend, data analysis or outside tech) 
+and need to write a blog, lay out documentation or simple website.
 
-Jekyll, Octopress (end of life project), Sphinx (backbone project) 
-and bookdown seem to have more forks.
+More forks would come from FE group, while NS would likely to use the software 
+as is and will not fork.
 
-There are relatively fewer forks for Hugo (maybe because it ships as 
-an executable file) and eleventy (perhaps, as intended by project concept).
+Distribution of project as an executable (Hugo), publishing pipeline (bookdown),
+or indended audience (eleventy) may affect relative number of forks.
+
+When project come to end-life - there would be more forks inteded to preserve
+and continue to use it (Octopress).
 """
+
+st.header("Open issues")
+
+"""
+More open issues in repository may be due to rapid project development or 
+accumulated technical debt.
+"""
+
+ratios = _df.copy()
+ratios["fork_ratio"] = (100*ratios.forks/ratios.stars).round(2)
+ratios["issues_ratio"] = (100*ratios.open_issues/ratios.stars).round(2)
+
+scale_down = st.checkbox('Zoom in', value = False)
+
+if scale_down:
+  plot_df2 = ratios[(ratios.issues_ratio < 10) & (ratios.fork_ratio < 30)]
+else:  
+  plot_df2 = ratios
+  
+scatter2 = (
+    alt.Chart(plot_df2, title="Open issues")
+    .mark_circle()
+    .encode(
+        x=alt.X("fork_ratio",
+                title="Forks ÷ stars * 100%",
+                ),
+        y=alt.Y("issues_ratio", 
+                title="Open issues ÷ stars * 100%",                 
+                ),        
+        size=alt.Size('stars',legend=alt.Legend(title="Github stars")),
+        color=alt.Color("lang", legend=alt.Legend(title="Language")),
+        tooltip=["name", "stars", "forks"],
+    )
+)
+
+st.altair_chart(scatter2, use_container_width=True)
+
+st.header("Project lifetime")
+
+"""
+The longest-running static site generators are based on Ruby. 
+The newest SSG are fastpages (Python) and Publish (Swift).
+"""
+def lapsed(x, today=meta['created']):
+  t = pd.to_datetime(today)
+  return (t-x).days
+
+t = _df.copy()
+t['years']  = (t.modified - t.created).map(lambda x: x.days).divide(365).round(1)
+t['silent'] = t.modified.map(lambda x: lapsed(x))
+df = t.sort_values(['lang', 'years'], ascending=[True, False])
+
+ch = (
+    alt.Chart(
+        t.sort_values(['lang', 'years'], ascending=[True, False]),
+        title="Project lifetime",
+    )
+    .mark_bar()
+    .encode(
+        x=alt.X("years", title="Years"),
+        y=alt.Y(
+            "name",
+            sort=alt.EncodingSortField(field="lang", order="ascending"),
+            title="",
+        ),
+        color=alt.Color(
+            "lang",
+            legend=alt.Legend(title="Language"),
+            scale=alt.Scale(scheme="tableau10"),
+        ),
+    tooltip=["name", "stars", "years"],        
+    )
+)
+st.altair_chart(ch, use_container_width=True)
+
+"""
+Several SSG are no longer maintained - one in Ruby, Python, and JavaScript.
+"""
+ch = (
+    alt.Chart(
+        t.sort_values("modified", ascending=True).head(3),
+        title="Out of business",
+    )
+    .mark_bar()
+    .encode(
+        x=alt.X("silent", title="Days without commit"),
+        y=alt.Y(
+            "name",
+            sort=alt.EncodingSortField(field="silent", order="descending"),
+            title="",
+        ),
+        color=alt.Color(
+            "lang",
+            legend=alt.Legend(title="Language"),
+            scale=alt.Scale(scheme="tableau10"),
+        ),
+    tooltip=["name", "stars", "years", "silent"],        
+    )
+)
+st.altair_chart(ch, use_container_width=True)
 
 st.header("Links")
 
-st.write(" - ".join(f"[{name}]({url})" for name, url in zip(df.name, df.url)))
-
-st.header("Other insights")
-
-"""
-With this dataset you can also look at following repo detail:
-
- - date created 
- - last commit date
- - number of open issues at repo
+alpha = df.sort_values("name")
+st.write(" - ".join(f"[{name}]({url})" for name, url in zip(alpha.name, alpha.url)))
 
 st.header("Data")
-"""
 
 f"""
 [![](https://img.shields.io/badge/download-csv-brightgreen)]({url_csv})
@@ -150,26 +245,15 @@ import pandas as pd
 url = "{url_csv}"
 df = pd.read_csv(url)
 ```
-
-To reproduce:
-
-```python
-from ssg import 
-import pandas as pd
-url = "{url_csv}"
-df = pd.read_csv(url)
-```
-
-
 """
 
-st.dataframe(df)
+st.dataframe(_df)
 
 st.header("Citation")
 
 """
 ```
-Evgeniy Pogrebnyak (2021). Static site generators popularity dataset. 
+Evgeniy Pogrebnyak (2021). Static site generators Github popularity dataset. 
 URL: <https://github.com/epogrebnyak/ssg>. 
 ```
 """
@@ -177,10 +261,13 @@ URL: <https://github.com/epogrebnyak/ssg>.
 st.header("Contacts")
 
 """
-If you happen to have a good idea or comment about the SSG dataset, please drop 
-me a line. I appreciate the feedback and look forward to hearing to SSG
-use cases and this dataset applications. 
+[![Twitter Follow](https://img.shields.io/twitter/follow/PogrebnyakE?label=Follow&style=social)](https://twitter.com/PogrebnyakE)
+[![MAIL Badge](https://img.shields.io/badge/-e.pogrebnyak@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:e.pogrebnyak@gmail.com)](mailto:e.pogrebnyak@gmail.com)
 
-[Twitter](https://twitter.com/PogrebnyakE) is probably the easiest way 
-to contact me, also my e-mail is e.pogrebnyak @ gmail dot com.
+If you happen to have a good idea or comment about the dataset, please drop 
+me a line. I appreciate the feedback and look forward to hearing about SSG
+use cases, project development stories and applications of this dataset. 
+
+(C) Evgeniy Pogrebnyak, 2021
 """
+
