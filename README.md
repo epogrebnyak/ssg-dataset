@@ -1,3 +1,5 @@
+![pytest](https://github.com/epogrebnyak/ssg-dataset/workflows/Tests/badge.svg)
+
 # Popularity of static site generators
 
 Static site generators are tools to create blogs, landing pages and documentation.
