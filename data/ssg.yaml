@@ -73,3 +73,7 @@ jaspervdj/hakyll:
   lang: haskell
   site: jaspervdj.be/hakyll
   twitter: jaspervdj
+scullyio/scully:
+  lang: js
+bridgetownrb/bridgetown:
+  lang: ruby

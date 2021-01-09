@@ -23,7 +23,9 @@ hakyll,jaspervdj/hakyll,2009-12-02,2020-12-30,2255,380,117,haskell,Haskell,https
 nikola,getnikola/nikola,2012-04-14,2021-01-06,2066,403,32,python,Python,https://github.com/getnikola/nikola/
 fastpages,fastai/fastpages,2020-02-03,2021-01-05,2053,428,3,python,Jupyter Notebook,https://github.com/fastai/fastpages/
 jupyter-book,executablebooks/jupyter-book,2018-06-14,2021-01-04,2013,293,257,python,Python,https://github.com/executablebooks/jupyter-book/
+scully,scullyio/scully,2019-12-12,2021-01-06,1956,192,56,js,TypeScript,https://github.com/scullyio/scully/
 nanoc,nanoc/nanoc,2009-07-17,2021-01-07,1912,247,10,ruby,Ruby,https://github.com/nanoc/nanoc/
 ihp,digitallyinduced/ihp,2017-12-03,2021-01-09,1653,84,81,haskell,Haskell,https://github.com/digitallyinduced/ihp/
 cobalt.rs,cobalt-org/cobalt.rs,2014-10-28,2021-01-01,903,77,68,rust,Rust,https://github.com/cobalt-org/cobalt.rs/
 Franklin.jl,tlienart/Franklin.jl,2018-05-31,2021-01-07,369,41,94,julia,Julia,https://github.com/tlienart/Franklin.jl/
+bridgetown,bridgetownrb/bridgetown,2020-04-07,2021-01-03,255,22,34,ruby,Ruby,https://github.com/bridgetownrb/bridgetown/
