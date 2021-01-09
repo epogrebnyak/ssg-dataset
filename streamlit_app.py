@@ -40,11 +40,13 @@ meta = get_meta()
 calver = "--".join(meta["created"].split("-"))
 
 f"""
-[![Download CSV](https://img.shields.io/badge/download-csv-brightgreen)]({url_csv})
+[![Download CSV](https://img.shields.io/badge/download-CSV-brightgreen)][url]
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4429834.svg)](https://doi.org/10.5281/zenodo.4429834)
 ![Release](https://img.shields.io/badge/release-{calver}-blue)
 [![GitHub Repo stars](https://img.shields.io/github/stars/epogrebnyak/ssg-dataset?style=social)][gh]
 
 [gh]: https://github.com/epogrebnyak/ssg-dataset
+[url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
 """
 
 st.header("Static site generators popularity  :thermometer: :star:")
