@@ -13,14 +13,14 @@ from dotenv import load_dotenv
 from datetime import datetime
 import json
 
-# FIXME: need stable location for the file - may appear in different folders for example and tests
+# Comment: need stable location for the file - may appear in different folders for example and tests
 requests_cache.install_cache("cache_1")
 
 load_dotenv(".config.env")
 USER = os.getenv("USER")
 TOKEN = os.getenv("TOKEN")
 
-
+# Comment: may use for schema validation
 allowed_languages = [
     "go",
     "js",
@@ -113,9 +113,9 @@ def to_dicts(yaml_dict):
             name=name(k),
             handle=k,
             lang=v["lang"],
-            exec=v.get("exec", False),
-            twitter=v.get("twitter", ""),
-            site=v.get("site", ""),
+            exec=v.get("exec", False),  # not shown in csv
+            twitter=v.get("twitter", ""),  # not shown in csv
+            site=v.get("site", ""),  # not shown in csv
         )
         for k, v in yaml_dict.items()
     ]
@@ -146,6 +146,7 @@ def add_github_data(dicts):
         d["created"] = r.created_at()
         d["homepage"] = r.homepage()
         d["language"] = r.language()
+        print("Retrieved data for", handle)
     return dicts
 
 
@@ -157,7 +158,8 @@ def get_dataframe(yaml_filename: str) -> pd.DataFrame:
 
 
 def metadata():
-    return {'created': datetime.today().date().isoformat()}
+    return {"created": datetime.today().date().isoformat()}
+
 
 def yaml_to_csv(
     folder,
@@ -178,10 +180,14 @@ def yaml_to_csv(
 ):
     def there(filename):
         return os.path.join(folder, filename)
+
     df = get_dataframe(there(yaml_filename))
     df[columns].to_csv(there(csv_filename))
+    print("Wrote", there(csv_filename))
+    metadata_dict = metadata()
     with open(there(meta_filename), "w") as f:
-      json.dump(metadata(), f)
+        json.dump(metadata_dict, f)
+    print("Wrote", there(meta_filename))    
     return df
 
 

@@ -217,20 +217,6 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
-name = "deprecated"
-version = "1.2.10"
-description = "Python @deprecated decorator to deprecate old python classes, functions or methods."
-category = "main"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[package.dependencies]
-wrapt = ">=1.10,<2"
-
-[package.extras]
-dev = ["tox", "bumpversion (<1)", "sphinx (<2)", "PyTest (<5)", "PyTest-Cov (<2.6)", "pytest", "pytest-cov"]
-
-[[package]]
 name = "docutils"
 version = "0.16"
 description = "Docutils -- Python Documentation Utilities"
@@ -435,7 +421,7 @@ format_nongpl = ["idna", "jsonpointer (>1.13)", "webcolors", "rfc3986-validator 
 
 [[package]]
 name = "jupyter-client"
-version = "6.1.7"
+version = "6.1.11"
 description = "Jupyter protocol implementation and client libraries"
 category = "dev"
 optional = false
@@ -449,7 +435,8 @@ tornado = ">=4.1"
 traitlets = "*"
 
 [package.extras]
-test = ["ipykernel", "ipython", "mock", "pytest", "pytest-asyncio", "async-generator", "pytest-timeout"]
+doc = ["sphinx (>=1.3.6)", "sphinx-rtd-theme", "sphinxcontrib-github-alt"]
+test = ["jedi (<=0.17.2)", "ipykernel", "ipython", "mock", "pytest", "pytest-asyncio", "async-generator", "pytest-timeout"]
 
 [[package]]
 name = "jupyter-core"
@@ -813,7 +800,7 @@ twisted = ["twisted"]
 
 [[package]]
 name = "prompt-toolkit"
-version = "3.0.9"
+version = "3.0.10"
 description = "Library for building powerful interactive command lines in Python"
 category = "dev"
 optional = false
@@ -898,41 +885,12 @@ traitlets = ">=4.3.2"
 testing = ["pytest"]
 
 [[package]]
-name = "pygithub"
-version = "1.54.1"
-description = "Use the full Github API v3"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-deprecated = "*"
-pyjwt = "<2.0"
-requests = ">=2.14.0"
-
-[package.extras]
-integrations = ["cryptography"]
-
-[[package]]
 name = "pygments"
 version = "2.7.3"
 description = "Pygments is a syntax highlighting package written in Python."
 category = "dev"
 optional = false
 python-versions = ">=3.5"
-
-[[package]]
-name = "pyjwt"
-version = "1.7.1"
-description = "JSON Web Token implementation in Python"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.extras]
-crypto = ["cryptography (>=1.4)"]
-flake8 = ["flake8", "flake8-import-order", "pep8-naming"]
-test = ["pytest (>=4.0.1,<5.0.0)", "pytest-cov (>=2.6.0,<3.0.0)", "pytest-runner (>=4.2,<5.0.0)"]
 
 [[package]]
 name = "pylint"
@@ -997,6 +955,17 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 
 [package.dependencies]
 six = ">=1.5"
+
+[[package]]
+name = "python-dotenv"
+version = "0.15.0"
+description = "Add .env support to your django/flask apps in development and deployments"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+cli = ["click (>=5.0)"]
 
 [[package]]
 name = "pytz"
@@ -1207,7 +1176,7 @@ test = ["pytest"]
 
 [[package]]
 name = "streamlit"
-version = "0.74.0"
+version = "0.74.1"
 description = "The fastest way to build data apps in Python"
 category = "dev"
 optional = false
@@ -1395,14 +1364,14 @@ notebook = ">=4.4.1"
 name = "wrapt"
 version = "1.12.1"
 description = "Module for decorators, wrappers and monkey patching."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "9cddcb45e9d27c1778e6e35b7ccf743802f400aae64a9ee940a57bcb15488e6e"
+content-hash = "91ca82c819a780ca015ce14d46343312e0d1de3e32f830a71fd5c96dcc1a750a"
 
 [metadata.files]
 alabaster = [
@@ -1542,10 +1511,6 @@ defusedxml = [
     {file = "defusedxml-0.6.0-py2.py3-none-any.whl", hash = "sha256:6687150770438374ab581bb7a1b327a847dd9c5749e396102de3fad4e8a3ef93"},
     {file = "defusedxml-0.6.0.tar.gz", hash = "sha256:f684034d135af4c6cbb949b8a4d2ed61634515257a67299e5f940fbaa34377f5"},
 ]
-deprecated = [
-    {file = "Deprecated-1.2.10-py2.py3-none-any.whl", hash = "sha256:a766c1dccb30c5f6eb2b203f87edd1d8588847709c78589e1521d769addc8218"},
-    {file = "Deprecated-1.2.10.tar.gz", hash = "sha256:525ba66fb5f90b07169fdd48b6373c18f1ee12728ca277ca44567a367d9d7f74"},
-]
 docutils = [
     {file = "docutils-0.16-py2.py3-none-any.whl", hash = "sha256:0c5b78adfbf7762415433f5515cd5c9e762339e23369dbe8000d84a4bf4ab3af"},
     {file = "docutils-0.16.tar.gz", hash = "sha256:c2de3a60e9e7d07be26b7f2b00ca0309c207e06c100f9cc2a94931fc75a478fc"},
@@ -1606,8 +1571,8 @@ jsonschema = [
     {file = "jsonschema-3.2.0.tar.gz", hash = "sha256:c8a85b28d377cc7737e46e2d9f2b4f44ee3c0e1deac6bf46ddefc7187d30797a"},
 ]
 jupyter-client = [
-    {file = "jupyter_client-6.1.7-py3-none-any.whl", hash = "sha256:c958d24d6eacb975c1acebb68ac9077da61b5f5c040f22f6849928ad7393b950"},
-    {file = "jupyter_client-6.1.7.tar.gz", hash = "sha256:49e390b36fe4b4226724704ea28d9fb903f1a3601b6882ce3105221cd09377a1"},
+    {file = "jupyter_client-6.1.11-py3-none-any.whl", hash = "sha256:5eaaa41df449167ebba5e1cf6ca9b31f7fd4f71625069836e2e4fee07fe3cb13"},
+    {file = "jupyter_client-6.1.11.tar.gz", hash = "sha256:649ca3aca1e28f27d73ef15868a7c7f10d6e70f761514582accec3ca6bb13085"},
 ]
 jupyter-core = [
     {file = "jupyter_core-4.7.0-py3-none-any.whl", hash = "sha256:0a451c9b295e4db772bdd8d06f2f1eb31caeec0e81fbb77ba37d4a3024e3b315"},
@@ -1856,8 +1821,8 @@ prometheus-client = [
     {file = "prometheus_client-0.9.0.tar.gz", hash = "sha256:9da7b32f02439d8c04f7777021c304ed51d9ec180604700c1ba72a4d44dceb03"},
 ]
 prompt-toolkit = [
-    {file = "prompt_toolkit-3.0.9-py3-none-any.whl", hash = "sha256:45b154489d89dc41cce86a069a65f3886206518e7ca93fa9d7dad70546c78d54"},
-    {file = "prompt_toolkit-3.0.9.tar.gz", hash = "sha256:c5eeab58dd31b541442825d7870777f2a2f764eb5fda03334d5219cd84b9722f"},
+    {file = "prompt_toolkit-3.0.10-py3-none-any.whl", hash = "sha256:ac329c69bd8564cb491940511957312c7b8959bb5b3cf3582b406068a51d5bb7"},
+    {file = "prompt_toolkit-3.0.10.tar.gz", hash = "sha256:b8b3d0bde65da350290c46a8f54f336b3cbf5464a4ac11239668d986852e79d5"},
 ]
 protobuf = [
     {file = "protobuf-3.14.0-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:629b03fd3caae7f815b0c66b41273f6b1900a579e2ccb41ef4493a4f5fb84f3a"},
@@ -1926,17 +1891,9 @@ pydeck = [
     {file = "pydeck-0.5.0-py2.py3-none-any.whl", hash = "sha256:5759842addfef5a76c6033f90f34901dfa377a740b3dbedb55e7c46d07be3c65"},
     {file = "pydeck-0.5.0.tar.gz", hash = "sha256:cf505af5c75924b669d8acdd00c6ef48da617c3f5051f5a146f2fb669d587385"},
 ]
-pygithub = [
-    {file = "PyGithub-1.54.1-py3-none-any.whl", hash = "sha256:87afd6a67ea582aa7533afdbf41635725f13d12581faed7e3e04b1579c0c0627"},
-    {file = "PyGithub-1.54.1.tar.gz", hash = "sha256:300bc16e62886ca6537b0830e8f516ea4bc3ef12d308e0c5aff8bdbd099173d4"},
-]
 pygments = [
     {file = "Pygments-2.7.3-py3-none-any.whl", hash = "sha256:f275b6c0909e5dafd2d6269a656aa90fa58ebf4a74f8fcf9053195d226b24a08"},
     {file = "Pygments-2.7.3.tar.gz", hash = "sha256:ccf3acacf3782cbed4a989426012f1c535c9a90d3a7fc3f16d231b9372d2b716"},
-]
-pyjwt = [
-    {file = "PyJWT-1.7.1-py2.py3-none-any.whl", hash = "sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e"},
-    {file = "PyJWT-1.7.1.tar.gz", hash = "sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96"},
 ]
 pylint = [
     {file = "pylint-2.6.0-py3-none-any.whl", hash = "sha256:bfe68f020f8a0fece830a22dd4d5dddb4ecc6137db04face4c3420a46a52239f"},
@@ -1956,6 +1913,10 @@ pytest = [
 python-dateutil = [
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
     {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
+]
+python-dotenv = [
+    {file = "python-dotenv-0.15.0.tar.gz", hash = "sha256:587825ed60b1711daea4832cf37524dfd404325b7db5e25ebe88c495c9f807a0"},
+    {file = "python_dotenv-0.15.0-py2.py3-none-any.whl", hash = "sha256:0c8d1b80d1a1e91717ea7d526178e3882732420b03f08afea0406db6402e220e"},
 ]
 pytz = [
     {file = "pytz-2020.5-py2.py3-none-any.whl", hash = "sha256:16962c5fb8db4a8f63a26646d8886e9d769b6c511543557bc84e9569fb9a9cb4"},
@@ -2084,8 +2045,8 @@ sphinxcontrib-serializinghtml = [
     {file = "sphinxcontrib_serializinghtml-1.1.4-py2.py3-none-any.whl", hash = "sha256:f242a81d423f59617a8e5cf16f5d4d74e28ee9a66f9e5b637a18082991db5a9a"},
 ]
 streamlit = [
-    {file = "streamlit-0.74.0-py2.py3-none-any.whl", hash = "sha256:db4132d43c95bfeeb9d746c44df7c5c1e894f2f9cd6b1327b0a44d45632e2f50"},
-    {file = "streamlit-0.74.0.tar.gz", hash = "sha256:b82a6750bee8a058fd860f90d89a23a61772c358196f0f41df590f106d7cea3f"},
+    {file = "streamlit-0.74.1-py2.py3-none-any.whl", hash = "sha256:a0721e2f736ab0cb255cfd721b72ddebaf4224b8c6a3369bb4231f45599cbe7c"},
+    {file = "streamlit-0.74.1.tar.gz", hash = "sha256:3fabbda5163c9a3a6f66d88eb4dd0cab4ffa634d25d00927680039839fd0ac56"},
 ]
 terminado = [
     {file = "terminado-0.9.2-py3-none-any.whl", hash = "sha256:23a053e06b22711269563c8bb96b36a036a86be8b5353e85e804f89b84aaa23f"},
