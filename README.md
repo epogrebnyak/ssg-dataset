@@ -11,7 +11,7 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 [![Demo in Google Colab](https://img.shields.io/badge/Colab-Open-orange)][colab]
 
 [Streamlit app][st] lays out a data story about SSGs with several visualisations. 
-[Colab][colab] is a try and see playground with some code for chart.
+[Colab][colab] is a try and see playground with some code for charts.
 
 [st]: https://share.streamlit.io/epogrebnyak/ssg-dataset/main
 [colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
