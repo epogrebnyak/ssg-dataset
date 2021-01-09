@@ -21,7 +21,10 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 
 ## Dataset
 
-[![Download CSV](https://img.shields.io/badge/download-csv-brightgreen)]({url_csv})
+[![Download CSV](https://img.shields.io/badge/download-CSV-brightgreen)][url]
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4429834.svg)](https://doi.org/10.5281/zenodo.4429834)
+
+[url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
 
 The stable URL for dataset is:
 
