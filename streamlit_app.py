@@ -54,7 +54,13 @@ st.header("Static site generators popularity  :thermometer: :star:")
 
 """
 Static site generators (SSG) are open source tools to create blogs, 
-landing pages and documentation.
+landing pages and documentation. 
+
+[Hugo](https://gohugo.io/), 
+[Gatsby](https://www.gatsbyjs.com/) and 
+[Jekyll](https://jekyllrb.com/) 
+are probably the most well-known SSG, but there are quite a few others
+as described below. 
 """
 
 st.header("Github stars")
