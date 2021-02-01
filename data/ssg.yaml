@@ -79,5 +79,6 @@ bridgetownrb/bridgetown:
   lang: ruby
 jbake-org/jbake:  
   lang: java
-  site: https://jbake.org/
-  
+  site: jbake.org
+tighten/jigsaw:
+  lang: php
