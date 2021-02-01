@@ -77,3 +77,7 @@ scullyio/scully:
   lang: js
 bridgetownrb/bridgetown:
   lang: ruby
+jbake-org/jbake:  
+  lang: java
+  site: https://jbake.org/
+  
