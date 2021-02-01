@@ -26,6 +26,7 @@ jupyter-book,executablebooks/jupyter-book,2018-06-14,2021-01-04,2022,296,261,pyt
 scully,scullyio/scully,2019-12-12,2021-01-13,1977,194,54,js,TypeScript,https://github.com/scullyio/scully/
 nanoc,nanoc/nanoc,2009-07-17,2021-01-13,1913,245,10,ruby,Ruby,https://github.com/nanoc/nanoc/
 ihp,digitallyinduced/ihp,2017-12-03,2021-01-15,1682,85,85,haskell,Haskell,https://github.com/digitallyinduced/ihp/
+jigsaw,tighten/jigsaw,2015-05-25,2021-01-29,1669,150,20,php,PHP,https://github.com/tighten/jigsaw/
 cobalt.rs,cobalt-org/cobalt.rs,2014-10-28,2021-01-01,907,77,68,rust,Rust,https://github.com/cobalt-org/cobalt.rs/
 jbake,jbake-org/jbake,2013-03-03,2020-05-10,893,300,143,java,Java,https://github.com/jbake-org/jbake/
 Franklin.jl,tlienart/Franklin.jl,2018-05-31,2021-01-12,375,42,98,julia,Julia,https://github.com/tlienart/Franklin.jl/
