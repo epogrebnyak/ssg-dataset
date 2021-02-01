@@ -194,10 +194,20 @@ def lapsed(x, today=meta["created"]):
     return (t - x).days
 
 
+def year_fractional(dt):
+    frac = (dt - pd.Timestamp(year=dt.year, month=1, day=1)).days / 365
+    return dt.year + frac
+
 t = _df.copy()
 t["years"] = (t.modified - t.created).map(lambda x: x.days).divide(365).round(1)
 t["silent"] = t.modified.map(lambda x: lapsed(x))
 df = t.sort_values(["lang", "years"], ascending=[True, False])
+
+# draft: plots matplotlib
+# t["start"] = t.created.map(year_fractional)
+# t[["start", "years"]].sort_values("start", ascending = False).plot.barh(stacked=True, xlim=[2008, 2021], color=['white', 'blue'])
+
+# legend
 
 ch = (
     alt.Chart(
