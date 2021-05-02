@@ -26,11 +26,7 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 
 [url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
 
-The stable URL for dataset is:
-
-```
-https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
-```
+The stable URL for dataset is <https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv>
 
 To download:
 
