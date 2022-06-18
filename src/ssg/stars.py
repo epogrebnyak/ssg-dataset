@@ -31,7 +31,7 @@ allowed_languages = [
     "swift",
     "julia",
     "haskell",
-    "java"
+    "java",
 ]
 
 
