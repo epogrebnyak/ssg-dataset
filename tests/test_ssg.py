@@ -1,5 +1,5 @@
 from ssg import __version__
-from ssg.stars import Repo, yaml_to_csv
+from ssg.stars import Repo, yaml_to_csv, create_all
 
 
 def test_version():
@@ -8,6 +8,35 @@ def test_version():
 
 def test_n_forks():
     assert Repo("epogrebnyak/haskell-intro").n_forks() >= 5
+
+
+import pytest
+
+
+class TestFilesBase:
+    yaml_doc = """
+rstudio/bookdown:
+  lang: r
+segmentio/metalsmith:
+  lang: js"""
+
+    @pytest.fixture(autouse=True)
+    def setup_method(self, tmpdir):
+        self.folder = tmpdir
+        self.yaml_path = tmpdir / "ssg.yaml"
+        self.yaml_path.write_text(self.yaml_doc, encoding="utf-8")
+        self.csv_path = tmpdir / "ssg.csv"
+        self.metadata_path = tmpdir / "metadata.json"
+
+
+class CreateAll(TestFilesBase):
+    def test_csv_is_created(self):
+        create_all(self.folder)
+        assert self.csv_path.exists()
+
+    def test_metadata_is_created(self):
+        create_all(self.folder)
+        assert self.metadata_path.exists()
 
 
 def test_yaml_to_csv(tmpdir):
@@ -34,10 +63,8 @@ segmentio/metalsmith:
     ]
     metadata_path = tmpdir / "metadata.json"
     yaml_path.write_text(yaml_doc, encoding="utf-8")
-    df = yaml_to_csv(str(tmpdir), "ssg.yaml", "ssg.csv", "metadata.json")
+    df, _ = yaml_to_csv(str(tmpdir), "ssg.yaml", "ssg.csv")
     df2 = pd.read_csv(csv_path, parse_dates=["created", "modified"])
-    # test metdata is written
-    assert metadata_path.exists()
     # test dataframe equals the written csv file
     pd.testing.assert_frame_equal(
         df2.set_index("name", drop=False), df[df2.columns], check_dtype=False

@@ -167,17 +167,17 @@ def metadata():
         "data_url": "https://github.com/epogrebnyak/ssg-dataset/blob/main/data/ssg.csv",
     }
 
-def write_metadata(path):
-    metadata_dict = metadata()
-    with open(path, "w") as f:
-        json.dump(metadata_dict, f)
+
+def write_metadata(folder: Path, filename: str = "metadata.json") -> None:
+    path = folder / filename
+    path.write_text(json.dumps(metadata()), encoding="utf-8")
+    return path
 
 
 def yaml_to_csv(
     folder,
     yaml_filename="ssg.yaml",
     csv_filename="ssg.csv",
-    meta_filename="metadata.json",
     columns=[
         "handle",
         "created",
@@ -190,15 +190,18 @@ def yaml_to_csv(
         "url",
     ],
 ):
-    def there(filename):
-        return os.path.join(folder, filename)
+    csv_path = os.path.join(folder, csv_filename)
+    yaml_path = os.path.join(folder, yaml_filename)
+    df = get_dataframe(yaml_path)
+    df[columns].to_csv(csv_path)
+    return df, csv_path
 
-    df = get_dataframe(there(yaml_filename))
-    df[columns].to_csv(there(csv_filename))
-    print("Wrote", there(csv_filename))
-    write_metadata(there(meta_filename))
-    print("Wrote", there(meta_filename))
-    return df
+
+def create_all(folder):
+    _, p1 = yaml_to_csv(folder)
+    print("Wrote", p1)
+    p2 = write_metadata(folder)
+    print("Wrote", p2)
 
 
 if __name__ == "__main__":

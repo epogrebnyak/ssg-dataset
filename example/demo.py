@@ -24,5 +24,5 @@ with tempfile.TemporaryDirectory() as tmpdir:
         "url",
     ]
     yaml_path.write_text(yaml_doc, encoding="utf-8")
-    df = yaml_to_csv(tmpdir, "ssg.yaml", "ssg.csv", "metadata.json")
+    df = yaml_to_csv(tmpdir, "ssg.yaml", "ssg.csv", columns)
     df2 = pd.read_csv(csv_path, parse_dates=["created", "modified"])
