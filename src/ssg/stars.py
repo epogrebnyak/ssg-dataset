@@ -164,10 +164,10 @@ def yaml_to_csv(
     yaml_filename="ssg.yaml",
     csv_filename="ssg.csv",
     columns=[
-        "lang",
-        "repo_lang",
         "github_handle",
         "url",
+        "lang",
+        "repo_lang",
         "created",
         "modified",
         "stars",
