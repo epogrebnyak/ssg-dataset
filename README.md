@@ -78,8 +78,8 @@ You will need a Github token to retreive stats for many repos. Write out `.confi
 near to where you run your Python code: 
 
 ```toml
-GH_USER=<your Github username here>
-GH_TOKEN=<your Github personal token here>
+GH_USER="your Github username here"
+GH_TOKEN="your Github personal token here"
 ```
 
 Your Github personal token is [here](https://github.com/settings/tokens/) and 
