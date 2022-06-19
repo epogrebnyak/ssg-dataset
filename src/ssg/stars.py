@@ -2,10 +2,9 @@
 
 import json
 import os
-from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 import pandas as pd  # type: ignore
 import requests
@@ -14,12 +13,14 @@ import yaml
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
+# TODO: sepaare code for generec queries about github and SSGs into two modules  
+
 # Comment: need stable location for the file - may appear in different folders for example and tests
 requests_cache.install_cache("cache_1")
 
 load_dotenv(".config.env")
-USER = os.getenv("USER")
-TOKEN = os.getenv("TOKEN")
+USER = os.getenv("USER", "")
+TOKEN = os.getenv("TOKEN", "")
 
 # Comment: may use for schema validation
 allowed_languages = [
@@ -38,8 +39,8 @@ allowed_languages = [
 
 class SSG(BaseModel):
     name: str
-    github_handle: str  # must enforce /
-    lang: str  # must enforce fix list of languages
+    github_handle: str  # TODO: must enforce /
+    lang: str  # TODO: must enforce fix list of languages
     exec: Optional[bool] = None
     twitter: str = ""
     site: str = ""
@@ -78,7 +79,7 @@ def make_api_url_commits(
     return f"https://api.github.com/repos/{handle}/commits"
 
 
-def get_repo(handle: str) -> str:
+def get_repo(handle: str) -> Dict:
     return fetch(make_api_url(handle))
 
 
@@ -86,7 +87,7 @@ def get_commits(handle: str) -> List[Any]:
     return fetch(make_api_url_commits(handle))
 
 
-def fetch(url: str, username=USER, token=TOKEN):
+def fetch(url: str, username:str=USER, token:str=TOKEN):
     if TOKEN:
         r = requests.get(url, auth=(username, token))
     else:
@@ -100,14 +101,14 @@ def last_modified(handle: str) -> str:
 
 
 def date_only(s):
-    return s[: 4 + 2 + 2 + 2]
+    return s[: 4 + 2 + 2 + 2] # TODO: change to date
 
 
 def read_text(filename) -> str:
     return Path(filename).read_text()
 
 
-def extract_yaml(text: str):
+def extract_yaml(text: str) -> Dict:
     return yaml.load(text, Loader=yaml.SafeLoader)
 
 
@@ -119,14 +120,14 @@ class RepoState(BaseModel):
     repo_lang: str
     url: str
     homepage: str
-    created: str  # change to date
-    modified: str  # change to date
+    created: str  # TODO: change to date
+    modified: str  # TODO: change to date
     stars: int
     forks: int
     open_issues: int
 
 
-def get_repo_state_from_handle(handle):
+def get_repo_state_from_handle(handle: str) -> RepoState:
     print("Retrieving data for", handle, "...")
     repo = get_repo(handle)
     return RepoState(
@@ -135,16 +136,16 @@ def get_repo_state_from_handle(handle):
         homepage=repo["homepage"],
         created=date_only(repo["created_at"]),
         modified=date_only(last_modified(handle)),
-        stars=repo["stargazers_count"],
-        forks=repo["forks_count"],
-        open_issues=repo["open_issues_count"],
+        stars=int(repo["stargazers_count"]),
+        forks=int(repo["forks_count"]),
+        open_issues=int(repo["open_issues_count"]),
     )
 
 
 def get_repo_state(ssg: SSG):
     return get_repo_state_from_handle(ssg.github_handle)
 
-
+# TODO: can use typing check on dataframe
 def make_dataframe_from_ssg(ssg_list: List[SSG]) -> pd.DataFrame:
     df = pd.DataFrame({**s.dict(), **get_repo_state(s).dict()} for s in ssg_list)
     for key in ["created", "modified"]:
@@ -191,7 +192,7 @@ def metadata():
     }
 
 
-def write_metadata(folder: Path, filename: str = "metadata.json") -> None:
+def write_metadata(folder: Path, filename: str = "metadata.json") -> Path:
     path = folder / filename
     path.write_text(json.dumps(metadata()), encoding="utf-8")
     return path

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ssg"
-version = "0.2.0"
+version = "0.2.1"
 description = "Github data for static site generators popularity"
 authors = ["Evgeniy Pogrebnyak <e.pogrebnyak@gmail.com>"]
 readme = "README.md"
