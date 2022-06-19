@@ -103,30 +103,6 @@ def date_only(s):
     return s[: 4 + 2 + 2 + 2]
 
 
-# class Repo:
-#     def __init__(self, handle: str):
-#         self.handle = handle
-#         self.repo = get_repo(handle)
-
-#     def n_stars(self):
-#         return self.repo["stargazers_count"]
-
-#     def n_forks(self):
-#         return self.repo["forks_count"]
-
-#     def open_issues(self):
-#         return self.repo["open_issues_count"]
-
-#     def created_at(self):
-#         return self.repo["created_at"]
-
-#     def homepage(self):
-#         return self.repo["homepage"]
-
-#     def language(self):
-#         return self.repo["language"]
-
-
 def read_text(filename) -> str:
     return Path(filename).read_text()
 
@@ -137,22 +113,6 @@ def extract_yaml(text: str):
 
 def to_ssg_list(yaml_dict) -> List[SSG]:
     return [read_item(k, v) for k, v in yaml_dict.items()]
-
-
-# def add_github_data(s: SSG) -> Dict:
-#     handle = s.github_handle
-#     d = s.dict()
-#     d["url"] = url(handle)
-#     d["modified"] = date_only(last_modified(handle))
-#     r = Repo(handle)
-#     print("Retrieved data for", handle)
-#     d["stars"] = r.n_stars()
-#     d["forks"] = r.n_forks()
-#     d["open_issues"] = r.open_issues()
-#     d["created"] = date_only(r.created_at())
-#     d["homepage"] = r.homepage()
-#     d["repo_lang"] = r.language()
-#     return d
 
 
 class RepoState(BaseModel):
@@ -185,28 +145,11 @@ def get_repo_state(ssg: SSG):
     return get_repo_state_from_handle(ssg.github_handle)
 
 
-# def stream_dicts(param_dict: dict) -> List[Dict]:
-#     return [add_github_data(d) for d in to_ssg_list(param_dict)]
-
-
-# def enrich_ssg(param_dict: dict) -> List[Tuple[SSG, RepoState]]:
-#     return [(ssg, get_repo_state(ssg)) for ssg in to_ssg_list(param_dict)]
-
-
 def make_dataframe_from_ssg(ssg_list: List[SSG]) -> pd.DataFrame:
     df = pd.DataFrame({**s.dict(), **get_repo_state(s).dict()} for s in ssg_list)
     for key in ["created", "modified"]:
         df[key] = df[key].map(lambda x: pd.to_datetime(x).date())
     return df.sort_values("stars", ascending=False).set_index("name")
-
-
-# def make_dataframe(dicts: List[Dict]) -> pd.DataFrame:
-#     raw_df = pd.DataFrame(dicts)
-#     for key in ["created", "modified"]:
-#         raw_df[key] = raw_df[key].map(lambda x: pd.to_datetime(x).date())
-#     raw_df = raw_df.sort_values("stars", ascending=False)
-#     raw_df.index = raw_df.name
-#     return raw_df
 
 
 def get_dataframe(yaml_filename: str) -> pd.DataFrame:
