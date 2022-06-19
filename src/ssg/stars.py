@@ -24,6 +24,7 @@ allowed_languages = [
     "julia",
     "haskell",
     "java",
+    "elm"
 ]
 
 

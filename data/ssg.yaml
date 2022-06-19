@@ -82,3 +82,8 @@ jbake-org/jbake:
   site: jbake.org
 tighten/jigsaw:
   lang: php
+withastro/astro:
+  lang: js  
+alexkorban/elmstatic:
+  lang: elm
+

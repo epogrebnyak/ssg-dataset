@@ -8,18 +8,7 @@ from typing import Optional, Dict
 from ssg.github import get_repo_state_from_handle
 
 
-rs = get_repo_state_from_handle("withastro/astro")
-
-rs2 = RepoState(
-    repo_lang="TypeScript",
-    url="https://github.com/withastro/astro/",
-    homepage="https://astro.build",
-    created="2021-03-15",
-    modified="2022-06-19",
-    stars=12422,
-    forks=641,
-    open_issues=98,
-)
+rs = get_repo_state_from_handle("tighten/jigsaw")
 
 yaml_doc = """
 rstudio/bookdown:

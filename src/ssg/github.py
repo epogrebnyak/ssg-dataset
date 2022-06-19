@@ -16,8 +16,8 @@ __all__ = ["get_repo_state_from_handle"]
 requests_cache.install_cache("cache_1")
 
 load_dotenv(".config.env")
-GH_USER = os.getenv("USER", "")
-GH_TOKEN = os.getenv("TOKEN", "")
+GH_USER = os.getenv("GH_USER", "")
+GH_TOKEN = os.getenv("GH_TOKEN", "")
 
 
 def reveal():
@@ -49,7 +49,7 @@ def get_commits(handle: str) -> List[Any]:
 
 
 def fetch(url: str, username: str = GH_USER, token: str = GH_TOKEN):
-    if GH_TOKEN:
+    if token:
         r = requests.get(url, auth=(username, token))
     else:
         r = requests.get(url)
@@ -68,7 +68,7 @@ def date_only(s):
 class RepoState(BaseModel):
     repo_lang: str
     url: str
-    homepage: str
+    homepage: Optional[str] # some repos do not have webpage - https://github.com/alexkorban/elmstatic
     created: str  # TODO: change to date
     modified: str  # TODO: change to date
     stars: int
