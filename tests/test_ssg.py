@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 
 from ssg import __version__
-from ssg.stars import Repo, create_all, yaml_to_csv
+from ssg.stars import Repo, create_all, yaml_to_csv, extract_yaml
 
 
 def test_version():
@@ -13,6 +13,19 @@ def test_version():
 
 def test_n_forks():
     assert Repo("epogrebnyak/haskell-intro").n_forks() >= 5
+
+
+def test_extract_yaml():
+    yaml_doc = """
+rstudio/bookdown:
+    lang: r
+segmentio/metalsmith:
+    lang: js
+"""
+    assert extract_yaml(yaml_doc) == {
+        "rstudio/bookdown": {"lang": "r"},
+        "segmentio/metalsmith": {"lang": "js"},
+    }
 
 
 class TestFilesBase:

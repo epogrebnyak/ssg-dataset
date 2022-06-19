@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any, List
+from typing import Dict, List
+
 
 import pandas as pd  # type: ignore
 import requests
@@ -108,25 +110,42 @@ def extract_yaml(text: str):
     return yaml.load(text, Loader=yaml.SafeLoader)
 
 
+# will change with Pydantic
+def norm(key, values):
+    return dict(
+        name=name(key),
+        handle=key,
+        lang=values["lang"],
+        exec=values.get("exec", False),  # not shown in csv
+        twitter=values.get("twitter", ""),  # not shown in csv
+        site=values.get("site", ""),  # not shown in csv
+    )
+
+
 def to_dicts(yaml_dict):
-    return [
-        dict(
-            name=name(k),
-            handle=k,
-            lang=v["lang"],
-            exec=v.get("exec", False),  # not shown in csv
-            twitter=v.get("twitter", ""),  # not shown in csv
-            site=v.get("site", ""),  # not shown in csv
-        )
-        for k, v in yaml_dict.items()
-    ]
+    return [norm(k, v) for k, v in yaml_dict.items()]
 
 
-def read_dicts(filename):
-    return to_dicts(extract_yaml(read_text(filename)))
+def add_github_data(d: dict):
+    handle = d["handle"]
+    d["url"] = url(handle)
+    d["modified"] = last_modified(handle)
+    r = Repo(handle)
+    d["stars"] = r.n_stars()
+    d["forks"] = r.n_forks()
+    d["open_issues"] = r.open_issues()
+    d["created"] = r.created_at()
+    d["homepage"] = r.homepage()
+    d["repo_lang"] = r.language()
+    print("Retrieved data for", handle)
+    return d
 
 
-def make_dataframe(dicts) -> pd.DataFrame:
+def stream_dicts(param_dict: dict) -> List[Dict]:
+    return [add_github_data(d) for d in to_dicts(param_dict)]
+
+
+def make_dataframe(dicts: List[Dict]) -> pd.DataFrame:
     raw_df = pd.DataFrame(dicts)
     for key in ["created", "modified"]:
         raw_df[key] = raw_df[key].map(lambda x: pd.to_datetime(x).date())
@@ -135,43 +154,10 @@ def make_dataframe(dicts) -> pd.DataFrame:
     return raw_df
 
 
-def add_github_data(dicts):
-    for d in dicts:
-        handle = d["handle"]
-        d["url"] = url(handle)
-        d["modified"] = last_modified(handle)
-        r = Repo(handle)
-        d["stars"] = r.n_stars()
-        d["forks"] = r.n_forks()
-        d["open_issues"] = r.open_issues()
-        d["created"] = r.created_at()
-        d["homepage"] = r.homepage()
-        d["repo_lang"] = r.language()
-        print("Retrieved data for", handle)
-    return dicts
-
-
 def get_dataframe(yaml_filename: str) -> pd.DataFrame:
     text = read_text(yaml_filename)
-    dicts = to_dicts(extract_yaml(text))
-    dicts2 = add_github_data(dicts)
-    return make_dataframe(dicts2)
-
-
-def metadata():
-    return {
-        "name": "Github data for static site generators popularity",
-        "created": datetime.today().date().isoformat(),
-        "date_columns": ["created", "modified"],
-        "repo_url": "https://github.com/epogrebnyak/ssg-dataset/",
-        "data_url": "https://github.com/epogrebnyak/ssg-dataset/blob/main/data/ssg.csv",
-    }
-
-
-def write_metadata(folder: Path, filename: str = "metadata.json") -> None:
-    path = folder / filename
-    path.write_text(json.dumps(metadata()), encoding="utf-8")
-    return path
+    param_dict = extract_yaml(text)
+    return make_dataframe(stream_dicts(param_dict))
 
 
 def yaml_to_csv(
@@ -195,6 +181,22 @@ def yaml_to_csv(
     df = get_dataframe(yaml_path)
     df[columns].to_csv(csv_path)
     return df, csv_path
+
+
+def metadata():
+    return {
+        "name": "Github data for static site generators popularity",
+        "created": datetime.today().date().isoformat(),
+        "date_columns": ["created", "modified"],
+        "repo_url": "https://github.com/epogrebnyak/ssg-dataset/",
+        "data_url": "https://github.com/epogrebnyak/ssg-dataset/blob/main/data/ssg.csv",
+    }
+
+
+def write_metadata(folder: Path, filename: str = "metadata.json") -> None:
+    path = folder / filename
+    path.write_text(json.dumps(metadata()), encoding="utf-8")
+    return path
 
 
 def create_all(folder):
