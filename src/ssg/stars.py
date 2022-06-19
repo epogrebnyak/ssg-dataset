@@ -167,6 +167,11 @@ def metadata():
         "data_url": "https://github.com/epogrebnyak/ssg-dataset/blob/main/data/ssg.csv",
     }
 
+def write_metadata(path):
+    metadata_dict = metadata()
+    with open(path, "w") as f:
+        json.dump(metadata_dict, f)
+
 
 def yaml_to_csv(
     folder,
@@ -191,9 +196,7 @@ def yaml_to_csv(
     df = get_dataframe(there(yaml_filename))
     df[columns].to_csv(there(csv_filename))
     print("Wrote", there(csv_filename))
-    metadata_dict = metadata()
-    with open(there(meta_filename), "w") as f:
-        json.dump(metadata_dict, f)
+    write_metadata(there(meta_filename))
     print("Wrote", there(meta_filename))
     return df
 
