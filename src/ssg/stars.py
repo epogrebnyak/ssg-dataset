@@ -43,6 +43,7 @@ class SSG(BaseModel):
     exec: Optional[bool] = None
     twitter: str = ""
     site: str = ""
+    comment: str = ""
 
 
 def read_item(key: str, values: Dict) -> SSG:
@@ -98,6 +99,10 @@ def last_modified(handle: str) -> str:
     return _last["commit"]["author"]["date"]
 
 
+def date_only(s):
+    return s[: 4 + 2 + 2 + 2]
+
+
 class Repo:
     def __init__(self, handle: str):
         self.handle = handle
@@ -122,10 +127,6 @@ class Repo:
         return self.repo["language"]
 
 
-def name(handle: str):
-    return handle.split("/")[1]
-
-
 def read_text(filename) -> str:
     return Path(filename).read_text()
 
@@ -134,7 +135,7 @@ def extract_yaml(text: str):
     return yaml.load(text, Loader=yaml.SafeLoader)
 
 
-def to_dicts(yaml_dict) -> List[SSG]:
+def to_ssg(yaml_dict) -> List[SSG]:
     return [read_item(k, v) for k, v in yaml_dict.items()]
 
 
@@ -142,20 +143,46 @@ def add_github_data(s: SSG) -> Dict:
     handle = s.github_handle
     d = s.dict()
     d["url"] = url(handle)
-    d["modified"] = last_modified(handle)
+    d["modified"] = date_only(last_modified(handle))
     r = Repo(handle)
     print("Retrieved data for", handle)
     d["stars"] = r.n_stars()
     d["forks"] = r.n_forks()
     d["open_issues"] = r.open_issues()
-    d["created"] = r.created_at()
+    d["created"] = date_only(r.created_at())
     d["homepage"] = r.homepage()
     d["repo_lang"] = r.language()
     return d
 
 
+class RepoState(BaseModel):
+    repo_lang: str
+    url: str
+    homepage: str
+    created: str  # change to date
+    modified: str  # change to date
+    stars: int
+    forks: int
+    open_issues: int
+
+
+def get_repo_state(handle):
+    print("Retrieving data for", handle, "...")
+    repo = get_repo(handle)
+    return RepoState(
+        repo_lang=repo["language"],
+        url=url(handle),
+        homepage=repo["homepage"],
+        created=date_only(repo["created_at"]),
+        modified=date_only(last_modified(handle)),
+        stars=repo["stargazers_count"],
+        forks=repo["forks_count"],
+        open_issues=repo["open_issues_count"],
+    )
+
+
 def stream_dicts(param_dict: dict) -> List[Dict]:
-    return [add_github_data(d) for d in to_dicts(param_dict)]
+    return [add_github_data(d) for d in to_ssg(param_dict)]
 
 
 def make_dataframe(dicts: List[Dict]) -> pd.DataFrame:

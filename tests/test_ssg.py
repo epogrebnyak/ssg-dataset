@@ -4,15 +4,33 @@ import pandas as pd
 import pytest
 
 from ssg import __version__
-from ssg.stars import Repo, create_all, yaml_to_csv, extract_yaml
+from ssg.stars import Repo, create_all, yaml_to_csv, extract_yaml, get_repo_state
 
 
 def test_version():
     assert __version__ >= "0.0.0"
 
 
-def test_n_forks():
-    assert Repo("epogrebnyak/haskell-intro").n_forks() >= 5
+def test_read_item():
+    from ssg.stars import SSG, read_item
+
+    s = SSG(
+        name="bookdown", github_handle="rstudio/bookdown", lang="r", site="bookdown.org"
+    )
+    s2 = read_item("rstudio/bookdown", {"lang": "r", "site": "bookdown.org"})
+    assert s == s2
+
+
+def test_repo_state():
+    rs = get_repo_state("rstudio/bookdown")
+    assert rs.repo_lang == "JavaScript"
+    assert rs.url == "https://github.com/rstudio/bookdown/"
+    assert rs.homepage == "https://pkgs.rstudio.com/bookdown/"
+    assert rs.created == "2015-10-28"
+    assert rs.modified >= "2022-06-14"
+    assert rs.stars >= 2985
+    assert rs.forks >= 1135
+    assert isinstance(rs.open_issues, int)
 
 
 def test_extract_yaml():
@@ -110,4 +128,5 @@ class Test_yaml_to_csv(TestFilesBase):
                 "bookdown": "https://pkgs.rstudio.com/bookdown/",
             },
             "repo_lang": {"metalsmith": "JavaScript", "bookdown": "JavaScript"},
+            "comment": {"bookdown": "", "metalsmith": ""},
         }
