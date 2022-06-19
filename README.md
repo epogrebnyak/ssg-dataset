@@ -64,8 +64,16 @@ poetry run python example/update.py
 
 ## More links about SSGs
 
-- [Why Static Site Generators Are The Next Big Thing (2015)](https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/)
+### Listings
+
+- [Awesome Static Web Site Generators](https://github.com/myles/awesome-static-generators)
+- [The definitive listing of Static Site Generators — all 460 of them!](https://staticsitegenerators.net/)
+- <https://jamstack.org/generators/>
 - [Stay Static </> One Design, Many Samples](http://staystatic.github.io/)
+
+### Articles
+
+- [Why Static Site Generators Are The Next Big Thing (2015)](https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/)
 - [Static Site Generator Trends (2020)](https://redmonk.com/rstephens/2020/05/18/static-site-generators/)
 
 ## Citation
