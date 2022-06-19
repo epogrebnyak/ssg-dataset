@@ -1,8 +1,23 @@
 import datetime
 import tempfile
 import pandas as pd
-from ssg.stars import yaml_to_csv, extract_yaml, from_raw_dict
+from ssg.stars import yaml_to_csv, extract_yaml, stream_dicts
 from pathlib import Path
+from pydantic import BaseModel
+from typing import Optional
+
+class SSG(BaseModel):
+    name: str
+    github_handle: str  # must enforce /
+    lang: str # must enforce fix list of languages
+    exec: Optional[bool] = None
+    twitter: str = ""
+    site: str = ""
+
+s = SSG(name="bookdown", github_handle="rstudio/bookdown", lang="r", site="www.bookdown.org")
+
+
+
 
 yaml_doc = """
 rstudio/bookdown:
@@ -18,7 +33,7 @@ yaml_raw_dict = {
 raw_dict = extract_yaml(yaml_doc)
 assert raw_dict == yaml_raw_dict
 
-af = from_raw_dict(yaml_raw_dict)
+af = stream_dicts(yaml_raw_dict)
 assert af == [
     {
         "name": "bookdown",
