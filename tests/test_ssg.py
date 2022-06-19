@@ -56,7 +56,7 @@ class Test_create_all(TestFilesBase):
 
 class Test_yaml_to_csv(TestFilesBase):
     columns = [
-        "handle",
+        "github_handle",
         "created",
         "modified",
         "stars",
@@ -89,12 +89,12 @@ class Test_yaml_to_csv(TestFilesBase):
             columns=["stars", "forks", "open_issues", "modified"]
         ).to_dict() == {
             "name": {"metalsmith": "metalsmith", "bookdown": "bookdown"},
-            "handle": {
+            "github_handle": {
                 "metalsmith": "segmentio/metalsmith",
                 "bookdown": "rstudio/bookdown",
             },
             "lang": {"metalsmith": "js", "bookdown": "r"},
-            "exec": {"metalsmith": False, "bookdown": False},
+            "exec": {"metalsmith": None, "bookdown": None},
             "twitter": {"metalsmith": "", "bookdown": ""},
             "site": {"metalsmith": "", "bookdown": ""},
             "url": {

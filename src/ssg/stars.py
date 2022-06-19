@@ -37,6 +37,35 @@ allowed_languages = [
 ]
 
 
+from pydantic import BaseModel
+from typing import Optional, Dict
+
+
+class SSG(BaseModel):
+    name: str
+    github_handle: str  # must enforce /
+    lang: str  # must enforce fix list of languages
+    exec: Optional[bool] = None
+    twitter: str = ""
+    site: str = ""
+
+
+def read_item(key: str, values: Dict) -> SSG:
+    empty_dict = {
+        "name": "",
+        "github_handle": "",
+        "lang": "",
+        "exec": None,
+        "twitter": "",
+        "site": "",
+    }
+    d = empty_dict.copy()
+    d["github_handle"] = key
+    d["name"] = key.split("/")[1]
+    d.update(values)
+    return SSG(**d)
+
+
 def url(handle):
     return f"https://github.com/{handle}/"
 
@@ -110,34 +139,23 @@ def extract_yaml(text: str):
     return yaml.load(text, Loader=yaml.SafeLoader)
 
 
-# will change with Pydantic
-def norm(key, values):
-    return dict(
-        name=name(key),
-        handle=key,
-        lang=values["lang"],
-        exec=values.get("exec", False),  # not shown in csv
-        twitter=values.get("twitter", ""),  # not shown in csv
-        site=values.get("site", ""),  # not shown in csv
-    )
+def to_dicts(yaml_dict) -> List[SSG]:
+    return [read_item(k, v) for k, v in yaml_dict.items()]
 
 
-def to_dicts(yaml_dict):
-    return [norm(k, v) for k, v in yaml_dict.items()]
-
-
-def add_github_data(d: dict):
-    handle = d["handle"]
+def add_github_data(s: SSG) -> Dict:
+    handle = s.github_handle
+    d = s.dict()
     d["url"] = url(handle)
     d["modified"] = last_modified(handle)
     r = Repo(handle)
+    print("Retrieved data for", handle)
     d["stars"] = r.n_stars()
     d["forks"] = r.n_forks()
     d["open_issues"] = r.open_issues()
     d["created"] = r.created_at()
     d["homepage"] = r.homepage()
     d["repo_lang"] = r.language()
-    print("Retrieved data for", handle)
     return d
 
 
@@ -165,7 +183,7 @@ def yaml_to_csv(
     yaml_filename="ssg.yaml",
     csv_filename="ssg.csv",
     columns=[
-        "handle",
+        "github_handle",
         "created",
         "modified",
         "stars",

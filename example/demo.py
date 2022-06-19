@@ -4,20 +4,43 @@ import pandas as pd
 from ssg.stars import yaml_to_csv, extract_yaml, stream_dicts
 from pathlib import Path
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Dict
+
 
 class SSG(BaseModel):
     name: str
     github_handle: str  # must enforce /
-    lang: str # must enforce fix list of languages
+    lang: str  # must enforce fix list of languages
     exec: Optional[bool] = None
     twitter: str = ""
     site: str = ""
 
-s = SSG(name="bookdown", github_handle="rstudio/bookdown", lang="r", site="www.bookdown.org")
+
+s = SSG(
+    name="bookdown", github_handle="rstudio/bookdown", lang="r", site="bookdown.org"
+)
+
+empty_dict = {
+    "name": "",
+    "github_handle": "",
+    "lang": "",
+    "exec": None,
+    "twitter": "",
+    "site": "",
+}
+d = empty_dict.copy()
 
 
+def read_item(key: str, values: Dict) -> SSG:
+    d = empty_dict.copy()
+    d["github_handle"] = key
+    d["name"] = key.split("/")[1]
+    d.update(values)
+    return SSG(**d)
 
+
+s2 = read_item("rstudio/bookdown", {"lang": "r", "site": "bookdown.org"})
+assert s == s2
 
 yaml_doc = """
 rstudio/bookdown:
@@ -37,9 +60,9 @@ af = stream_dicts(yaml_raw_dict)
 assert af == [
     {
         "name": "bookdown",
-        "handle": "rstudio/bookdown",
+        "github_handle": "rstudio/bookdown",
         "lang": "r",
-        "exec": False,
+        "exec": None,
         "twitter": "",
         "site": "",
         "url": "https://github.com/rstudio/bookdown/",
@@ -53,9 +76,9 @@ assert af == [
     },
     {
         "name": "metalsmith",
-        "handle": "segmentio/metalsmith",
+        "github_handle": "segmentio/metalsmith",
         "lang": "js",
-        "exec": False,
+        "exec": None,
         "twitter": "",
         "site": "",
         "url": "https://github.com/segmentio/metalsmith/",
@@ -73,7 +96,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     yaml_path = Path(tmpdir) / "ssg.yaml"
     csv_path = Path(tmpdir) / "ssg.csv"
     columns = [
-        "handle",
+        "github_handle",
         "created",
         "modified",
         "stars",
