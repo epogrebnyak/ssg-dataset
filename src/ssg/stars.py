@@ -5,15 +5,14 @@ import os
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, List
-from typing import Dict, List
-
+from typing import Any, Dict, List, Optional
 
 import pandas as pd  # type: ignore
 import requests
 import requests_cache  # type: ignore
 import yaml
 from dotenv import load_dotenv
+from pydantic import BaseModel
 
 # Comment: need stable location for the file - may appear in different folders for example and tests
 requests_cache.install_cache("cache_1")
@@ -35,10 +34,6 @@ allowed_languages = [
     "haskell",
     "java",
 ]
-
-
-from pydantic import BaseModel
-from typing import Optional, Dict
 
 
 class SSG(BaseModel):
