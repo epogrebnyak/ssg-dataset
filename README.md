@@ -58,7 +58,9 @@ token documentation is [here](https://docs.github.com/en/authentication/keeping-
 
 ### Update CSV file
 
-`example/update.py` should update `data/ssg.csv`:
+[update]: https://github.com/epogrebnyak/ssg-dataset/blob/main/example/update.py
+
+[`example/update.py`][update] should update `data/ssg.csv`:
 
 ```
 poetry run python example/update.py  
