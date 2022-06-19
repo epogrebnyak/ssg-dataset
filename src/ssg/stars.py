@@ -24,7 +24,7 @@ allowed_languages = [
     "julia",
     "haskell",
     "java",
-    "elm"
+    "elm",
 ]
 
 
@@ -84,10 +84,9 @@ def get_dataframe(yaml_filename: str) -> pd.DataFrame:
     return make_dataframe_from_ssg(to_ssg_list(param_dict))
 
 
-def yaml_to_csv(
-    folder,
-    yaml_filename="ssg.yaml",
-    csv_filename="ssg.csv",
+def yaml_to_csv_by_file(
+    yaml_path: Path,
+    csv_path: Path,
     columns=[
         "github_handle",
         "url",
@@ -101,11 +100,33 @@ def yaml_to_csv(
         "open_issues",
     ],
 ):
-    csv_path = os.path.join(folder, csv_filename)
-    yaml_path = os.path.join(folder, yaml_filename)
     df = get_dataframe(yaml_path)[columns]
     df.to_csv(csv_path)
-    return df, csv_path
+    return df
+
+
+# def yaml_to_csv(
+#     folder,
+#     yaml_filename="ssg.yaml",
+#     csv_filename="ssg.csv",
+#     columns=[
+#         "github_handle",
+#         "url",
+#         "homepage",
+#         "lang",
+#         "repo_lang",
+#         "created",
+#         "modified",
+#         "stars",
+#         "forks",
+#         "open_issues",
+#     ],
+# ):
+#     csv_path = os.path.join(folder, csv_filename)
+#     yaml_path = os.path.join(folder, yaml_filename)
+#     df = get_dataframe(yaml_path)[columns]
+#     df.to_csv(csv_path)
+#     return df, csv_path
 
 
 def metadata():
@@ -124,8 +145,10 @@ def write_metadata(folder: Path, filename: str = "metadata.json") -> Path:
     return path
 
 
-def create_all(folder):
-    _, p1 = yaml_to_csv(folder)
-    print("Wrote", p1)
-    p2 = write_metadata(folder)
+def create_all(folder: Path):
+    p1 = folder / "ssg.yaml"
+    p2 = folder / "ssg.csv"
+    yaml_to_csv_by_file(p1, p2)
     print("Wrote", p2)
+    p3 = write_metadata(folder)
+    print("Wrote", p3)

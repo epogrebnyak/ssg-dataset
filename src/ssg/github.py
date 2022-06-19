@@ -22,7 +22,8 @@ GH_TOKEN = os.getenv("GH_TOKEN", "")
 
 def reveal():
     if GH_TOKEN:
-       print(f"Token for {GH_USER} is found.")
+        print(f"Token for {GH_USER} is found.")
+
 
 def url(handle):
     return f"https://github.com/{handle}/"
@@ -68,7 +69,9 @@ def date_only(s):
 class RepoState(BaseModel):
     repo_lang: str
     url: str
-    homepage: Optional[str] # some repos do not have webpage - https://github.com/alexkorban/elmstatic
+    homepage: Optional[
+        str
+    ]  # some repos do not have webpage - https://github.com/alexkorban/elmstatic
     created: str  # TODO: change to date
     modified: str  # TODO: change to date
     stars: int

@@ -3,16 +3,11 @@ import datetime
 import pandas as pd
 import pytest
 
-from ssg import __version__
 from ssg.stars import (
     create_all,
-    yaml_to_csv,
+    yaml_to_csv_by_file,
     extract_yaml,
 )
-
-
-def test_version():
-    assert __version__ >= "0.0.0"
 
 
 def test_read_item():
@@ -75,18 +70,24 @@ class Test_yaml_to_csv(TestFilesBase):
         "lang",
         "repo_lang",
         "url",
-        "homepage"
+        "homepage",
     ]
 
     def test_we_write_exact_data(self):
-        df, _ = yaml_to_csv(self.folder, "ssg.yaml", "ssg.csv", self.columns)
+        df = yaml_to_csv_by_file(
+            self.folder / "ssg.yaml", self.folder / "ssg.csv", self.columns
+        )
         df2 = pd.read_csv(
             self.csv_path, index_col="name", parse_dates=["created", "modified"]
         )
-        pd.testing.assert_frame_equal(df2[self.columns], df[self.columns], check_dtype=False)
+        pd.testing.assert_frame_equal(
+            df2[self.columns], df[self.columns], check_dtype=False
+        )
 
     def test_dataframe_immutable_data(self):
-        df, _ = yaml_to_csv(self.folder, "ssg.yaml", "ssg.csv", self.columns)
+        df = yaml_to_csv_by_file(
+            self.folder / "ssg.yaml", self.folder / "ssg.csv", self.columns
+        )
         assert df.loc["metalsmith", "stars"] >= 7736
         assert df.loc["bookdown", "stars"] >= 2985
         assert df.loc["metalsmith", "forks"] >= 667
@@ -95,8 +96,12 @@ class Test_yaml_to_csv(TestFilesBase):
         assert df.loc["bookdown", "open_issues"] >= 175
 
     def test_dataframe_mutable_data(self):
-        df, _ = yaml_to_csv(self.folder, "ssg.yaml", "ssg.csv", self.columns)
-        assert df.loc[:,"github_handle lang repo_lang url created homepage".split()].to_dict() == {
+        df = yaml_to_csv_by_file(
+            self.folder / "ssg.yaml", self.folder / "ssg.csv", self.columns
+        )
+        assert df.loc[
+            :, "github_handle lang repo_lang url created homepage".split()
+        ].to_dict() == {
             "github_handle": {
                 "metalsmith": "segmentio/metalsmith",
                 "bookdown": "rstudio/bookdown",

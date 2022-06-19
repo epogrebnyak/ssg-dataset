@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from ssg import yaml_to_csv
+from ssg import create_all
 
 data_folder = Path(__name__).parent / "data"
-yaml_to_csv(data_folder)
+create_all(data_folder)

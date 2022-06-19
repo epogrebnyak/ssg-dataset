@@ -1,1 +1,1 @@
-{"name": "Github data for static site generators popularity", "created": "2021-02-01", "date_columns": ["created", "modified"], "repo_url": "https://github.com/epogrebnyak/ssg-dataset/", "data_url": "https://github.com/epogrebnyak/ssg-dataset/blob/main/data/ssg.csv"}
+{"name": "Github data for static site generators popularity", "created": "2022-06-19", "date_columns": ["created", "modified"], "repo_url": "https://github.com/epogrebnyak/ssg-dataset/", "data_url": "https://github.com/epogrebnyak/ssg-dataset/blob/main/data/ssg.csv"}
