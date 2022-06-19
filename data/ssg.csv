@@ -8,6 +8,7 @@ mkdocs,mkdocs/mkdocs,https://github.com/mkdocs/mkdocs/,https://www.mkdocs.org,py
 astro,withastro/astro,https://github.com/withastro/astro/,https://astro.build,js,TypeScript,2021-03-15,2022-06-19,12422,641,98
 eleventy,11ty/eleventy,https://github.com/11ty/eleventy/,https://www.11ty.dev/,js,JavaScript,2017-11-27,2022-06-17,12258,380,445
 pelican,getpelican/pelican,https://github.com/getpelican/pelican/,https://getpelican.com/,python,HTML,2010-10-16,2022-04-03,10997,1780,82
+stencil,ionic-team/stencil,https://github.com/ionic-team/stencil/,https://stenciljs.com,js,TypeScript,2017-02-15,2022-06-15,10786,697,502
 mdBook,rust-lang/mdBook,https://github.com/rust-lang/mdBook/,https://rust-lang.github.io/mdBook/,rust,Rust,2015-07-07,2022-06-02,9893,1089,368
 octopress,imathis/octopress,https://github.com/imathis/octopress/,http://github.com/imathis/octopress,ruby,Ruby,2009-10-18,2016-02-22,9363,2732,252
 zola,getzola/zola,https://github.com/getzola/zola/,https://www.getzola.org,rust,Rust,2016-12-06,2022-06-18,8861,644,181

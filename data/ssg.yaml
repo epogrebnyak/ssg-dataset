@@ -86,4 +86,5 @@ withastro/astro:
   lang: js  
 alexkorban/elmstatic:
   lang: elm
-
+ionic-team/stencil:
+  lang: js
