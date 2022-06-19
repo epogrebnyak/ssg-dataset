@@ -1,28 +1,9 @@
 import datetime
 import tempfile
 import pandas as pd
-from ssg.stars import (
-    yaml_to_csv,
-    extract_yaml,
-    stream_dicts,
-    SSG,
-    read_item,
-    get_repo_state,
-)
+from ssg.stars import yaml_to_csv, extract_yaml, make_dataframe_from_ssg, to_ssg_list
 from pathlib import Path
-from pydantic import BaseModel
 from typing import Optional, Dict
-
-
-s = SSG(
-    name="bookdown", github_handle="rstudio/bookdown", lang="r", site="bookdown.org"
-)
-
-s2 = read_item("rstudio/bookdown", {"lang": "r", "site": "bookdown.org"})
-assert s == s2
-
-
-rs = get_repo_state("rstudio/bookdown")
 
 yaml_doc = """
 rstudio/bookdown:
@@ -30,15 +11,9 @@ rstudio/bookdown:
 segmentio/metalsmith:
   lang: js"""
 
-yaml_raw_dict = {
-    "rstudio/bookdown": {"lang": "r"},
-    "segmentio/metalsmith": {"lang": "js"},
-}
+param_dict = extract_yaml(yaml_doc)
+xs = make_dataframe_from_ssg(to_ssg_list(param_dict))
 
-raw_dict = extract_yaml(yaml_doc)
-assert raw_dict == yaml_raw_dict
-
-af = stream_dicts(yaml_raw_dict)
 
 with tempfile.TemporaryDirectory() as tmpdir:
     yaml_path = Path(tmpdir) / "ssg.yaml"

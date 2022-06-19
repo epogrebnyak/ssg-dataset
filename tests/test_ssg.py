@@ -4,7 +4,12 @@ import pandas as pd
 import pytest
 
 from ssg import __version__
-from ssg.stars import Repo, create_all, yaml_to_csv, extract_yaml, get_repo_state
+from ssg.stars import (
+    create_all,
+    yaml_to_csv,
+    extract_yaml,
+    get_repo_state_from_handle,
+)
 
 
 def test_version():
@@ -21,8 +26,8 @@ def test_read_item():
     assert s == s2
 
 
-def test_repo_state():
-    rs = get_repo_state("rstudio/bookdown")
+def test_get_repo_state_from_handle():
+    rs = get_repo_state_from_handle("rstudio/bookdown")
     assert rs.repo_lang == "JavaScript"
     assert rs.url == "https://github.com/rstudio/bookdown/"
     assert rs.homepage == "https://pkgs.rstudio.com/bookdown/"
@@ -87,10 +92,10 @@ class Test_yaml_to_csv(TestFilesBase):
 
     def test_we_write_exact_data(self):
         df, _ = yaml_to_csv(self.folder, "ssg.yaml", "ssg.csv", self.columns)
-        df2 = pd.read_csv(self.csv_path, parse_dates=["created", "modified"])
-        pd.testing.assert_frame_equal(
-            df2.set_index("name", drop=False), df[df2.columns], check_dtype=False
+        df2 = pd.read_csv(
+            self.csv_path, index_col="name", parse_dates=["created", "modified"]
         )
+        pd.testing.assert_frame_equal(df2, df[df2.columns], check_dtype=False)
 
     def test_dataframe_immutable_data(self):
         df, _ = yaml_to_csv(self.folder, "ssg.yaml", "ssg.csv", self.columns)
@@ -106,7 +111,7 @@ class Test_yaml_to_csv(TestFilesBase):
         assert df.drop(
             columns=["stars", "forks", "open_issues", "modified"]
         ).to_dict() == {
-            "name": {"metalsmith": "metalsmith", "bookdown": "bookdown"},
+            #            "name": {"metalsmith": "metalsmith", "bookdown": "bookdown"},
             "github_handle": {
                 "metalsmith": "segmentio/metalsmith",
                 "bookdown": "rstudio/bookdown",
