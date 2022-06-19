@@ -4,23 +4,13 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Dict, List, Optional
 
 import pandas as pd  # type: ignore
-import requests
-import requests_cache  # type: ignore
 import yaml
-from dotenv import load_dotenv
 from pydantic import BaseModel
 
-# TODO: sepaare code for generec queries about github and SSGs into two modules  
-
-# Comment: need stable location for the file - may appear in different folders for example and tests
-requests_cache.install_cache("cache_1")
-
-load_dotenv(".config.env")
-USER = os.getenv("USER", "")
-TOKEN = os.getenv("TOKEN", "")
+from ssg.github import get_repo_state_from_handle
 
 # Comment: may use for schema validation
 allowed_languages = [
@@ -63,47 +53,6 @@ def read_item(key: str, values: Dict) -> SSG:
     return SSG(**d)
 
 
-def url(handle):
-    return f"https://github.com/{handle}/"
-
-
-def make_api_url(
-    handle: str,
-) -> str:
-    return f"https://api.github.com/repos/{handle}"
-
-
-def make_api_url_commits(
-    handle: str,
-) -> str:
-    return f"https://api.github.com/repos/{handle}/commits"
-
-
-def get_repo(handle: str) -> Dict:
-    return fetch(make_api_url(handle))
-
-
-def get_commits(handle: str) -> List[Any]:
-    return fetch(make_api_url_commits(handle))
-
-
-def fetch(url: str, username:str=USER, token:str=TOKEN):
-    if TOKEN:
-        r = requests.get(url, auth=(username, token))
-    else:
-        r = requests.get(url)
-    return r.json()
-
-
-def last_modified(handle: str) -> str:
-    _last = get_commits(handle)[0]
-    return _last["commit"]["author"]["date"]
-
-
-def date_only(s):
-    return s[: 4 + 2 + 2 + 2] # TODO: change to date
-
-
 def read_text(filename) -> str:
     return Path(filename).read_text()
 
@@ -116,34 +65,9 @@ def to_ssg_list(yaml_dict) -> List[SSG]:
     return [read_item(k, v) for k, v in yaml_dict.items()]
 
 
-class RepoState(BaseModel):
-    repo_lang: str
-    url: str
-    homepage: str
-    created: str  # TODO: change to date
-    modified: str  # TODO: change to date
-    stars: int
-    forks: int
-    open_issues: int
-
-
-def get_repo_state_from_handle(handle: str) -> RepoState:
-    print("Retrieving data for", handle, "...")
-    repo = get_repo(handle)
-    return RepoState(
-        repo_lang=repo["language"],
-        url=url(handle),
-        homepage=repo["homepage"],
-        created=date_only(repo["created_at"]),
-        modified=date_only(last_modified(handle)),
-        stars=int(repo["stargazers_count"]),
-        forks=int(repo["forks_count"]),
-        open_issues=int(repo["open_issues_count"]),
-    )
-
-
 def get_repo_state(ssg: SSG):
     return get_repo_state_from_handle(ssg.github_handle)
+
 
 # TODO: can use typing check on dataframe
 def make_dataframe_from_ssg(ssg_list: List[SSG]) -> pd.DataFrame:

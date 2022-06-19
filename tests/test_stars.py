@@ -8,7 +8,6 @@ from ssg.stars import (
     create_all,
     yaml_to_csv,
     extract_yaml,
-    get_repo_state_from_handle,
 )
 
 
@@ -24,18 +23,6 @@ def test_read_item():
     )
     s2 = read_item("rstudio/bookdown", {"lang": "r", "site": "bookdown.org"})
     assert s == s2
-
-
-def test_get_repo_state_from_handle():
-    rs = get_repo_state_from_handle("rstudio/bookdown")
-    assert rs.repo_lang == "JavaScript"
-    assert rs.url == "https://github.com/rstudio/bookdown/"
-    assert rs.homepage == "https://pkgs.rstudio.com/bookdown/"
-    assert rs.created == "2015-10-28"
-    assert rs.modified >= "2022-06-14"
-    assert rs.stars >= 2985
-    assert rs.forks >= 1135
-    assert isinstance(rs.open_issues, int)
 
 
 def test_extract_yaml():

@@ -5,6 +5,22 @@ from ssg.stars import yaml_to_csv, extract_yaml, make_dataframe_from_ssg, to_ssg
 from pathlib import Path
 from typing import Optional, Dict
 
+from ssg.github import get_repo_state_from_handle
+
+
+rs = get_repo_state_from_handle("withastro/astro")
+
+rs2 = RepoState(
+    repo_lang="TypeScript",
+    url="https://github.com/withastro/astro/",
+    homepage="https://astro.build",
+    created="2021-03-15",
+    modified="2022-06-19",
+    stars=12422,
+    forks=641,
+    open_issues=98,
+)
+
 yaml_doc = """
 rstudio/bookdown:
   lang: r
