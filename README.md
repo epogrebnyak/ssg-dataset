@@ -62,6 +62,12 @@ token documentation is [here](https://docs.github.com/en/authentication/keeping-
 poetry run python example/update.py
 ```
 
+## More links about SSGs
+
+- [Why Static Site Generators Are The Next Big Thing (2015)](https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/)
+- [Stay Static </> One Design, Many Samples](http://staystatic.github.io/)
+- [Static Site Generator Trends (2020)](https://redmonk.com/rstephens/2020/05/18/static-site-generators/)
+
 ## Citation
 
 Evgeny Pogrebnyak. (2021). Github data for static site generators (SSG) popularity (Version 0.1.2) [Data set]. Zenodo. http://doi.org/10.5281/zenodo.4429834
