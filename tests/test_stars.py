@@ -75,6 +75,7 @@ class Test_yaml_to_csv(TestFilesBase):
         "lang",
         "repo_lang",
         "url",
+        "homepage"
     ]
 
     def test_we_write_exact_data(self):
@@ -82,7 +83,7 @@ class Test_yaml_to_csv(TestFilesBase):
         df2 = pd.read_csv(
             self.csv_path, index_col="name", parse_dates=["created", "modified"]
         )
-        pd.testing.assert_frame_equal(df2, df[df2.columns], check_dtype=False)
+        pd.testing.assert_frame_equal(df2[self.columns], df[self.columns], check_dtype=False)
 
     def test_dataframe_immutable_data(self):
         df, _ = yaml_to_csv(self.folder, "ssg.yaml", "ssg.csv", self.columns)
@@ -95,18 +96,13 @@ class Test_yaml_to_csv(TestFilesBase):
 
     def test_dataframe_mutable_data(self):
         df, _ = yaml_to_csv(self.folder, "ssg.yaml", "ssg.csv", self.columns)
-        assert df.drop(
-            columns=["stars", "forks", "open_issues", "modified"]
-        ).to_dict() == {
-            #            "name": {"metalsmith": "metalsmith", "bookdown": "bookdown"},
+        assert df.loc[:,"github_handle lang repo_lang url created homepage".split()].to_dict() == {
             "github_handle": {
                 "metalsmith": "segmentio/metalsmith",
                 "bookdown": "rstudio/bookdown",
             },
             "lang": {"metalsmith": "js", "bookdown": "r"},
-            "exec": {"metalsmith": None, "bookdown": None},
-            "twitter": {"metalsmith": "", "bookdown": ""},
-            "site": {"metalsmith": "", "bookdown": ""},
+            "repo_lang": {"metalsmith": "JavaScript", "bookdown": "JavaScript"},
             "url": {
                 "metalsmith": "https://github.com/segmentio/metalsmith/",
                 "bookdown": "https://github.com/rstudio/bookdown/",
@@ -119,6 +115,4 @@ class Test_yaml_to_csv(TestFilesBase):
                 "metalsmith": "https://metalsmith.io",
                 "bookdown": "https://pkgs.rstudio.com/bookdown/",
             },
-            "repo_lang": {"metalsmith": "JavaScript", "bookdown": "JavaScript"},
-            "comment": {"bookdown": "", "metalsmith": ""},
         }

@@ -61,8 +61,8 @@ def extract_yaml(text: str) -> Dict:
     return yaml.load(text, Loader=yaml.SafeLoader)
 
 
-def to_ssg_list(yaml_dict) -> List[SSG]:
-    return [read_item(k, v) for k, v in yaml_dict.items()]
+def to_ssg_list(param_dict) -> List[SSG]:
+    return [read_item(k, v) for k, v in param_dict.items()]
 
 
 def get_repo_state(ssg: SSG):
@@ -90,6 +90,7 @@ def yaml_to_csv(
     columns=[
         "github_handle",
         "url",
+        "homepage",
         "lang",
         "repo_lang",
         "created",
@@ -101,8 +102,8 @@ def yaml_to_csv(
 ):
     csv_path = os.path.join(folder, csv_filename)
     yaml_path = os.path.join(folder, yaml_filename)
-    df = get_dataframe(yaml_path)
-    df[columns].to_csv(csv_path)
+    df = get_dataframe(yaml_path)[columns]
+    df.to_csv(csv_path)
     return df, csv_path
 
 
@@ -127,7 +128,3 @@ def create_all(folder):
     print("Wrote", p1)
     p2 = write_metadata(folder)
     print("Wrote", p2)
-
-
-if __name__ == "__main__":
-    pass
