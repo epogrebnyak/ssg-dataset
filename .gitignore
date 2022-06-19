@@ -1,3 +1,5 @@
+.config.env
+
 # more hidden folders and files
 .venv/
 .vscode/

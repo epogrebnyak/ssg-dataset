@@ -72,13 +72,20 @@ Sample:
 
 ## How to update dataset
 
+### Get a Github token
+
 You will need a Github token to retreive stats for many repos. Write out `.config.env` 
 near to where you run your Python code: 
 
 ```toml
-USER=...
-TOKEN=...
+GH_USER=...
+GH_TOKEN=...
 ```
+
+Your Github personal token is [here](https://github.com/settings/tokens/) and 
+token documentation is [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+
+### Update CSV file
 
 `example/update.py` should update `data/ssg.csv`:
 

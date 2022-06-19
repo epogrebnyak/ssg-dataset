@@ -16,9 +16,13 @@ __all__ = ["get_repo_state_from_handle"]
 requests_cache.install_cache("cache_1")
 
 load_dotenv(".config.env")
-USER = os.getenv("USER", "")
-TOKEN = os.getenv("TOKEN", "")
+GH_USER = os.getenv("USER", "")
+GH_TOKEN = os.getenv("TOKEN", "")
 
+
+def reveal():
+    if GH_TOKEN:
+       print(f"Token for {GH_USER} is found.")
 
 def url(handle):
     return f"https://github.com/{handle}/"
@@ -44,8 +48,8 @@ def get_commits(handle: str) -> List[Any]:
     return fetch(make_api_url_commits(handle))
 
 
-def fetch(url: str, username: str = USER, token: str = TOKEN):
-    if TOKEN:
+def fetch(url: str, username: str = GH_USER, token: str = GH_TOKEN):
+    if GH_TOKEN:
         r = requests.get(url, auth=(username, token))
     else:
         r = requests.get(url)
