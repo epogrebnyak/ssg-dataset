@@ -4,8 +4,7 @@
 
 Static site generators are tools to create blogs, landing pages and documentation.
 
-This repo contains Github data (stars, forks, issues, create and last modified dates) for 30 open source static site generators (SSG). The repo also hosts the code used to create the dataset. 
-
+This repo contains Github data (stars, forks, issues, create and last modified dates) for 30+ open source static site generators (SSG) and code used to create the dataset. 
 
 ## Try live
 
@@ -17,7 +16,6 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 
 [st]: https://share.streamlit.io/epogrebnyak/ssg-dataset/main
 [colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
-
 
 ## Dataset
 
