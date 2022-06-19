@@ -9,10 +9,13 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 ## Try live
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)][st]
-[![Demo in Google Colab](https://img.shields.io/badge/Colab-Open-orange)][colab]
 
 [Streamlit app][st] lays out a data story about SSGs with several visualisations. 
-[Colab][colab] is a try and see playground with some code for charts.
+
+[![Demo in Google Colab](https://img.shields.io/badge/Colab-Open-orange)][colab]
+
+[Colab][colab] is a try-and-see playground with some code for charts.
+
 
 [st]: https://share.streamlit.io/epogrebnyak/ssg-dataset/main
 [colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
@@ -23,6 +26,9 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4429834.svg)](https://doi.org/10.5281/zenodo.4429834)
 
 [url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
+
+
+
 
 The stable URL for dataset is <https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv>
 
