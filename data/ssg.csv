@@ -17,6 +17,7 @@ metalsmith,segmentio/metalsmith,https://github.com/segmentio/metalsmith/,https:/
 middleman,middleman/middleman,https://github.com/middleman/middleman/,https://middlemanapp.com,ruby,Ruby,2009-07-27,2022-06-06,6851,745,9
 sphinx,sphinx-doc/sphinx,https://github.com/sphinx-doc/sphinx/,https://www.sphinx-doc.org,python,Python,2015-01-02,2022-06-19,4669,1700,1010
 Publish,JohnSundell/Publish,https://github.com/JohnSundell/Publish/,,swift,Swift,2019-12-27,2022-05-01,4036,276,29
+nextra,shuding/nextra,https://github.com/shuding/nextra/,https://nextra.vercel.app,js,JavaScript,2020-06-15,2022-05-30,3623,506,144
 lektor,lektor/lektor,https://github.com/lektor/lektor/,https://www.getlektor.com/,python,Python,2015-12-19,2022-05-02,3577,300,242
 wintersmith,jnordberg/wintersmith,https://github.com/jnordberg/wintersmith/,http://wintersmith.io/,js,CoffeeScript,2012-02-02,2019-06-23,3508,343,18
 Cactus,eudicots/Cactus,https://github.com/eudicots/Cactus/,,python,Python,2011-02-28,2017-07-31,3431,318,102
