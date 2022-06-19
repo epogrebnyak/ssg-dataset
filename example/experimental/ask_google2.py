@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jan 13 18:26:23 2021
-
-@author: Евгений
-"""
-
 import requests
 from bs4 import BeautifulSoup
 

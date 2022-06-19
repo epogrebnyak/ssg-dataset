@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jan 13 17:58:21 2021
-
-@author: Евгений
-"""
 import requests
 import bs4
 import re
@@ -33,9 +27,3 @@ s1 = "Migrate from Jekyll to Hugo"
 r = requests.get(
     "http://www.google.com/search", headers=headers, params={"q": s1, "tbs": "li:1"}
 )
-
-from pathlib import Path
-
-p = Path("res.txt").write_text(r.text)
-# n1 = get_n_results_dumb("Migrate from Jekyll to Hugo")
-# n2 = get_n_results_dumb("Migrate from Hugo to Jekyll")
