@@ -72,6 +72,24 @@ Sample:
 | [Franklin.jl](https://github.com/tlienart/Franklin.jl/)          |          0.4 | julia      |
 | [bridgetown](https://github.com/bridgetownrb/bridgetown/)        |          0.3 | ruby       |
 
+## How to update dataset
+
+You will need a Github token to retreive stats for many repos. Write out `.config.env` 
+near to where you run your Python code: 
+
+```toml
+USER=...
+TOKEN=...
+```
+
+`example/update.py` should update `data/ssg.csv`:
+
+```
+poetry run python example/update.py  
+```
+
 ## Citation
 
 Evgeny Pogrebnyak. (2021). Github data for static site generators (SSG) popularity (Version 0.1.2) [Data set]. Zenodo. http://doi.org/10.5281/zenodo.4429834
+
+Current version is Version 0.2.1 (June 2022).
