@@ -16,11 +16,15 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 
 [![Streamlit Photos](https://user-images.githubusercontent.com/9265326/174499755-4f0be21b-3488-4a2d-ba19-66336ae80436.png)][st]
 
+<!-- Colab is outdated
+
 ### Google Colab
 
 [![Demo in Google Colab](https://img.shields.io/badge/Colab-Open-orange)][colab]
 
 [Colab][colab] is a try-and-see playground with some code for charts.
+
+-->
 
 [st]: https://share.streamlit.io/epogrebnyak/ssg-dataset/main
 [colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
@@ -70,13 +74,31 @@ poetry run python example/update.py
 
 ## More links about SSGs
 
+### Performance
+
+[Static Site Generators Build Performance Testing](https://ssg-build-performance-tests.netlify.app/):
+
+- framework-based SSG:
+  - gatsby
+  - next
+  - nuxt
+- non-framework-based SSG:
+  - astro
+  - eleventy
+  - hugo
+  - jekyll
+
 ### Listings
 
 - [Awesome Static Web Site Generators](https://github.com/myles/awesome-static-generators)
 - [The definitive listing of Static Site Generators — all 460 of them!](https://staticsitegenerators.net/)
+- [Stay Static </> One Design, Many Samples](http://staystatic.github.io/)
+
+Also:
+
 - <https://jamstack.org/generators/>
 - <https://www.netlifycms.org/docs/add-to-your-site/>
-- [Stay Static </> One Design, Many Samples](http://staystatic.github.io/)
+
 
 ### Articles
 
