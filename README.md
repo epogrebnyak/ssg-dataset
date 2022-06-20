@@ -91,9 +91,6 @@ poetry run python example/update.py
 - [Awesome Static Web Site Generators](https://github.com/myles/awesome-static-generators)
 - [The definitive listing of Static Site Generators — all 460 of them!](https://staticsitegenerators.net/)
 - [Stay Static </> One Design, Many Samples](http://staystatic.github.io/)
-
-Also:
-
 - <https://jamstack.org/generators/>
 - <https://www.netlifycms.org/docs/add-to-your-site/>
 
