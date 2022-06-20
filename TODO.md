@@ -1,17 +1,17 @@
 Fixes
 =====
 
-Easy / priority:
+## Easy
 
 - [ ] validate programming language as in https://pydantic-docs.helpmanual.io/usage/validators/
 - [ ] check date in SSG class and change `date_only()`
 
-More difficult:
+## More difficult
 
 - [ ] documentation: build sphinx docs for the package, show on Github Pages
 - [ ] add pyright check to CI pipeline (may not install with poetry)
 
-Bugs:
+## Bugs
 
 - [ ] release date in streamlit app not updated 
 - [ ] pytest does not run on Codespaces https://github.com/LukeMathWalker/linfa-python/issues/3#issuecomment-1160007455
