@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ssg"
-version = "0.2.2"
+version = "0.3.0"
 description = "Github data for static site generators popularity"
 authors = ["Evgeniy Pogrebnyak <e.pogrebnyak@gmail.com>"]
 readme = "README.md"
@@ -12,7 +12,6 @@ PyYAML = "^6.0"
 pydantic = "^1.9.1"
 requests-cache = "^0.9.4"
 python-dotenv = "^0.20.0"
-httpx = "^0.23.0"
 
 [tool.poetry.dev-dependencies]
 #myst-parser = "^0.13.1"

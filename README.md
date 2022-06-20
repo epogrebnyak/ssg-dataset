@@ -104,5 +104,3 @@ poetry run python example/update.py
 ## Citation
 
 Evgeny Pogrebnyak. (2021). Github data for static site generators (SSG) popularity (Version 0.1.2) [Data set]. Zenodo. http://doi.org/10.5281/zenodo.4429834
-
-Current version is Version 0.2.2 (June 2022).
