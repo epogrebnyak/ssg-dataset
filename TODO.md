@@ -10,6 +10,7 @@ Fixes
 
 - [ ] documentation: build sphinx docs for the package, show on Github Pages
 - [ ] add pyright check to CI pipeline (may not install with poetry)
+- [ ] can use typing check on dataframe https://pandera.readthedocs.io/en/stable/
 
 ## Bugs
 
