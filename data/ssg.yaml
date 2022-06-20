@@ -90,3 +90,9 @@ ionic-team/stencil:
   lang: js
 shuding/nextra:  
   lang: js
+# Framework-based SSG: 
+#vercel/next.js:
+#  lang: js
+#nuxt/nuxt.js:
+#  lang: js
+#  comment: "https://nuxtjs.org/docs/concepts/static-site-generation/ and https://github.com/nuxt/content"

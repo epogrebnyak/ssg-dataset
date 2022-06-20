@@ -1,16 +1,27 @@
-"""Popularity of static site generators (SSG) as measured by Github data."""
+"""Popularity of static site generators (SSG).
+
+Creates a dataset in a CSV file based on listing of SSG Github addresses (handles) in YAML file.
+
+Example:
+
+  yaml_to_csv_by_file("data/ssg.yaml", "data/ssg.csv")
+  create_all("data")
+
+"""
 
 import json
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 import pandas as pd  # type: ignore
 import yaml
 from pydantic import BaseModel
 
 from ssg.github import get_repo_state_from_handle
+
+__all__ = ["yaml_to_csv_by_file", "create_all"]
 
 # Comment: may use for schema validation
 allowed_languages = [
@@ -78,15 +89,15 @@ def make_dataframe_from_ssg(ssg_list: List[SSG]) -> pd.DataFrame:
     return df.sort_values("stars", ascending=False).set_index("name")
 
 
-def get_dataframe(yaml_filename: str) -> pd.DataFrame:
+def get_dataframe(yaml_filename: Union[Path, str]) -> pd.DataFrame:
     text = read_text(yaml_filename)
     param_dict = extract_yaml(text)
     return make_dataframe_from_ssg(to_ssg_list(param_dict))
 
 
 def yaml_to_csv_by_file(
-    yaml_path: Path,
-    csv_path: Path,
+    yaml_path: Union[Path, str],
+    csv_path: Union[Path, str],
     columns=[
         "github_handle",
         "url",
@@ -105,30 +116,6 @@ def yaml_to_csv_by_file(
     return df
 
 
-# def yaml_to_csv(
-#     folder,
-#     yaml_filename="ssg.yaml",
-#     csv_filename="ssg.csv",
-#     columns=[
-#         "github_handle",
-#         "url",
-#         "homepage",
-#         "lang",
-#         "repo_lang",
-#         "created",
-#         "modified",
-#         "stars",
-#         "forks",
-#         "open_issues",
-#     ],
-# ):
-#     csv_path = os.path.join(folder, csv_filename)
-#     yaml_path = os.path.join(folder, yaml_filename)
-#     df = get_dataframe(yaml_path)[columns]
-#     df.to_csv(csv_path)
-#     return df, csv_path
-
-
 def metadata():
     return {
         "name": "Github data for static site generators popularity",
@@ -139,16 +126,16 @@ def metadata():
     }
 
 
-def write_metadata(folder: Path, filename: str = "metadata.json") -> Path:
-    path = folder / filename
+def write_metadata(folder: Union[Path, str], filename: str = "metadata.json") -> Path:
+    path = Path(folder) / filename
     path.write_text(json.dumps(metadata()), encoding="utf-8")
     return path
 
 
-def create_all(folder: Path):
-    p1 = folder / "ssg.yaml"
-    p2 = folder / "ssg.csv"
-    yaml_to_csv_by_file(p1, p2)
-    print("Wrote", p2)
-    p3 = write_metadata(folder)
-    print("Wrote", p3)
+def create_all(folder: Union[Path, str]) -> None:
+    yaml_path = Path(folder) / "ssg.yaml"
+    csv_path = Path(folder) / "ssg.csv"
+    yaml_to_csv_by_file(yaml_path, csv_path)
+    print("Wrote", csv_path)
+    metadata_path = write_metadata(folder)
+    print("Wrote", metadata_path)
