@@ -1,5 +1,9 @@
 package := "ssg"
 
+# List available commands 
+list:
+   just --list
+
 # launch streamlit app
 st:
   poetry run streamlit run streamlit_app.py
