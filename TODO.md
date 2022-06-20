@@ -5,7 +5,7 @@ Fixes
 
 - [ ] validate programming language as in https://pydantic-docs.helpmanual.io/usage/validators/
 - [ ] check date in SSG class and change `date_only()`
-- [ ] citation
+- [ ] citation and new zenodo version
 
 ## More difficult
 
@@ -27,8 +27,13 @@ Enhancements and new features
 
 - [ ] stars history (issue)
 - [ ] migration matrix (issue)
-- [ ] total SSG counted
+- [ ] total SSG counted + badge
 - [ ] try https://blog.streamlit.io/introducing-multipage-apps/
+- [ ] stars per project year chart
+
+
+
+
 
 Discussion
 ==========
