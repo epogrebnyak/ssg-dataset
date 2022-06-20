@@ -61,7 +61,7 @@ at least among software developers.
 
 # FIXME: should be able to reset as in https://discuss.streamlit.io/t/reset-multiselect-to-default-values-using-a-checkbox/1941
 all_langs = _df.lang.unique().tolist()
-
+n = len(_df)
 
 @st.cache
 def palette(languages, default_color="#BEBEBE"):
@@ -116,11 +116,13 @@ st.altair_chart(chart, use_container_width=True)
 
 st.header("Forks")
 """
-Forks are copies of orginal repo made by users to submit code additions 
-or to work on own version of the software. 
+Forks are copies of orginal repo 
+made by other users to submit code 
+modifications or create own versions of 
+software.
 
-More forks indicate either active development of the package 
-or code reuse in other projects.
+More forks indicate either active development 
+of a package or code reuse in other projects.
 """
 
 scatter = (
@@ -143,13 +145,13 @@ Consider there are two groups of SSG users:
 
 - front-end engineers (FE), usually proficient with HTML, CSS and JavaScript, and
 - non-specialised (NS) users who do other kinds of work (eg backend, data analysis 
-or even tasks outside technology sector) and need to write a blog, lay out documentation 
+or tasks outside software development) and need to write a blog, lay out documentation 
 or simply make a small website.
 
-More forks would come from FE group, while NS would likely to use the software 
+More forks would come from FE group, while NS would likely use the software 
 as is and will not fork and probably even not star a project on Github.
 
-When a project come to end of lile - there may be more forks to preserve
+When a project comes to end of life there may be more forks to preserve
 and continue its use (Octopress).
 """
 
@@ -197,7 +199,7 @@ st.header("Project lifetime")
 
 """
 The longest-running static site generators are based on Ruby. 
-The youngest SSG are bridgetown (again Ruby), fastpages (Python), 
+The youngest SSG are bridgetown (again Ruby), fastpages (Python), Publish (Swift),
 scully, nextra and astro (JavaScript).
 """
 
@@ -279,7 +281,8 @@ f"""
 
 Static CSV file [ssg.csv]({url_csv}) is prepared and posted via [epogrebnyak/ssg](https://github.com/epogrebnyak/ssg).
 
-Dataset created on {meta["created"]}.
+Dataset created on {meta["created"]}. A total of 
+{n} SSGs listed. 
 
 To download:
 
@@ -307,9 +310,9 @@ st.header("Contacts")
 [![Twitter Follow](https://img.shields.io/twitter/follow/PogrebnyakE?label=Follow&style=social)](https://twitter.com/PogrebnyakE)
 [![MAIL Badge](https://img.shields.io/badge/-e.pogrebnyak@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:e.pogrebnyak@gmail.com)](mailto:e.pogrebnyak@gmail.com)
 
-If you happen to have a good idea or comment about the dataset, please drop 
-me a line. I appreciate the feedback and look forward to hearing about SSG
-use cases, project development stories and applications of this dataset. 
+Please use GitHub [issues](https://github.com/epogrebnyak/ssg-dataset/issues) to send
+comments and suggestions.
+
 
 (C) Evgeniy Pogrebnyak, 2021-2022
 """
