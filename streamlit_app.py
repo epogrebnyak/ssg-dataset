@@ -16,18 +16,9 @@ url_metadata = (
 )
 
 
-def pretty(s: str) -> str:
-    try:
-        return dict(js="JavaScript")[s]
-    except KeyError:
-        return s.capitalize()
-
-
 @st.cache
 def get_data():
-    df = pd.read_csv(url_csv, parse_dates=["created", "modified"])
-    df["lang"] = df.lang.map(pretty)
-    return df
+    return pd.read_csv(url_csv, parse_dates=["created", "modified"])
 
 
 @st.cache
@@ -65,15 +56,34 @@ are probably the most well-known SSG, but there are quite a few others.
 st.header("Github stars")
 """
 Number of stars in a Github repository is a proxy for SSG popularity, 
-at least among developers.
+at least among software developers.
 """
 
 # FIXME: should be able to reset as in https://discuss.streamlit.io/t/reset-multiselect-to-default-values-using-a-checkbox/1941
 all_langs = _df.lang.unique().tolist()
-langs = st.multiselect(
-    "Programming languages", options=all_langs, default=all_langs, format_func=pretty
+
+
+@st.cache
+def palette(languages, default_color="#BEBEBE"):
+    r = requests.get(
+        "https://raw.githubusercontent.com/ozh/github-colors/master/colors.json"
+    ).json()
+    pal = {}
+    for lang in languages:
+        try:
+            pal[lang] = r[lang]["color"]
+        except KeyError:
+            pal[lang] = default_color
+    return list(pal.keys()), list(pal.values())
+
+
+col_keys, col_values = palette(all_langs)
+github_scale = alt.Scale(domain=col_keys, range=col_values)
+
+selected_langs = st.multiselect(
+    "Programming languages", options=all_langs, default=all_langs
 )
-plot_df = _df[_df.lang.isin(langs)]
+plot_df = _df[_df.lang.isin(selected_langs)]
 plot_df["stars"] = plot_df.stars.divide(1000).round(1)
 
 # https://altair-viz.github.io/user_guide/customization.html#raw-color-values
@@ -94,7 +104,7 @@ chart = (
         color=alt.Color(
             "lang",
             legend=alt.Legend(title="Language"),
-            scale=alt.Scale(scheme="category10"),
+            scale=github_scale,
         ),
         tooltip=["name", "stars", "lang"],
     )
@@ -119,7 +129,9 @@ scatter = (
     .encode(
         x="stars",
         y="forks",
-        color="lang",
+        color=alt.Color(
+            "lang", legend=alt.Legend(title="Language"), scale=github_scale
+        ),
         tooltip=["name", "stars", "forks"],
     )
 )
@@ -172,7 +184,9 @@ scatter2 = (
             title="Open issues ÷ stars * 100%",
         ),
         size=alt.Size("stars", legend=alt.Legend(title="Github stars")),
-        color=alt.Color("lang", legend=alt.Legend(title="Language")),
+        color=alt.Color(
+            "lang", legend=alt.Legend(title="Language"), scale=github_scale
+        ),
         tooltip=["name", "stars", "forks"],
     )
 )
@@ -203,11 +217,6 @@ t["years"] = (t.modified - t.created).map(lambda x: x.days).divide(365).round(1)
 t["silent"] = t.modified.map(lambda x: lapsed(x))
 df = t.sort_values(["lang", "years"], ascending=[True, False])
 
-# draft: plots matplotlib
-# t["start"] = t.created.map(year_fractional)
-# t[["start", "years"]].sort_values("start", ascending = False).plot.barh(stacked=True, xlim=[2008, 2021], color=['white', 'blue'])
-
-# legend
 
 ch = (
     alt.Chart(
@@ -225,7 +234,7 @@ ch = (
         color=alt.Color(
             "lang",
             legend=alt.Legend(title="Language"),
-            scale=alt.Scale(scheme="tableau10"),
+            scale=github_scale,
         ),
         tooltip=["name", "stars", "years"],
     )
@@ -251,7 +260,7 @@ ch = (
         color=alt.Color(
             "lang",
             legend=alt.Legend(title="Language"),
-            scale=alt.Scale(scheme="tableau10"),
+            scale=github_scale,
         ),
         tooltip=["name", "stars", "years", "silent"],
     )
@@ -302,5 +311,5 @@ If you happen to have a good idea or comment about the dataset, please drop
 me a line. I appreciate the feedback and look forward to hearing about SSG
 use cases, project development stories and applications of this dataset. 
 
-(C) Evgeniy Pogrebnyak, 2021
+(C) Evgeniy Pogrebnyak, 2021-2022
 """

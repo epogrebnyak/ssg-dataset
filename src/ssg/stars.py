@@ -61,8 +61,9 @@ def read_item(key: str, values: Dict) -> SSG:
     d["github_handle"] = key
     d["name"] = key.split("/")[1]
     d.update(values)
-    d["lang"] = pretty(d["lang"]) 
+    d["lang"] = pretty(d["lang"])
     return SSG(**d)
+
 
 def pretty(lang: str) -> str:
     try:
@@ -71,8 +72,9 @@ def pretty(lang: str) -> str:
         return lang.capitalize()
 
 
-def read_text(filename) -> Optional[str]:
-    return Path(filename).read_text()
+def read_text(filename) -> str:
+    text = Path(filename).read_text()
+    return text if text else "" #prevent returning None
 
 
 def extract_yaml(text: str) -> Dict:

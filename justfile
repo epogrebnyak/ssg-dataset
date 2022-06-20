@@ -36,4 +36,7 @@ update:
 # print table for README file (project-specific)
 table:
   poetry run python example/table.py
-          
+
+# run pytest
+test:
+  poetry run pytest

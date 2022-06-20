@@ -12,7 +12,8 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 
 [Streamlit app][st] lays out a data story about SSGs with several visualisations.
 
-[![Streamlit Photos](https://user-images.githubusercontent.com/9265326/174499755-4f0be21b-3488-4a2d-ba19-66336ae80436.png)][st]
+[![Streamlit Screenshot](https://user-images.githubusercontent.com/9265326/174656606-24102187-411c-462d-adb7-b8bb1a1a6db0.png)][st]
+
 
 <!-- Colab is outdated
 
