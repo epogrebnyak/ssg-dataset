@@ -14,6 +14,7 @@ More difficult:
 Bugs:
 
 - [ ] release date in streamlit app not updated 
+- [ ] pytest does not run on Codespaces https://github.com/LukeMathWalker/linfa-python/issues/3#issuecomment-1160007455
 
 Wontfix
 =======

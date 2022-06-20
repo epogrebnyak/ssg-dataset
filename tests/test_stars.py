@@ -92,8 +92,8 @@ class Test_yaml_to_csv(TestFilesBase):
         assert df.loc["bookdown", "stars"] >= 2985
         assert df.loc["metalsmith", "forks"] >= 667
         assert df.loc["bookdown", "forks"] >= 1135
-        assert df.loc["metalsmith", "open_issues"] >= 32
-        assert df.loc["bookdown", "open_issues"] >= 175
+        assert df.loc["metalsmith", "open_issues"] >= 0
+        assert df.loc["bookdown", "open_issues"] >= 0
 
     def test_dataframe_mutable_data(self):
         df = yaml_to_csv_by_file(
