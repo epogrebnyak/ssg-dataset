@@ -65,7 +65,7 @@ def read_item(key: str, values: Dict) -> SSG:
     return SSG(**d)
 
 
-def read_text(filename) -> str:
+def read_text(filename) -> Optional[str]:
     return Path(filename).read_text()
 
 
