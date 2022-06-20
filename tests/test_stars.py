@@ -13,11 +13,11 @@ from ssg.stars import (
 def test_read_item():
     from ssg.stars import SSG, read_item
 
-    s = SSG(
-        name="bookdown", github_handle="rstudio/bookdown", lang="r", site="bookdown.org"
+    s1 = SSG(
+        name="bookdown", github_handle="rstudio/bookdown", lang="R", site="bookdown.org"
     )
     s2 = read_item("rstudio/bookdown", {"lang": "r", "site": "bookdown.org"})
-    assert s == s2
+    assert s1 == s2
 
 
 def test_extract_yaml():
@@ -106,7 +106,7 @@ class Test_yaml_to_csv(TestFilesBase):
                 "metalsmith": "segmentio/metalsmith",
                 "bookdown": "rstudio/bookdown",
             },
-            "lang": {"metalsmith": "js", "bookdown": "r"},
+            "lang": {"metalsmith": "JavaScript", "bookdown": "R"},
             "repo_lang": {"metalsmith": "JavaScript", "bookdown": "JavaScript"},
             "url": {
                 "metalsmith": "https://github.com/segmentio/metalsmith/",

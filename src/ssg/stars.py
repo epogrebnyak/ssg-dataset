@@ -29,11 +29,12 @@ allowed_languages = [
     "ruby",
     "python",
     "rust",
-    "r",
     "swift",
-    "julia",
     "haskell",
+    "r",
+    "php",
     "java",
+    "julia",
     "elm",
 ]
 
@@ -49,7 +50,7 @@ class SSG(BaseModel):
 
 
 def read_item(key: str, values: Dict) -> SSG:
-    empty_dict = {
+    d = {
         "name": "",
         "github_handle": "",
         "lang": "",
@@ -57,11 +58,17 @@ def read_item(key: str, values: Dict) -> SSG:
         "twitter": "",
         "site": "",
     }
-    d = empty_dict.copy()
     d["github_handle"] = key
     d["name"] = key.split("/")[1]
     d.update(values)
+    d["lang"] = pretty(d["lang"]) 
     return SSG(**d)
+
+def pretty(lang: str) -> str:
+    try:
+        return dict(js="JavaScript", php="PHP")[lang]
+    except KeyError:
+        return lang.capitalize()
 
 
 def read_text(filename) -> Optional[str]:

@@ -59,17 +59,13 @@ landing pages and documentation.
 [Hugo](https://gohugo.io/), 
 [Gatsby](https://www.gatsbyjs.com/) and 
 [Jekyll](https://jekyllrb.com/) 
-are probably the most well-known SSG, but there are quite a few others
-as described below. 
+are probably the most well-known SSG, but there are quite a few others. 
 """
 
 st.header("Github stars")
 """
 Number of stars in a Github repository is a proxy for SSG popularity, 
-at least among developers. Surely many people can use a SSG without 
-looking at the Github repo (by using the package repository and
-consulting the homepage for download documentation), but the stars 
-are quick available metric.
+at least among developers.
 """
 
 # FIXME: should be able to reset as in https://discuss.streamlit.io/t/reset-multiselect-to-default-values-using-a-checkbox/1941
@@ -79,6 +75,8 @@ langs = st.multiselect(
 )
 plot_df = _df[_df.lang.isin(langs)]
 plot_df["stars"] = plot_df.stars.divide(1000).round(1)
+
+# https://altair-viz.github.io/user_guide/customization.html#raw-color-values
 
 chart = (
     alt.Chart(
@@ -110,6 +108,7 @@ st.header("Forks")
 """
 Forks are copies of orginal repo made by users to submit code additions 
 or to work on own version of the software. 
+
 More forks indicate either active development of the package 
 or code reuse in other projects.
 """
@@ -128,26 +127,25 @@ scatter = (
 st.altair_chart(scatter, use_container_width=True)
 
 """
-Consider there are two groups of SSG users: front-end engineers (FE),
-usually proficient with HTML, CSS and JavaScript and non-specialised (NS) 
-users who do other work (eg backend, data analysis or outside tech) 
-and need to write a blog, lay out documentation or simple website.
+Consider there are two groups of SSG users:
+
+- front-end engineers (FE), usually proficient with HTML, CSS and JavaScript, and
+- non-specialised (NS) users who do other kinds of work (eg backend, data analysis 
+or even tasks outside technology sector) and need to write a blog, lay out documentation 
+or simply make a small website.
 
 More forks would come from FE group, while NS would likely to use the software 
-as is and will not fork.
+as is and will not fork and probably even not star a project on Github.
 
-Distribution of project as an executable (Hugo), publishing pipeline (bookdown),
-or indended audience (eleventy) may affect relative number of forks.
-
-When project come to end-life - there would be more forks inteded to preserve
-and continue to use it (Octopress).
+When a project come to end of lile - there may be more forks to preserve
+and continue its use (Octopress).
 """
 
 st.header("Open issues")
 
 """
 More open issues in repository may be due to rapid project development or 
-accumulated technical debt.
+to accumulated technical debt. 
 """
 
 ratios = _df.copy()
@@ -185,7 +183,8 @@ st.header("Project lifetime")
 
 """
 The longest-running static site generators are based on Ruby. 
-The newest SSG are fastpages (Python) and Publish (Swift).
+The youngest SSG are bridgetown (again Ruby), fastpages (Python), 
+scully, nextra and astro (JavaScript).
 """
 
 
