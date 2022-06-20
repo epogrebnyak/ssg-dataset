@@ -28,6 +28,7 @@ Enhancements and new features
 - [ ] stars history (issue)
 - [ ] migration matrix (issue)
 - [ ] total SSG counted
+- [ ] try https://blog.streamlit.io/introducing-multipage-apps/
 
 Discussion
 ==========
