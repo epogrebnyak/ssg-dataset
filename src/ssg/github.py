@@ -1,6 +1,7 @@
 """Get Github repo statistics."""
 
 import os
+from datetime import date
 from typing import Any, Dict, List, Optional
 
 import pandas as pd  # type: ignore
@@ -9,10 +10,11 @@ import requests_cache  # type: ignore
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
-__all__ = ["get_repo_state_from_handle"]
+__all__ = ["get_repo_state_from_handle", "reveal"]
 
 
-# Comment: need stable location for the file - may appear in different folders for example and tests
+# TODO: need stable location for the file - may appear in different folders for example and tests
+# also need some machinery to delete this file 
 requests_cache.install_cache("cache_1")
 
 load_dotenv(".config.env")
@@ -72,8 +74,8 @@ class RepoState(BaseModel):
     homepage: Optional[
         str
     ]  # some repos do not have webpage - https://github.com/alexkorban/elmstatic
-    created: str  # TODO: change to date
-    modified: str  # TODO: change to date
+    created: date
+    modified: date
     stars: int
     forks: int
     open_issues: int
