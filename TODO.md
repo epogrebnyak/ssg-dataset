@@ -30,8 +30,9 @@ Enhancements and new features
 - [ ] total SSG counted + badge
 - [ ] try https://blog.streamlit.io/introducing-multipage-apps/
 - [ ] stars per project year chart
-- [ ] badge class for Streamlit 
-
+- [ ] badge class for Streamlit
+- сommand line interface
+- heatmap mekko chart
 
 Discussion
 ==========
