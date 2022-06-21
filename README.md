@@ -77,15 +77,8 @@ poetry run python example/update.py
 
 [Static Site Generators Build Performance Testing](https://ssg-build-performance-tests.netlify.app/):
 
-- framework-based SSG:
-  - gatsby
-  - next
-  - nuxt
-- non-framework-based SSG:
-  - astro
-  - eleventy
-  - hugo
-  - jekyll
+- framework-based SSG: gatsby, next, nuxt
+- non-framework-based SSG:astro, eleventy, hugo, jekyll
 
 ### Listings
 
