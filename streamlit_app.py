@@ -145,11 +145,11 @@ Consider there are two groups of SSG users:
 
 - front-end engineers (FE), usually proficient with HTML, CSS and JavaScript, and
 - non-specialised (NS) users who do other kinds of work (eg backend, data analysis 
-or tasks outside software development) and need to write a blog, lay out documentation 
-or simply make a small website.
+  or tasks outside software development) and need to write a blog, lay out documentation 
+  or simply make a small website.
 
 More forks would come from FE group, while NS would likely use the software 
-as is and will not fork and probably even not star a project on Github.
+as is, will not fork and probably will not even star a project on Github.
 
 When a project comes to end of life there may be more forks to preserve
 and continue its use (Octopress).
