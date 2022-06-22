@@ -9,12 +9,13 @@ import requests
 import requests_cache  # type: ignore
 from dotenv import load_dotenv
 from pydantic import BaseModel
+from datetime import datetime
 
 __all__ = ["get_repo_state_from_handle", "reveal"]
 
 
 # TODO: need stable location for the file - may appear in different folders for example and tests
-# also need some machinery to delete this file 
+# also need some machinery to delete this file
 requests_cache.install_cache("cache_1")
 
 load_dotenv(".config.env")
@@ -64,8 +65,12 @@ def last_modified(handle: str) -> str:
     return _last["commit"]["author"]["date"]
 
 
-def date_only(s):
-    return s[: 4 + 2 + 2 + 2]  # TODO: change to date
+def date_only(ts: str) -> str:
+    """Extract date from isoformat timestamp"""
+    # isoformat == 'YYYY-mm-ddTHH:MM:SSZ'
+    # Need to strip 'Z' for datetime.fromisoformat method
+    return datetime.fromisoformat(ts.rstrip('Z')).strftime('%Y-%m-%d')
+
 
 
 class RepoState(BaseModel):
