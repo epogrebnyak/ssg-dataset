@@ -68,7 +68,7 @@ def last_modified(handle: str) -> str:
 def date_only(ts: str) -> date:
     """Extract date from *ts* timestamp in YYYY-mm-ddTHH:MM:SSZ format."""
     # must to strip 'Z' first
-    return datetime.fromisoformat(ts.rstrip('Z'))
+    return datetime.fromisoformat(ts.rstrip('Z')).date()
 
 
 
