@@ -26,7 +26,7 @@ GH_TOKEN = os.getenv("GH_TOKEN", "")
 def reveal():
     if GH_TOKEN:
         print(f"Token for {GH_USER} is found.")
-
+    # TODO print something otherwise
 
 def url(handle):
     return f"https://github.com/{handle}/"
@@ -65,11 +65,11 @@ def last_modified(handle: str) -> str:
     return _last["commit"]["author"]["date"]
 
 
-def date_only(ts: str) -> str:
-    """Extract date from isoformat timestamp"""
-    # isoformat == 'YYYY-mm-ddTHH:MM:SSZ'
-    # Need to strip 'Z' for datetime.fromisoformat method
-    return datetime.fromisoformat(ts.rstrip('Z')).strftime('%Y-%m-%d')
+def date_only(ts: str) -> date:
+    """Extract date from *ts* timestamp in YYYY-mm-ddTHH:MM:SSZ format."
+    # must to strip 'Z' first
+    return datetime.fromisoformat(ts.rstrip('Z'))
+
 
 
 
