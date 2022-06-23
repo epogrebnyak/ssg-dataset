@@ -1,4 +1,4 @@
-from ssg import get_dataframe
+from ssg.stars import get_dataframe
 
 
 def md_link(text, url):

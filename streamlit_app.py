@@ -63,6 +63,7 @@ at least among software developers.
 all_langs = _df.lang.unique().tolist()
 n = len(_df)
 
+
 @st.cache
 def palette(languages, default_color="#BEBEBE"):
     r = requests.get(

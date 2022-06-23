@@ -1,7 +1,7 @@
 """Get Github repo statistics."""
 
 import os
-from datetime import date
+from datetime import date, datetime
 from typing import Any, Dict, List, Optional
 
 import pandas as pd  # type: ignore
@@ -9,7 +9,6 @@ import requests
 import requests_cache  # type: ignore
 from dotenv import load_dotenv
 from pydantic import BaseModel
-from datetime import datetime
 
 __all__ = ["get_repo_state_from_handle", "reveal"]
 
@@ -26,6 +25,7 @@ GH_TOKEN = os.getenv("GH_TOKEN", "")
 def reveal():
     if GH_TOKEN:
         print(f"Token for {GH_USER} is found.")
+    # TODO print something otherwise
 
 
 def url(handle):
@@ -65,12 +65,13 @@ def last_modified(handle: str) -> str:
     return _last["commit"]["author"]["date"]
 
 
-def date_only(ts: str) -> str:
-    """Extract date from isoformat timestamp"""
-    # isoformat == 'YYYY-mm-ddTHH:MM:SSZ'
-    # Need to strip 'Z' for datetime.fromisoformat method
-    return datetime.fromisoformat(ts.rstrip('Z')).strftime('%Y-%m-%d')
+def date_only(ts: str) -> date:
+    """Extract date from *ts* timestamp.
 
+    Timestamp has YYYY-mm-ddTHH:MM:SSZ format.
+    """
+    # must to strip 'Z' first as discussed in https://discuss.python.org/t/parse-z-timezone-suffix-in-datetime/2220
+    return datetime.fromisoformat(ts.rstrip("Z")).date()
 
 
 class RepoState(BaseModel):

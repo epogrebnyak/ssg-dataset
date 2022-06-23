@@ -1,4 +1,6 @@
 .config.env
+docs/site/
+.idea/
 
 # more hidden folders and files
 .venv/

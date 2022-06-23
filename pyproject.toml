@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ssg"
-version = "0.3.0"
+version = "0.3.2"
 description = "Github data for static site generators popularity"
 authors = ["Evgeniy Pogrebnyak <e.pogrebnyak@gmail.com>"]
 readme = "README.md"
@@ -14,14 +14,13 @@ requests-cache = "^0.9.4"
 python-dotenv = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
-#myst-parser = "^0.13.1"
-#pydata-sphinx-theme = "^0.4.1"
-#ghp-import = "^1.0.0"
-#mypy = "^0.790"
-#tabulate = "^0.8.7"
+myst-parser = "^0.18.0"
 pytest = "^7.1.2"
 Sphinx = "^5.0.2"
 streamlit = "^1.10.0"
+pyright = "^1.1.255"
+pydata-sphinx-theme = "^0.9.0"
+ghp-import = "^2.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

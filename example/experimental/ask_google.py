@@ -1,6 +1,7 @@
-import requests
-import bs4
 import re
+
+import bs4
+import requests
 import requests_cache
 
 # requests_cache.install_cache('google')
