@@ -272,7 +272,7 @@ st.altair_chart(ch, use_container_width=True)
 
 st.header("Links")
 
-alpha = df.sort_values("name", key=lambda s: s.lower())
+alpha = df.sort_values("name", key=lambda s: s.str.lower())
 st.write(" - ".join(f"[{name}]({url})" for name, url in zip(alpha.name, alpha.url)))
 
 st.header("Data")
