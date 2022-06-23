@@ -29,6 +29,10 @@ pages:
 apidoc:
   poetry run sphinx-apidoc -o docs src/{{package}}
 
+# git pull from remote and rebase 
+rebase:
+  git pull --rebase 
+
 # update csv file (project-specific) 
 update:
   poetry run python example/update.py
