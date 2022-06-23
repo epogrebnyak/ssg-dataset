@@ -8,6 +8,8 @@ Fixes
 ## Medium
 
 - [ ] citation and new zenodo version
+- [ ] cleanup examples folder
+- [ ] contributor guide for onboarding
 
 ## More difficult
 
@@ -54,4 +56,4 @@ Discussion
 
 - Framework-based SSG (JavaScript), eg [Next, Nuxt](https://ssg-build-performance-tests.netlify.app/), are not listed (commented out in README) 
 - We cannot list [Antora from Gitlab](https://gitlab.com/antora/antora), our URL system is for Github
-- Tone of voice and why this is exciting - for the writeup, hypothesis
+- Tone of voice and why this is exciting - for the writeup, hypothesis/observation
