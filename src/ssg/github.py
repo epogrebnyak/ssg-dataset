@@ -66,8 +66,11 @@ def last_modified(handle: str) -> str:
 
 
 def date_only(ts: str) -> date:
-    """Extract date from *ts* timestamp in YYYY-mm-ddTHH:MM:SSZ format."""
-    # must to strip 'Z' first
+    """Extract date from *ts* timestamp.
+
+    Timestamp has YYYY-mm-ddTHH:MM:SSZ format.
+    """
+    # must to strip 'Z' first as discussed in https://discuss.python.org/t/parse-z-timezone-suffix-in-datetime/2220
     return datetime.fromisoformat(ts.rstrip("Z")).date()
 
 
