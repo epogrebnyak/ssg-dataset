@@ -2,6 +2,7 @@ import datetime
 
 import pandas as pd
 import pytest
+from pydantic import ValidationError
 
 from ssg.stars import create_all, extract_yaml, yaml_to_csv_by_file, SSG, OwnValidationError
 
@@ -126,7 +127,7 @@ class TestValidatorsSSG:
             SSG(
                 name="gatsby", github_handle="gatsbyjs/gatsby", lang="JavaScript"
             )
-        except OwnValidationError:
+        except ValidationError:
             ex = True
         finally:
             assert ex
@@ -137,7 +138,7 @@ class TestValidatorsSSG:
             SSG(
                 name="gatsby", github_handle="gatsbyjs_gatsby", lang="js"
             )
-        except OwnValidationError:
+        except ValidationError:
             ex = True
         finally:
             assert ex
@@ -148,7 +149,7 @@ class TestValidatorsSSG:
             SSG(
                 name = "gatsby", github_handle = "gatsbyjs/gatsby", lang = "js"
             )
-        except OwnValidationError:
+        except ValidationError:
             ex = False
         finally:
             assert ex

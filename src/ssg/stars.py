@@ -55,14 +55,12 @@ class SSG(BaseModel):
     @validator("lang")
     def lang_field_must_be_one_of_allowed(cls, value: str) -> str:
         if value.lower() not in allowed_languages:
-            raise OwnValidationError("Field 'lang' not in allowed language names!")
-        return value
+            return value
 
     @validator("github_handle")
     def github_handle_field_must_contain_slash(cls, value: str) -> str:
         if '/' not in value:
-            raise OwnValidationError("Field 'github_handle' must contain '/'!")
-        return value
+            return value
 
 
 def read_item(key: str, values: Dict) -> SSG:
