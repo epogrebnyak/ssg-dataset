@@ -45,8 +45,8 @@ class OwnValidationError(ValueError):
 
 class SSG(BaseModel):
     name: str
-    github_handle: str  # TODO: must enforce /
-    lang: str  # TODO: must enforce fix list of languages
+    github_handle: str
+    lang: str
     exec: Optional[bool] = None
     twitter: str = ""
     site: str = ""
