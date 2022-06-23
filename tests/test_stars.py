@@ -127,7 +127,6 @@ class TestValidatorsSSG:
             SSG(
                 name="gatsby", github_handle="gatsbyjs/gatsby", lang="JavaScript"
             )
-            print(SSG)
         except ValidationError:
             ex = True
         finally:
