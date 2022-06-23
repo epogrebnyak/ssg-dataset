@@ -1,7 +1,7 @@
 """Get Github repo statistics."""
 
 import os
-from datetime import date
+from datetime import date, datetime
 from typing import Any, Dict, List, Optional
 
 import pandas as pd  # type: ignore
@@ -9,7 +9,6 @@ import requests
 import requests_cache  # type: ignore
 from dotenv import load_dotenv
 from pydantic import BaseModel
-from datetime import datetime
 
 __all__ = ["get_repo_state_from_handle", "reveal"]
 
@@ -27,6 +26,7 @@ def reveal():
     if GH_TOKEN:
         print(f"Token for {GH_USER} is found.")
     # TODO print something otherwise
+
 
 def url(handle):
     return f"https://github.com/{handle}/"
@@ -68,9 +68,7 @@ def last_modified(handle: str) -> str:
 def date_only(ts: str) -> date:
     """Extract date from *ts* timestamp in YYYY-mm-ddTHH:MM:SSZ format."""
     # must to strip 'Z' first
-    return datetime.fromisoformat(ts.rstrip('Z')).date()
-
-
+    return datetime.fromisoformat(ts.rstrip("Z")).date()
 
 
 class RepoState(BaseModel):

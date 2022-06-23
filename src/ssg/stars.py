@@ -74,7 +74,7 @@ def pretty(lang: str) -> str:
 
 def read_text(filename) -> str:
     text = Path(filename).read_text()
-    return text if text else "" #prevent returning None
+    return text if text else ""  # prevent returning None
 
 
 def extract_yaml(text: str) -> Dict:

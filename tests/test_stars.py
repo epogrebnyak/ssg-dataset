@@ -3,11 +3,7 @@ import datetime
 import pandas as pd
 import pytest
 
-from ssg.stars import (
-    create_all,
-    yaml_to_csv_by_file,
-    extract_yaml,
-)
+from ssg.stars import create_all, extract_yaml, yaml_to_csv_by_file
 
 
 def test_read_item():

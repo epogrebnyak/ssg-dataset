@@ -1,0 +1,15 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: local
+    hooks:
+    -   id: black
+        name: black
+        entry: poetry run black
+        language: system
+        types: [python]
+    -   id: isort
+        name: isort
+        entry: poetry run isort
+        language: system
+        types: [python]
