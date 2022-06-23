@@ -3,8 +3,8 @@ Fixes
 
 ## Easy
 
-- [ ] validate programming language in SSG as in https://pydantic-docs.helpmanual.io/usage/validators/
-- [ ] add a test and change `date_only()` (issue #17)
+- [ ] validate programming language in SSG as in https://pydantic-docs.helpmanual.io/usage/validators/,
+      programming language list is hardcoded in stars.py
 
 ## Medium
 
@@ -13,16 +13,17 @@ Fixes
 ## More difficult
 
 - [ ] documentation: build sphinx docs for the package, show on Github Pages
-- [ ] add pyright check to CI pipeline (may not install with poetry)
+- [ ] add pyright check to CI pipeline (may not install with poetry) - #21
 
-## Bugs
+Bugs
+====
 
 None at the moment.
 
 Wontfix
 =======
 
-- programming language list is hardcoded in stars.py
+None at the moment.
 
 Enhancements and new features
 =============================
@@ -41,9 +42,10 @@ More charts:
 
 - [ ] stars per project year chart
 - [ ] heatmap mekko chart
+- [ ] history timeline chart
 
 Enhancements:
-
+`
 - [ ] сommand line interface
 - [ ] can use typing check on dataframe https://pandera.readthedocs.io/en/stable/
 - [ ] try https://blog.streamlit.io/introducing-multipage-apps/
