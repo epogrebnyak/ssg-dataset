@@ -33,10 +33,6 @@ apidoc:
 update:
   poetry run python example/update.py
 
-# print table for README file (project-specific)
-table:
-  poetry run python example/table.py
-
 # run pytest
 test:
   poetry run pytest
