@@ -3,8 +3,7 @@ Fixes
 
 ## Easy
 
-- [ ] validate programming language in SSG as in https://pydantic-docs.helpmanual.io/usage/validators/,
-      programming language list is hardcoded in stars.py
+- [ ] validate programming language in SSG as in https://pydantic-docs.helpmanual.io/usage/validators/, programming language list is hardcoded in stars.py
 
 ## Medium
 
@@ -13,7 +12,6 @@ Fixes
 ## More difficult
 
 - [ ] documentation: build sphinx docs for the package, show on Github Pages
-- [ ] add pyright check to CI pipeline (may not install with poetry) - #21
 
 Bugs
 ====
