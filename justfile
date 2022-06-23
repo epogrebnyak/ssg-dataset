@@ -19,7 +19,7 @@ docs:
 
 # show documentation in browser
 show:
-  start docs/site/index.html
+  python -m http.server -d docs/site  
 
 # publish documentation to Github Pages
 pages:
