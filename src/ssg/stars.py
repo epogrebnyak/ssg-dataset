@@ -39,10 +39,6 @@ allowed_languages = [
 ]
 
 
-class OwnValidationError(ValueError):
-    pass
-
-
 class SSG(BaseModel):
     name: str
     github_handle: str
