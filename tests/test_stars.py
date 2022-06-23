@@ -4,11 +4,11 @@ import pandas as pd
 import pytest
 from pydantic import ValidationError
 
-from src.ssg.stars import create_all, extract_yaml, yaml_to_csv_by_file, SSG
+from ssg.stars import create_all, extract_yaml, yaml_to_csv_by_file, SSG
 
 
 def test_read_item():
-    from src.ssg.stars import SSG, read_item
+    from ssg.stars import SSG, read_item
 
     s1 = SSG(
         name="bookdown", github_handle="rstudio/bookdown", lang="R", site="bookdown.org"

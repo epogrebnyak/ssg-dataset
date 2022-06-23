@@ -18,7 +18,7 @@ import pandas as pd  # type: ignore
 import yaml
 from pydantic import BaseModel, validator
 
-from src.ssg.github import get_repo_state_from_handle
+from ssg.github import get_repo_state_from_handle
 
 __all__ = ["yaml_to_csv_by_file", "create_all"]
 
