@@ -3,7 +3,7 @@ import datetime
 import pandas as pd
 import pytest
 
-from ssg.stars import create_all, extract_yaml, yaml_to_csv_by_file
+from ssg.stars import create_all, extract_yaml, yaml_to_csv_by_file, SSG, OwnValidationError
 
 
 def test_read_item():
@@ -117,3 +117,38 @@ class Test_yaml_to_csv(TestFilesBase):
                 "bookdown": "https://pkgs.rstudio.com/bookdown/",
             },
         }
+
+
+class TestValidatorsSSG:
+    def test_validator_lang_name_on_wrong_input(self):
+        ex = False
+        try:
+            SSG(
+                name="gatsby", github_handle="gatsbyjs/gatsby", lang="JavaScript"
+            )
+        except OwnValidationError:
+            ex = True
+        finally:
+            assert ex
+
+    def test_validator_github_handle_on_wrong_input(self):
+        ex = False
+        try:
+            SSG(
+                name="gatsby", github_handle="gatsbyjs_gatsby", lang="js"
+            )
+        except OwnValidationError:
+            ex = True
+        finally:
+            assert ex
+
+    def test_validator_on_right_input(self):
+        ex = True
+        try:
+            SSG(
+                name = "gatsby", github_handle = "gatsbyjs/gatsby", lang = "js"
+            )
+        except OwnValidationError:
+            ex = False
+        finally:
+            assert ex

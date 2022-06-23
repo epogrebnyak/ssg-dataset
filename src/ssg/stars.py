@@ -16,7 +16,7 @@ from typing import Dict, List, Optional, Union
 
 import pandas as pd  # type: ignore
 import yaml
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
 from ssg.github import get_repo_state_from_handle
 
@@ -39,6 +39,10 @@ allowed_languages = [
 ]
 
 
+class OwnValidationError(ValueError):
+    pass
+
+
 class SSG(BaseModel):
     name: str
     github_handle: str  # TODO: must enforce /
@@ -47,6 +51,18 @@ class SSG(BaseModel):
     twitter: str = ""
     site: str = ""
     comment: str = ""
+
+    @validator("lang")
+    def lang_field_must_be_one_of_allowed(cls, value: str) -> str:
+        if value.lower() not in allowed_languages:
+            raise OwnValidationError("Field 'lang' not in allowed language names!")
+        return value
+
+    @validator("github_handle")
+    def github_handle_field_must_contain_slash(cls, value: str) -> str:
+        if '/' not in value:
+            raise OwnValidationError("Field 'github_handle' must contain '/'!")
+        return value
 
 
 def read_item(key: str, values: Dict) -> SSG:
