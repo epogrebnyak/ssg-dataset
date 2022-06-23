@@ -86,7 +86,7 @@ class Test_yaml_to_csv(TestFilesBase):
         )
         assert df.loc["metalsmith", "stars"] >= 7736
         assert df.loc["bookdown", "stars"] >= 2985
-        assert df.loc["metalsmith", "forks"] >= 667
+        assert df.loc["metalsmith", "forks"] >= 600  # forks may decrease too
         assert df.loc["bookdown", "forks"] >= 1135
         assert df.loc["metalsmith", "open_issues"] >= 0
         assert df.loc["bookdown", "open_issues"] >= 0
