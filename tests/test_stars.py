@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 from pydantic import ValidationError
 
-from ssg.stars import create_all, extract_yaml, yaml_to_csv_by_file, SSG
+from ssg.stars import SSG, create_all, extract_yaml, yaml_to_csv_by_file
 
 
 def test_read_item():
@@ -120,26 +120,15 @@ class Test_yaml_to_csv(TestFilesBase):
         }
 
 
-def test_validator_lang_name_on_wrong_input():
+def test_ssg_validator_for_lang_fails_on_brrr_input():
     with pytest.raises(ValidationError):
-        SSG(
-                name="gatsby", github_handle="gatsbyjs/gatsby", lang="Rubyn"
-            )
+        SSG(name="gatsby", github_handle="gatsbyjs/gatsby", lang="brrrr")
 
 
-def test_validator_github_handle_on_wrong_input():
+def test_ssg_validator_for_github_handle_raises_error_without_slash():
     with pytest.raises(ValidationError):
-        SSG(
-            name = "gatsby", github_handle = "gatsbyjs_gatsby", lang = "js"
-        )
+        SSG(name="gatsby", github_handle="gatsbyjs_gatsby", lang="js")
 
 
-def test_validator_on_right_input():
-    try:
-        SSG(
-            name = "gatsby", github_handle = "gatsbyjs/gatsby", lang = "js"
-        )
-    except Exception:
-        assert False
-    else:
-        assert True
+def test_ssg_validator_for_github_handle_passed_on_slash():
+    assert SSG(name="gatsby", github_handle="gatsbyjs/gatsby", lang="js")
