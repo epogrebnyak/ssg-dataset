@@ -16,3 +16,4 @@ jobs:
     - run: pip install poetry
     - run: poetry install 
     - run: python -m poetry run python -m pytest -v tests
+    - run: python -m poetry run pyright src
