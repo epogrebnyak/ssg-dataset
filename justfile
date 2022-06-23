@@ -27,7 +27,7 @@ pages:
 
 # create rst source for API documentation
 apidoc:
-  sphinx-apidoc -o docs src/{{package}}
+  poetry run sphinx-apidoc -o docs src/{{package}}
 
 # update csv file (project-specific) 
 update:
