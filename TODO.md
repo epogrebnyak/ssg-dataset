@@ -3,7 +3,7 @@ Fixes
 
 ## Easy
 
-- [ ] validate programming language in SSG as in https://pydantic-docs.helpmanual.io/usage/validators/, programming language list is hardcoded in stars.py
+...
 
 ## Medium
 
@@ -11,17 +11,17 @@ Fixes
 
 ## More difficult
 
-- [ ] documentation: build sphinx docs for the package, show on Github Pages
+...
 
 Bugs
 ====
 
-None at the moment.
+...
 
 Wontfix
 =======
 
-None at the moment.
+...
 
 Enhancements and new features
 =============================
@@ -54,4 +54,4 @@ Discussion
 
 - Framework-based SSG (JavaScript), eg [Next, Nuxt](https://ssg-build-performance-tests.netlify.app/), are not listed (commented out in README) 
 - We cannot list [Antora from Gitlab](https://gitlab.com/antora/antora), our URL system is for Github
-- Tone of voice and why this is exciting - for the writeup.
+- Tone of voice and why this is exciting - for the writeup, hypothesis
