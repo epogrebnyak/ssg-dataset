@@ -26,6 +26,7 @@ __all__ = ["yaml_to_csv_by_file", "create_all"]
 allowed_languages = [
     "go",
     "js",
+    "javascript",
     "ruby",
     "python",
     "rust",
@@ -51,13 +52,13 @@ class SSG(BaseModel):
     @validator("lang")
     def lang_field_must_be_one_of_allowed(cls, value: str) -> str:
         if value.lower() not in allowed_languages:
-            raise ValueError("Lang must be one of 'allowed_languages'!")
+            raise ValueError(f"Lang must be one of 'allowed_languages'! Not {value}")
         return value
 
     @validator("github_handle")
     def github_handle_field_must_contain_slash(cls, value: str) -> str:
         if '/' not in value:
-            raise ValueError("Field github_handle must contain '/'!")
+            raise ValueError(f"Field github_handle must contain '/'! Not {value}")
         return value
 
 
