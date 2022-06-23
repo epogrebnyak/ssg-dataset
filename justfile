@@ -40,3 +40,7 @@ table:
 # run pytest
 test:
   poetry run pytest
+
+# run precommit hook
+precommit:
+ pre-commit run --all-files
