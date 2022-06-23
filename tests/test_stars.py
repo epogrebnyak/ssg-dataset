@@ -4,11 +4,11 @@ import pandas as pd
 import pytest
 from pydantic import ValidationError
 
-from ssg.stars import create_all, extract_yaml, yaml_to_csv_by_file, SSG
+from src.ssg.stars import create_all, extract_yaml, yaml_to_csv_by_file, SSG
 
 
 def test_read_item():
-    from ssg.stars import SSG, read_item
+    from src.ssg.stars import SSG, read_item
 
     s1 = SSG(
         name="bookdown", github_handle="rstudio/bookdown", lang="R", site="bookdown.org"
@@ -120,36 +120,26 @@ class Test_yaml_to_csv(TestFilesBase):
         }
 
 
-class TestValidatorsSSG:
-    def test_validator_lang_name_on_wrong_input(self):
-        ex = False
-        try:
-            SSG(
-                name="gatsby", github_handle="gatsbyjs/gatsby", lang="JavaScript"
+def test_validator_lang_name_on_wrong_input():
+    with pytest.raises(ValidationError):
+        SSG(
+                name="gatsby", github_handle="gatsbyjs/gatsby", lang="Rubyn"
             )
-        except ValidationError:
-            ex = True
-        finally:
-            assert ex
 
-    def test_validator_github_handle_on_wrong_input(self):
-        ex = False
-        try:
-            SSG(
-                name="gatsby", github_handle="gatsbyjs_gatsby", lang="js"
-            )
-        except ValidationError:
-            ex = True
-        finally:
-            assert ex
 
-    def test_validator_on_right_input(self):
-        ex = True
-        try:
-            SSG(
-                name = "gatsby", github_handle = "gatsbyjs/gatsby", lang = "js"
-            )
-        except ValidationError:
-            ex = False
-        finally:
-            assert ex
+def test_validator_github_handle_on_wrong_input():
+    with pytest.raises(ValidationError):
+        SSG(
+            name = "gatsby", github_handle = "gatsbyjs_gatsby", lang = "js"
+        )
+
+
+def test_validator_on_right_input():
+    try:
+        SSG(
+            name = "gatsby", github_handle = "gatsbyjs/gatsby", lang = "js"
+        )
+    except Exception:
+        assert False
+    else:
+        assert True
