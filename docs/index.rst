@@ -4,4 +4,6 @@ ssg
 .. toctree::
    :maxdepth: 4
 
-   ssg
+   README.md
+   api
+   tools.md

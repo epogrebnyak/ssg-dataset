@@ -1,8 +1,5 @@
-ssg package
-===========
-
-Submodules
-----------
+API
+===
 
 ssg.github module
 -----------------
@@ -20,10 +17,3 @@ ssg.stars module
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: ssg
-   :members:
-   :undoc-members:
-   :show-inheritance:
