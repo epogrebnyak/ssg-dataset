@@ -2,6 +2,8 @@
 
 # Popularity of static site generators
 
+![count](count.svg)
+
 Static site generators are tools to create blogs, landing pages and documentation.
 
 This repo contains Github data (stars, forks, issues, create and last modified dates) for 30+ open source static site generators (SSG) and code to create the dataset.

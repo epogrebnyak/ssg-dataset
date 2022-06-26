@@ -17,11 +17,23 @@ class Badge:
     left_color: str = "#555"
 
     def image(self) -> str:
-        return badge(**self.__dict__)
+        return badge(
+            left_text=self.left_text,
+            right_text=self.right_text,
+            right_color=self.right_color,
+            left_color=self.left_color,
+        )
 
     def image_with_link(self, url: str) -> str:
         svg = badge(**self.__dict__, right_link=url, left_link=url)
         return svg.replace("a xlink:href", "a href")
+
+    def save(self, path: Path, url: Optional[str] = None):
+        if url:
+            svg = self.image_with_link(url)
+        else:
+            svg = self.image()
+        path.write_text(svg)
 
 
 st.set_page_config(
@@ -62,6 +74,11 @@ f"""
 """
 st.image(image=Badge("SSG", str(n), "green").image())
 
+Badge("SSG", str(n), "pink").save(Path(__file__).parent / "count.svg")
+
+"""![count](count.svg)"""
+
+
 st.header("Static site generators popularity  :thermometer: :star:")
 
 
@@ -83,7 +100,6 @@ at least among software developers.
 
 # FIXME: should be able to reset as in https://discuss.streamlit.io/t/reset-multiselect-to-default-values-using-a-checkbox/1941
 all_langs = _df.lang.unique().tolist()
-
 
 
 @st.cache
