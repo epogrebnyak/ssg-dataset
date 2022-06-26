@@ -15,9 +15,8 @@ class Badge:
         return badge(**self.__dict__)
 
     def image_with_link(self, url: str) -> str:
-        return badge(**self.__dict__, right_link=str(url), left_link=str(url)).replace(
-            "a xlink:href", "a href"
-        )
+        svg = badge(**self.__dict__, right_link=url, left_link=url)
+        return svg.replace("a xlink:href", "a href")
 
     def save(self, path: Path, url: Optional[str] = None):
         if url:
@@ -28,11 +27,11 @@ class Badge:
 
 
 b = Badge("SSG", "43", "pink")
-url = "http://www.nba.com"
+url_ = "http://www.nba.com"
 this_dir = Path(__file__).resolve().parent
 
 assert b.image().startswith("<svg")
-assert "nba.com" in b.image_with_link(url)
+assert "nba.com" in b.image_with_link(url_)
 
 b.save(this_dir / "count.svg")
-b.save(this_dir / "count2.svg", url)
+b.save(this_dir / "count2.svg", url_)

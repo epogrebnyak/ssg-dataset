@@ -3,8 +3,25 @@ import pandas as pd
 import requests
 import streamlit as st
 
+from dataclasses import dataclass
+from pybadges import badge
+from typing import Optional
+from pathlib import Path
 
-from badge import badge_generate
+
+@dataclass
+class Badge:
+    left_text: str
+    right_text: str
+    right_color: str
+    left_color: str = "#555"
+
+    def image(self) -> str:
+        return badge(**self.__dict__)
+
+    def image_with_link(self, url: str) -> str:
+        svg = badge(**self.__dict__, right_link=url, left_link=url)
+        return svg.replace("a xlink:href", "a href")
 
 
 st.set_page_config(
@@ -31,28 +48,19 @@ def get_meta():
 
 
 _df = get_data()
+n = len(_df)
 meta = get_meta()
 calver = "--".join(meta["created"].split("-"))
-
-svg = badge_generate(
-    right_text=f"{len(_df)}",
-    left_text="SSG",
-    link="https://github.com/epogrebnyak/ssg-dataset",
-    logo="https://avatars.githubusercontent.com/u/9265326?s=88&u=c941662e9c26e63816c63210b4ab6d8255bf3259&v=4",
-    left_color="#000000",
-    right_color="#00e400",
-)
-
 f"""
+[gh]: https://github.com/epogrebnyak/ssg-dataset
+[url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
+
 [![Download CSV](https://img.shields.io/badge/download-CSV-brightgreen)][url]
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4429834.svg)](https://doi.org/10.5281/zenodo.4429834)
 ![Release](https://img.shields.io/badge/release-{calver}-blue)
 [![GitHub Repo stars](https://img.shields.io/github/stars/epogrebnyak/ssg-dataset?style=social)][gh]
-
-[gh]: https://github.com/epogrebnyak/ssg-dataset
-[url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
 """
-st.image(svg)
+st.image(image=Badge("SSG", str(n), "green").image())
 
 st.header("Static site generators popularity  :thermometer: :star:")
 
@@ -75,7 +83,7 @@ at least among software developers.
 
 # FIXME: should be able to reset as in https://discuss.streamlit.io/t/reset-multiselect-to-default-values-using-a-checkbox/1941
 all_langs = _df.lang.unique().tolist()
-n = len(_df)
+
 
 
 @st.cache
