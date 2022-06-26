@@ -1,6 +1,7 @@
 .config.env
 docs/site/
 .idea/
+node_modules/
 
 # more hidden folders and files
 .venv/
