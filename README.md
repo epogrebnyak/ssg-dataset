@@ -2,7 +2,7 @@
 
 # Popularity of static site generators
 
-![count](count.svg)
+![count](ssg_count.svg)
 
 Static site generators are tools to create blogs, landing pages and documentation.
 

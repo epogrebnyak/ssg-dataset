@@ -25,7 +25,14 @@ class Badge:
         )
 
     def image_with_link(self, url: str) -> str:
-        svg = badge(**self.__dict__, right_link=url, left_link=url)
+        svg = badge(
+            left_text=self.left_text,
+            right_text=self.right_text,
+            right_color=self.right_color,
+            left_color=self.left_color,
+            right_link=url,
+            left_link=url,
+        )
         return svg.replace("a xlink:href", "a href")
 
     def save(self, path: Path, url: Optional[str] = None):
@@ -72,11 +79,14 @@ f"""
 ![Release](https://img.shields.io/badge/release-{calver}-blue)
 [![GitHub Repo stars](https://img.shields.io/github/stars/epogrebnyak/ssg-dataset?style=social)][gh]
 """
-st.image(image=Badge("SSG", str(n), "green").image())
 
-Badge("SSG", str(n), "pink").save(Path(__file__).parent / "count.svg")
+b = Badge("SSG", str(n), "green")
+b.save(Path(__file__).resolve().parent / "ssg_count.svg")
 
-"""![count](count.svg)"""
+st.image(image=b.image())
+st.image(image=b.image_with_link("https://github.com/epogrebnyak/ssg-dataset"))
+
+# st.markdown("![count](ssg_count.svg)")
 
 
 st.header("Static site generators popularity  :thermometer: :star:")
