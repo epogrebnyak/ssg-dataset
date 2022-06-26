@@ -12,7 +12,6 @@ PyYAML = "^6.0"
 pydantic = "^1.9.1"
 requests-cache = "^0.9.4"
 python-dotenv = "^0.20.0"
-pybadges = "^3.0.0"
 
 [tool.poetry.dev-dependencies]
 myst-parser = "^0.18.0"
@@ -22,6 +21,7 @@ streamlit = "^1.10.0"
 pyright = "^1.1.255"
 pydata-sphinx-theme = "^0.9.0"
 ghp-import = "^2.1.0"
+pybadges = "^3.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
