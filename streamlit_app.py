@@ -83,10 +83,15 @@ f"""
 b = Badge("SSG", str(n), "brightgreen")
 b.save(Path(__file__).resolve().parent / "ssg_count.svg")
 
+
+# FIXME: These two badges show in bleak color
 st.image(image=b.image())
 st.image(image=b.image_with_link("https://github.com/epogrebnyak/ssg-dataset"))
 
-# st.markdown("![count](ssg_count.svg)")
+# This SVG shows in proper color
+st.markdown(
+    "![count](https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/ssg_count.svg)"
+)
 
 
 st.header("Static site generators popularity  :thermometer: :star:")
