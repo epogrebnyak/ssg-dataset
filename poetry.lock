@@ -512,7 +512,7 @@ testing = ["Django (<3.1)", "colorama", "docopt", "pytest (<7.0.0)"]
 name = "jinja2"
 version = "3.1.2"
 description = "A very fast and expressive template engine."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -616,7 +616,7 @@ testing = ["coverage", "pytest", "pytest-cov", "pytest-regressions"]
 name = "markupsafe"
 version = "2.1.1"
 description = "Safely add untrusted strings to HTML/XML markup."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -981,6 +981,22 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 numpy = ">=1.16.6"
+
+[[package]]
+name = "pybadges"
+version = "3.0.0"
+description = "A library and command-line tool for generating Github-style badges"
+category = "main"
+optional = false
+python-versions = ">=3.4"
+
+[package.dependencies]
+Jinja2 = ">=3,<4"
+requests = ">=2.22.0,<3"
+
+[package.extras]
+dev = ["fonttools (>=3.26)", "nox", "Pillow (>=5)", "pytest (>=3.6)", "xmldiff (>=2.4)"]
+pil-measurement = ["Pillow (>=6,<10)"]
 
 [[package]]
 name = "pycparser"
@@ -1658,7 +1674,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "bec674d7a256121a7b04da8b21df77605c55c6435cdcd828de39618d6044519d"
+content-hash = "0f560928464ac9193663a8eb9d8ae4635cb6be0bef0f9b1092d9f499f44ac500"
 
 [metadata.files]
 alabaster = [
@@ -2265,6 +2281,10 @@ pyarrow = [
     {file = "pyarrow-8.0.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8392b9a1e837230090fe916415ed4c3433b2ddb1a798e3f6438303c70fbabcfc"},
     {file = "pyarrow-8.0.0-cp39-cp39-win_amd64.whl", hash = "sha256:cb06cacc19f3b426681f2f6803cc06ff481e7fe5b3a533b406bc5b2138843d4f"},
     {file = "pyarrow-8.0.0.tar.gz", hash = "sha256:4a18a211ed888f1ac0b0ebcb99e2d9a3e913a481120ee9b1fe33d3fedb945d4e"},
+]
+pybadges = [
+    {file = "pybadges-3.0.0-py3-none-any.whl", hash = "sha256:a93e6203993156f144666956be1a643dd233662e3793203f6d1cac2185a2f948"},
+    {file = "pybadges-3.0.0.tar.gz", hash = "sha256:5af6bcefc5d7324a6f56d502eefb67e0aa35d7d805d11e78446ec2d4c01d1638"},
 ]
 pycparser = [
     {file = "pycparser-2.21-py2.py3-none-any.whl", hash = "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"},
