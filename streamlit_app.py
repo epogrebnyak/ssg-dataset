@@ -35,12 +35,12 @@ meta = get_meta()
 calver = "--".join(meta["created"].split("-"))
 
 svg = badge_generate(
-    right_text = f"{len(_df)}",
-    left_text = "SSG",
-    link = "https://github.com/epogrebnyak/ssg-dataset",
-    logo = "https://avatars.githubusercontent.com/u/9265326?s=88&u=c941662e9c26e63816c63210b4ab6d8255bf3259&v=4",
-    left_color = "#000000",
-    right_color = "#00e400",
+    right_text=f"{len(_df)}",
+    left_text="SSG",
+    link="https://github.com/epogrebnyak/ssg-dataset",
+    logo="https://avatars.githubusercontent.com/u/9265326?s=88&u=c941662e9c26e63816c63210b4ab6d8255bf3259&v=4",
+    left_color="#000000",
+    right_color="#00e400",
 )
 
 f"""

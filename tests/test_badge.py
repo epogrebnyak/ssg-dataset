@@ -23,12 +23,11 @@ def test_badge_generate_on_static_input_all_svg_equal() -> None:
      </a><a href="https://github.com/epogrebnyak"><rect x="49.5" width="24.0" height="20" 
      fill="rgba(0,0,0,0)"/></a></g></svg>"""
     svg = badge_generate(
-        left_text = 'SSG',
-        right_text = '36',
-        link = 'https://github.com/epogrebnyak',
-        logo = 'https://avatars.githubusercontent.com/u/9265326?s=120&v=4',
-        left_color = '#010000',
-        right_color = '#01f000',
+        left_text="SSG",
+        right_text="36",
+        link="https://github.com/epogrebnyak",
+        logo="https://avatars.githubusercontent.com/u/9265326?s=120&v=4",
+        left_color="#010000",
+        right_color="#01f000",
     )
     assert correct_svg == svg
-
