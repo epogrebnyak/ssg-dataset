@@ -3,6 +3,10 @@ import pandas as pd
 import requests
 import streamlit as st
 
+
+from badge import badge_generate
+
+
 st.set_page_config(
     page_title="Static site generators dataset",
     page_icon=None,
@@ -30,6 +34,15 @@ _df = get_data()
 meta = get_meta()
 calver = "--".join(meta["created"].split("-"))
 
+svg = badge_generate(
+    right_text = f"{len(_df)}",
+    left_text = "SSG",
+    link = "https://github.com/epogrebnyak/ssg-dataset",
+    logo = "https://avatars.githubusercontent.com/u/9265326?s=88&u=c941662e9c26e63816c63210b4ab6d8255bf3259&v=4",
+    left_color = "#000000",
+    right_color = "#00e400",
+)
+
 f"""
 [![Download CSV](https://img.shields.io/badge/download-CSV-brightgreen)][url]
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4429834.svg)](https://doi.org/10.5281/zenodo.4429834)
@@ -39,6 +52,7 @@ f"""
 [gh]: https://github.com/epogrebnyak/ssg-dataset
 [url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
 """
+st.image(svg)
 
 st.header("Static site generators popularity  :thermometer: :star:")
 
