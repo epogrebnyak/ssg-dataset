@@ -85,7 +85,7 @@ class Test_yaml_to_csv(TestFilesBase):
         df = yaml_to_csv_by_file(
             self.folder / "ssg.yaml", self.folder / "ssg.csv", self.columns
         )
-        assert df.loc["metalsmith", "stars"] >= 7736
+        assert df.loc["metalsmith", "stars"] >= 7735
         assert df.loc["bookdown", "stars"] >= 2985
         assert df.loc["metalsmith", "forks"] >= 600  # forks may decrease too
         assert df.loc["bookdown", "forks"] >= 1135
