@@ -46,4 +46,4 @@ def generate_badge(left_text: str,
     else:
         return svg.replace('xlink:', '')
 
-print(Badge("SSG", "43", "pink").image())
+print(Badge("SSG", "43", "gray").image_with_link("http://www.w3.org/2000/svg"))
