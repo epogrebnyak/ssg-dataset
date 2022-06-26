@@ -80,7 +80,7 @@ f"""
 [![GitHub Repo stars](https://img.shields.io/github/stars/epogrebnyak/ssg-dataset?style=social)][gh]
 """
 
-b = Badge("SSG", str(n), "green")
+b = Badge("SSG", str(n), "brightgreen")
 b.save(Path(__file__).resolve().parent / "ssg_count.svg")
 
 st.image(image=b.image())
