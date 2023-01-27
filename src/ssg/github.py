@@ -1,46 +1,25 @@
 """Get Github repo statistics."""
 
-import os
+# pylint:disable=missing-function-docstring,missing-class-docstring,import-error,invalid-name
+
 from datetime import date, datetime
 from typing import Any, Dict, List, Optional
 
-import pandas as pd  # type: ignore
 import requests
-import requests_cache  # type: ignore
-from dotenv import load_dotenv
 from pydantic import BaseModel
 
-__all__ = ["get_repo_state_from_handle", "reveal"]
+from cache import GH_USER, GH_TOKEN
 
 
-# TODO: need stable location for the file - may appear in different folders for example and tests
-# also need some machinery to delete this file
-requests_cache.install_cache("cache_1")
-
-load_dotenv(".config.env")
-GH_USER = os.getenv("GH_USER", "")
-GH_TOKEN = os.getenv("GH_TOKEN", "")
-
-
-def reveal():
-    if GH_TOKEN:
-        print(f"Token for {GH_USER} is found.")
-    # TODO print something otherwise
-
-
-def url(handle):
+def url(handle: str) -> str:
     return f"https://github.com/{handle}/"
 
 
-def make_api_url(
-    handle: str,
-) -> str:
+def make_api_url(handle: str) -> str:
     return f"https://api.github.com/repos/{handle}"
 
 
-def make_api_url_commits(
-    handle: str,
-) -> str:
+def make_api_url_commits(handle: str) -> str:
     return f"https://api.github.com/repos/{handle}/commits"
 
 
@@ -77,9 +56,8 @@ def date_only(ts: str) -> date:
 class RepoState(BaseModel):
     repo_lang: str
     url: str
-    homepage: Optional[
-        str
-    ]  # some repos do not have webpage - https://github.com/alexkorban/elmstatic
+    # some repos do not have webpage, e.g. https://github.com/alexkorban/elmstatic
+    homepage: Optional[str]
     created: date
     modified: date
     stars: int
