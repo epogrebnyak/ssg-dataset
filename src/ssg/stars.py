@@ -60,7 +60,7 @@ class SSG(BaseModel):
     @validator("github_handle")
     def github_handle_field_must_contain_slash(cls, value: str) -> str:
         if "/" not in value:
-            raise ValueError(f"Field github_handle must contain '/'! Not {value}")
+            raise ValueError(f"Field github_handle must contain '/'. Got: {value}")
         return value
 
 
