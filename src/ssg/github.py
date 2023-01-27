@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional
 import requests
 from pydantic import BaseModel
 
-from cache import GH_USER, GH_TOKEN
+from ssg.cache import GH_USER, GH_TOKEN
 
 
 def url(handle: str) -> str:

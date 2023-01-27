@@ -1,12 +1,15 @@
 # pylint:disable=missing-function-docstring,missing-class-docstring,import-error
 
 from pathlib import Path
+from typing import List, Union
 
 import yaml
-from pydantic import validator
-from pydantic.dataclasses import dataclass
 
-from github import get_repo_state_from_handle
+# from pydantic import validator
+from pydantic.dataclasses import dataclass
+import pandas as pd  # type: ignore
+
+from ssg.github import get_repo_state_from_handle
 
 __all__ = ["make_generators_list", "from_file"]
 
@@ -73,18 +76,21 @@ class Repo:
 
     @property
     def name(self):
-       return self.handle.split("/")[1]
+        return self.handle.split("/")[1]
+
+
+# FIXME: does not work with inherited class
+#    @validator("github_handle")
+#    def github_handle_field_must_contain_slash(cls, value: str) -> str:
+#        if "/" not in value:
+#            raise ValueError(f"Field github_handle must contain '/'. Got: {value}")
+#        return value
 
 
 @dataclass
 class Github(Repo):
     pass
 
-#    @validator("github_handle")
-#    def github_handle_field_must_contain_slash(cls, value: str) -> str:
-#        if "/" not in value:
-#            raise ValueError(f"Field github_handle must contain '/'. Got: {value}")
-#        return value
 
 @dataclass
 class SSG:
@@ -94,12 +100,10 @@ class SSG:
     def to_dict(self):
         return dict(name=self.repo.name, github_handle=self.repo.handle, lang=self.lang)
 
+
 def to_dict(ssg: SSG):
-      """Merge two dictionaries."""
-      return {
-          **ssg.to_dict(),
-          **get_state_dict(ssg)
-      }
+    """Merge two dictionaries."""
+    return {**ssg.to_dict(), **get_state_dict(ssg)}
 
 
 def get_state_dict(ssg: SSG):
@@ -115,22 +119,17 @@ def extract_yaml(text: str):
     return yaml.load(text, Loader=yaml.SafeLoader)
 
 
-def make_generators_list(yaml_str=YAML_DOC):
+def make_generators_list(src_dict) -> List[SSG]:
     return [
         SSG(Github(handle), lang)
-        for lang, handles in extract_yaml(yaml_str).items()
+        for lang, handles in src_dict.items()
         for handle in handles
     ]
 
 
-def from_file(path):
-    return to_dataframe(make_generators_list(extract_yaml(read_text(path))))
+def from_file(path) -> List[SSG]:
+    return make_generators_list(extract_yaml(read_text(path)))
 
-
-SSG_LIST = make_generators_list()
-
-import pandas as pd  # type: ignore
-from typing import List
 
 def to_dataframe(ssg_list: List[SSG]) -> pd.DataFrame:
     df = pd.DataFrame([to_dict(ssg) for ssg in ssg_list])
@@ -139,30 +138,20 @@ def to_dataframe(ssg_list: List[SSG]) -> pd.DataFrame:
     return df.sort_values("stars", ascending=False)
 
 
-ssg_list = from_file("../data/ssg2.yaml")
-print(ssg_list)
-#df = to_dataframe(ssg_list)
-#df.to_csv("../data/ssg.csv")
-
-#print(to_dict(SSG_LIST[0]))
-#print(to_dataframe(SSG_LIST[0:5]))
-
-def yaml_to_csv(
-    yaml_path: Union[Path, str],
-    csv_path: Union[Path, str],
-    columns=[
-        "github_handle",
-        "url",
-        "homepage",
-        "lang",
-        "repo_lang",
-        "created",
-        "modified",
-        "stars",
-        "forks",
-        "open_issues",
-    ],
-):
-    df = get_dataframe(yaml_path)[columns]
+def yaml_to_csv(yaml_path: Union[Path, str], csv_path: Union[Path, str]):
+    ssg_list = from_file(yaml_path)
+    df = to_dataframe(ssg_list)
     df.to_csv(csv_path)
-    return df
+    columns = [
+            "github_handle",
+            "url",
+            "homepage",
+            "lang",
+            "repo_lang",
+            "created",
+            "modified",
+            "stars",
+            "forks",
+            "open_issues",
+        ] 
+    return df[columns]

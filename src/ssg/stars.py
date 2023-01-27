@@ -22,6 +22,7 @@ __all__ = ["yaml_to_csv_by_file", "create_all"]
 
 import pandas as pd  # type: ignore
 
+
 def make_dataframe_from_ssg(ssg_list: List[SSG]) -> pd.DataFrame:
     df = pd.DataFrame([s.to_dict() for s in ssg_list])
     for key in ["created", "modified"]:
