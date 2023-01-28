@@ -1,7 +1,6 @@
 from datetime import date
 
-from ssg.github import date_only
-from ssg.stars import get_repo_state_from_handle
+from ssg.github import date_only, get_repo_state_from_handle
 
 
 def test_get_repo_state_from_handle():

@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 from pydantic import ValidationError
 
-from ssg.stars import SSG, create_all, extract_yaml, yaml_to_csv_by_file
+# from ssg.stars import SSG, create_all, extract_yaml, yaml_to_csv_by_file
 
 
 def test_read_item():
