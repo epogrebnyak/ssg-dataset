@@ -16,16 +16,14 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 
 [![Streamlit Screenshot](https://user-images.githubusercontent.com/9265326/174656606-24102187-411c-462d-adb7-b8bb1a1a6db0.png)][st]
 
-<!-- Colab is outdated
 
 ### Google Colab
 
 [![Demo in Google Colab](https://img.shields.io/badge/Colab-Open-orange)][colab]
 
 [Colab][colab] is a try-and-see playground with some code for charts.
-[colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
+[colab]: https://colab.research.google.com/drive/1Mp_6Ktk-t-a1fQzggvRJauwFLXaWzjAL#scrollTo=xMZoFSeCT1m2
 
--->
 
 [st]: https://share.streamlit.io/epogrebnyak/ssg-dataset/main
 

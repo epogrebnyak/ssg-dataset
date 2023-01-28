@@ -9,7 +9,7 @@ Fixes
 
 - [ ] citation and new zenodo version
 - [x] cleanup examples folder
-- [ ] contributor guide for onboarding
+- [-] contributor guide for onboarding
 
 ## More difficult
 
@@ -48,7 +48,7 @@ Enhancements:
 `
 - [ ] сommand line interface
 - [ ] can use typing check on dataframe https://pandera.readthedocs.io/en/stable/
-- [ ] try https://blog.streamlit.io/introducing-multipage-apps/
+- [x] try https://blog.streamlit.io/introducing-multipage-apps/
 
 
 Discussion
