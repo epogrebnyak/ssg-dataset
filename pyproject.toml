@@ -1,5 +1,6 @@
-[tool.pyright]
+[tool.pylint]
 reportMissingImports = false
+disable = "missing-function-docstring"
 
 [tool.poetry]
 name = "ssg"

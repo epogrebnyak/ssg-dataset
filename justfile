@@ -40,6 +40,7 @@ update:
 # run pytest
 test:
   poetry run pytest
+  poetry run pyright src
 
 # run precommit hook
 precommit:
