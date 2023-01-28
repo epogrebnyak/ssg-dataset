@@ -3,53 +3,6 @@ import pandas as pd
 import requests
 import streamlit as st
 
-from dataclasses import dataclass
-from pybadges import badge
-from typing import Optional
-from pathlib import Path
-
-
-@dataclass
-class Badge:
-    left_text: str
-    right_text: str
-    right_color: str
-    left_color: str = "#555"
-
-    def image(self) -> str:
-        return badge(
-            left_text=self.left_text,
-            right_text=self.right_text,
-            right_color=self.right_color,
-            left_color=self.left_color,
-        )
-
-    def image_with_link(self, url: str) -> str:
-        svg = badge(
-            left_text=self.left_text,
-            right_text=self.right_text,
-            right_color=self.right_color,
-            left_color=self.left_color,
-            right_link=url,
-            left_link=url,
-        )
-        return svg.replace("a xlink:href", "a href")
-
-    def save(self, path: Path, url: Optional[str] = None):
-        if url:
-            svg = self.image_with_link(url)
-        else:
-            svg = self.image()
-        path.write_text(svg)
-
-
-st.set_page_config(
-    page_title="Static site generators dataset",
-    page_icon=None,
-    layout="centered",
-    initial_sidebar_state="collapsed",
-)
-
 url_csv = "https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv"
 url_metadata = (
     "https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/metadata.json"
@@ -74,28 +27,15 @@ f"""
 [gh]: https://github.com/epogrebnyak/ssg-dataset
 [url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
 
+![count](https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/ssg_count.svg)
 [![Download CSV](https://img.shields.io/badge/download-CSV-brightgreen)][url]
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4429834.svg)](https://doi.org/10.5281/zenodo.4429834)
 ![Release](https://img.shields.io/badge/release-{calver}-blue)
 [![GitHub Repo stars](https://img.shields.io/github/stars/epogrebnyak/ssg-dataset?style=social)][gh]
 """
 
-b = Badge("SSG", str(n), "brightgreen")
-b.save(Path(__file__).resolve().parent / "ssg_count.svg")
-
-
-# FIXME: These two badges show in bleak color
-st.image(image=b.image())
-st.image(image=b.image_with_link("https://github.com/epogrebnyak/ssg-dataset"))
-
-# This SVG shows in proper color
-st.markdown(
-    "![count](https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/ssg_count.svg)"
-)
-
 
 st.header("Static site generators popularity  :thermometer: :star:")
-
 
 """
 Static site generators (SSG) are open source tools to create blogs, 
@@ -195,7 +135,7 @@ scatter = (
 st.altair_chart(scatter, use_container_width=True)
 
 """
-Consider there are two groups of SSG users:
+Consider two groups of SSG users:
 
 - front-end engineers (FE), usually proficient with HTML, CSS and JavaScript, and
 - non-specialised (NS) users who do other kinds of work (eg backend, data analysis 
@@ -203,7 +143,7 @@ Consider there are two groups of SSG users:
   or simply make a small website.
 
 More forks would come from FE group, while NS would likely use the software 
-as is, will not fork and probably will not even star a project on Github.
+as is, will not fork and may not even star a project on Github.
 
 When a project comes to end of life there may be more forks to preserve
 and continue its use (Octopress).
