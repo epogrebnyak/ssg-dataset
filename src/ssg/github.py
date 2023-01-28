@@ -39,7 +39,7 @@ def make_api_url_commits(handle: str) -> str:
 #  'forks', 'open_issues', 'watchers', 'default_branch', 'permissions', 'temp_clone_token',
 #  'network_count', 'subscribers_count']
 def get_repo(handle: str) -> Dict:
-    """Quesry Github API and get repo information as dict."""
+    """Query Github API and get repo information as dict."""
     response_dict = fetch(make_api_url(handle))
     if response_dict.get("message", "").startswith("API rate limit exceeded"):
         raise ValueError(response_dict)
@@ -82,6 +82,7 @@ class RepoState(BaseModel):
     stars: int
     forks: int
     open_issues: int
+    is_archived: Optional[bool] = None
 
 
 def get_repo_state_from_handle(handle: str) -> RepoState:
@@ -117,4 +118,5 @@ def get_repo_state_from_handle(handle: str) -> RepoState:
         stars=int(repo["stargazers_count"]),
         forks=int(repo["forks_count"]),
         open_issues=int(repo["open_issues_count"]),
+        is_archived=repo["archived"]
     )
