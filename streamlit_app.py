@@ -110,13 +110,11 @@ st.altair_chart(chart, use_container_width=True)
 
 st.header("Forks")
 """
-Forks are copies of orginal repo 
-made by other users to submit code 
-modifications or create own versions of 
-software.
+Forks are copies of orginal repo made by other users to submit code modifications 
+or create own versions of software.
 
-More forks indicate either active development 
-of a package or code reuse in other projects.
+More forks indicate either active development of a package 
+or code reuse in other projects.
 """
 
 scatter = (
@@ -135,7 +133,7 @@ scatter = (
 st.altair_chart(scatter, use_container_width=True)
 
 """
-Consider two groups of SSG users:
+Who are people doing the forks? Consider two groups of users:
 
 - front-end engineers (FE), usually proficient with HTML, CSS and JavaScript, and
 - non-specialised (NS) users who do other kinds of work (eg backend, data analysis 
@@ -143,10 +141,12 @@ Consider two groups of SSG users:
   or simply make a small website.
 
 More forks would come from FE group, while NS would likely use the software 
-as is, will not fork and may not even star a project on Github.
+as is, will not fork (and may not even star a project on Github).
 
-When a project comes to end of life there may be more forks to preserve
-and continue its use (Octopress).
+Another source of forks are end-of-life projects.
+Before project is retired users may do more forks to preserve the software 
+for future development and use. 
+Notable example of this kind project and extensive forks is Octopress.
 """
 
 st.header("Open issues")
@@ -192,9 +192,10 @@ st.altair_chart(scatter2, use_container_width=True)
 st.header("Project lifetime")
 
 """
-The longest-running static site generators are based on Ruby. 
-The youngest SSG are bridgetown (again Ruby), fastpages (Python), Publish (Swift),
-scully, nextra and astro (JavaScript).
+The longest-running static site generators are based on Ruby.
+
+The youngest SSG are bridgetown (again Ruby), vitepress, nuxt-content, 
+nextra and astro (JavaScript). 
 """
 
 
@@ -243,7 +244,7 @@ Several SSG are no longer maintained - one in Ruby, Python, JavaScript, Swift an
 ch = (
     alt.Chart(
         t.sort_values("modified", ascending=True).head(10),
-        title="Out of business",
+        title="Out of business or stable?",
     )
     .mark_bar()
     .encode(

@@ -51,3 +51,6 @@ Rust:
  - cobalt-org/cobalt.rs
 Swift:
  - JohnSundell/Publish
+TypeScript:
+ - facebook/docusaurus
+ - quarto-dev/quarto-cli

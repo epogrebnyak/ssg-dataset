@@ -36,6 +36,7 @@ pull:
 # update csv file (project-specific) 
 update:
   poetry run python example/update.py
+  poetry run python badge.py
 
 # run pytest
 test:
