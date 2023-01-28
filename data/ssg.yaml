@@ -1,98 +1,53 @@
-gohugoio/hugo:
-  lang: go
-  exec: True
-  site: gohugo.io
-  twitter: gohugoio
-jekyll/jekyll:
-  lang: ruby
-  site: jekyllrb.com
-  twitter: jekyllrb
-gatsbyjs/gatsby:
-  lang: js
-  site: www.gatsbyjs.com 
-  twitter: gatsbyjs
-hexojs/hexo:
-  lang: js
-  site: hexo.io
-  twitter: hexojs
-vuejs/vuepress:
-  lang: js  
-  twitter: vuepressjs
-mkdocs/mkdocs:
-  lang: python  
-getpelican/pelican:
-  lang: python
-11ty/eleventy:
-  lang: js
-sphinx-doc/sphinx:
-  lang: python
-  site: www.sphinx-doc.org
-getnikola/nikola:
-  lang: python    
-getzola/zola:
-  lang: rust
-  exec: True    
-rust-lang/mdBook:
-  lang: rust    
-  exec: True
-executablebooks/jupyter-book:
-  lang: python
-rstudio/bookdown:
-  lang: r
-segmentio/metalsmith:
-  lang: js
-middleman/middleman:
-  lang: ruby
-getgridea/gridea:    
-  lang: js
-jnordberg/wintersmith:
-  lang: js
-lektor/lektor:  
-  lang: python
-JohnSundell/Publish:  
-  lang: swift
-cobalt-org/cobalt.rs:
-  lang: rust
-eudicots/Cactus:
-  lang: python
-  comment: 'last commit in 2017'      
-imathis/octopress:
-  lang: ruby
-nanoc/nanoc: 
-  lang: ruby
-  site: nanoc.ws
-fastai/fastpages:
-  lang: python
-  comment: "Interacts with Github Pages Jekyll engine"
-digitallyinduced/ihp:
-  lang: haskell
-tlienart/Franklin.jl:
-  lang: julia
-  twitter: t_lienart
-jaspervdj/hakyll:
-  lang: haskell
-  site: jaspervdj.be/hakyll
-  twitter: jaspervdj
-scullyio/scully:
-  lang: js
-bridgetownrb/bridgetown:
-  lang: ruby
-jbake-org/jbake:  
-  lang: java
-  site: jbake.org
-tighten/jigsaw:
-  lang: php
-withastro/astro:
-  lang: js  
-alexkorban/elmstatic:
-  lang: elm
-ionic-team/stencil:
-  lang: js
-shuding/nextra:  
-  lang: js
-# Framework-based SSG: 
-#vercel/next.js:
-#  lang: js
-#nuxt/nuxt.js:
-#  lang: js
-#  comment: "https://nuxtjs.org/docs/concepts/static-site-generation/ and https://github.com/nuxt/content"
+---
+elm:
+ - alexkorban/elmstatic
+Go:
+ - h-enk/doks
+ - gohugoio/hugo
+Haskell:
+ - digitallyinduced/ihp
+ - jaspervdj/hakyll
+Java:
+ - jbake-org/jbake
+JavaScript:
+ - gatsbyjs/gatsby
+ - hexojs/hexo
+ - vuejs/vuepress
+ - vuejs/vitepress
+ - nuxt/content
+ - withastro/astro
+ - 11ty/eleventy
+ - ionic-team/stencil
+ - getgridea/gridea
+ - segmentio/metalsmith
+ - shuding/nextra
+ - jnordberg/wintersmith
+ - scullyio/scully
+Julia:
+ - tlienart/Franklin.jl
+PHP:
+ - tighten/jigsaw
+Python:
+ - mkdocs/mkdocs
+ - squidfunk/mkdocs-material
+ - getpelican/pelican
+ - sphinx-doc/sphinx
+ - lektor/lektor
+ - eudicots/Cactus
+ - fastai/fastpages
+ - executablebooks/jupyter-book
+ - getnikola/nikola
+R:
+ - rstudio/bookdown
+Ruby:
+ - jekyll/jekyll
+ - imathis/octopress
+ - middleman/middleman
+ - nanoc/nanoc
+ - bridgetownrb/bridgetown
+Rust:
+ - rust-lang/mdBook
+ - getzola/zola
+ - cobalt-org/cobalt.rs
+Swift:
+ - JohnSundell/Publish

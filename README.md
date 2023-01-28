@@ -4,9 +4,9 @@
 
 ![count](ssg_count.svg)
 
-Static site generators are tools to create blogs, landing pages and documentation.
+Static site generators are tools to create documentation, blogs and landing pages.
 
-This repo contains Github data (stars, forks, issues, create and last modified dates) for 30+ open source static site generators (SSG) and code to create the dataset.
+This repo contains Github data (stars, forks, issues, create and last modified dates) for 40 popular open source static site generators (SSG) and code to create the dataset.
 
 ## Try live on Streamlit
 
@@ -16,7 +16,6 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 
 [![Streamlit Screenshot](https://user-images.githubusercontent.com/9265326/174656606-24102187-411c-462d-adb7-b8bb1a1a6db0.png)][st]
 
-
 <!-- Colab is outdated
 
 ### Google Colab
@@ -24,11 +23,11 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 [![Demo in Google Colab](https://img.shields.io/badge/Colab-Open-orange)][colab]
 
 [Colab][colab] is a try-and-see playground with some code for charts.
+[colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
 
 -->
 
 [st]: https://share.streamlit.io/epogrebnyak/ssg-dataset/main
-[colab]: https://colab.research.google.com/drive/1041e6yOyVRty5lirnbZOAU1zJ3TN77ta
 
 ## Dataset
 
@@ -65,15 +64,23 @@ token documentation is [here](https://docs.github.com/en/authentication/keeping-
 
 ### Update CSV file
 
+Use `ssg.yaml_to_csv()` to update CSV file:
+
+```python
+from ssg import yaml_to_csv
+
+yaml_to_csv("data/ssg.yaml", "data/ssg.csv")
+```
+
 [update]: https://github.com/epogrebnyak/ssg-dataset/blob/main/example/update.py
 
-[`example/update.py`][update] should update `data/ssg.csv`:
+You can also run [`example/update.py`][update] to update `data/ssg.csv`:
 
 ```
 poetry run python example/update.py
 ```
 
-## More links about SSGs
+## More links about SSG
 
 ### Performance
 
@@ -84,15 +91,22 @@ poetry run python example/update.py
 
 ### Listings
 
-- [Awesome Static Web Site Generators](https://github.com/myles/awesome-static-generators)
+- [347 Generators listed at Jamstack Site Generators](https://jamstack.org/generators/)
 - [The definitive listing of Static Site Generators — all 460 of them!](https://staticsitegenerators.net/)
+- [Awesome Static Web Site Generators](https://github.com/myles/awesome-static-generators)
+
+### Samples
+
 - [Stay Static </> One Design, Many Samples](http://staystatic.github.io/)
-- <https://jamstack.org/generators/>
-- <https://www.netlifycms.org/docs/add-to-your-site/>
 
+### Hosting services
 
-### Articles
+- [Gitlab](https://gitlab.com/pages?_gl=1%2a1wldy0n%2a_ga%2aMTQ2Mzg2NjA0My4xNjc0OTEyMzgw%2a_ga_ENFH3X7M5Y%2aMTY3NDkxMjM4MC4xLjEuMTY3NDkxMjQ1Ni4wLjAuMA..)
+- [Netlify CMS](https://www.netlifycms.org/docs/add-to-your-site/)
 
+### Archive articles
+
+- <https://snipcart.com/blog/choose-best-static-site-generator>
 - [Why Static Site Generators Are The Next Big Thing (2015)](https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/)
 - [Static Site Generator Trends (2020)](https://redmonk.com/rstephens/2020/05/18/static-site-generators/)
 
