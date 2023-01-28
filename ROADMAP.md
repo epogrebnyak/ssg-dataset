@@ -8,7 +8,7 @@ Fixes
 ## Medium
 
 - [ ] citation and new zenodo version
-- [ ] cleanup examples folder
+- [x] cleanup examples folder
 - [ ] contributor guide for onboarding
 
 ## More difficult
@@ -30,8 +30,8 @@ Enhancements and new features
 
 Nicer badge for streamlit (issue #16):
 
-- [ ] total SSG counted + badge
-- [ ] badge class for Streamlit
+- [x] total SSG counted + badge
+- [x] badge class for Streamlit
 
 Get more data:
 
