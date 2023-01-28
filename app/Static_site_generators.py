@@ -19,9 +19,13 @@ def get_meta():
     return requests.get(url_metadata).json()
 
 
-_df = get_data()
+st.session_state['df'] = get_data()
+st.session_state['meta'] = get_meta()
+st.session_state['url_csv'] = url_csv
+
+_df = st.session_state['df']
+meta = st.session_state['meta']
 n = len(_df)
-meta = get_meta()
 calver = "--".join(meta["created"].split("-"))
 f"""
 [gh]: https://github.com/epogrebnyak/ssg-dataset
@@ -73,6 +77,8 @@ def palette(languages, default_color="#BEBEBE"):
 
 col_keys, col_values = palette(all_langs)
 github_scale = alt.Scale(domain=col_keys, range=col_values)
+st.session_state['github_scale'] = github_scale
+
 
 selected_langs = st.multiselect(
     "Programming languages", options=all_langs, default=all_langs
@@ -108,194 +114,7 @@ chart = (
 st.altair_chart(chart, use_container_width=True)
 
 
-st.header("Forks")
 """
-Forks are copies of orginal repo made by other users to submit code modifications 
-or create own versions of software.
-
-More forks indicate either active development of a package 
-or code reuse in other projects.
-"""
-
-scatter = (
-    alt.Chart(_df, title="Stars vs forks")
-    .mark_circle(size=60)
-    .encode(
-        x="stars",
-        y="forks",
-        color=alt.Color(
-            "lang", legend=alt.Legend(title="Language"), scale=github_scale
-        ),
-        tooltip=["name", "stars", "forks"],
-    )
-)
-
-st.altair_chart(scatter, use_container_width=True)
-
-"""
-Who are people doing the forks? Consider two groups of users:
-
-- front-end engineers (FE), usually proficient with HTML, CSS and JavaScript, and
-- non-specialised (NS) users who do other kinds of work (eg backend, data analysis 
-  or tasks outside software development) and need to write a blog, lay out documentation 
-  or simply make a small website.
-
-More forks would come from FE group, while NS would likely use the software 
-as is, will not fork (and may not even star a project on Github).
-
-Another source of forks are end-of-life projects.
-Before project is retired users may do more forks to preserve the software 
-for future development and use. 
-Notable example of this kind project and extensive forks is Octopress.
-"""
-
-st.header("Open issues")
-
-"""
-More open issues in repository may be due to rapid project development or 
-to accumulated technical debt. 
-"""
-
-ratios = _df.copy()
-ratios["fork_ratio"] = (100 * ratios.forks / ratios.stars).round(2)
-ratios["issues_ratio"] = (100 * ratios.open_issues / ratios.stars).round(2)
-
-scale_down = st.checkbox("Zoom in", value=False)
-
-if scale_down:
-    plot_df2 = ratios[(ratios.issues_ratio < 10) & (ratios.fork_ratio < 30)]
-else:
-    plot_df2 = ratios
-
-scatter2 = (
-    alt.Chart(plot_df2, title="Open issues")
-    .mark_circle()
-    .encode(
-        x=alt.X(
-            "fork_ratio",
-            title="Forks ÷ stars * 100%",
-        ),
-        y=alt.Y(
-            "issues_ratio",
-            title="Open issues ÷ stars * 100%",
-        ),
-        size=alt.Size("stars", legend=alt.Legend(title="Github stars")),
-        color=alt.Color(
-            "lang", legend=alt.Legend(title="Language"), scale=github_scale
-        ),
-        tooltip=["name", "stars", "forks"],
-    )
-)
-
-st.altair_chart(scatter2, use_container_width=True)
-
-st.header("Project lifetime")
-
-"""
-The longest-running static site generators are based on Ruby.
-
-The youngest SSG are bridgetown (again Ruby), vitepress, nuxt-content, 
-nextra and astro (JavaScript). 
-"""
-
-
-def lapsed(x, today=meta["created"]):
-    t = pd.to_datetime(today)
-    return (t - x).days
-
-
-def year_fractional(dt):
-    frac = (dt - pd.Timestamp(year=dt.year, month=1, day=1)).days / 365
-    return dt.year + frac
-
-
-t = _df.copy()
-t["years"] = (t.modified - t.created).map(lambda x: x.days).divide(365).round(1)
-t["silent"] = t.modified.map(lambda x: lapsed(x))
-df = t.sort_values(["lang", "years"], ascending=[True, False])
-
-
-ch = (
-    alt.Chart(
-        t.sort_values(["lang", "years"], ascending=[True, False]),
-        title="Project lifetime",
-    )
-    .mark_bar()
-    .encode(
-        x=alt.X("years", title="Years"),
-        y=alt.Y(
-            "name",
-            sort=alt.EncodingSortField(field="lang", order="ascending"),
-            title="",
-        ),
-        color=alt.Color(
-            "lang",
-            legend=alt.Legend(title="Language"),
-            scale=github_scale,
-        ),
-        tooltip=["name", "stars", "years"],
-    )
-)
-st.altair_chart(ch, use_container_width=True)
-
-"""
-Several SSG are no longer maintained - one in Ruby, Python, JavaScript, Swift and elm.
-"""
-ch = (
-    alt.Chart(
-        t.sort_values("modified", ascending=True).head(10),
-        title="Out of business or stable?",
-    )
-    .mark_bar()
-    .encode(
-        x=alt.X("silent", title="Days without commit"),
-        y=alt.Y(
-            "name",
-            sort=alt.EncodingSortField(field="silent", order="descending"),
-            title="",
-        ),
-        color=alt.Color(
-            "lang",
-            legend=alt.Legend(title="Language"),
-            scale=github_scale,
-        ),
-        tooltip=["name", "stars", "years", "silent"],
-    )
-)
-st.altair_chart(ch, use_container_width=True)
-
-st.header("Links")
-
-alpha = df.sort_values("name", key=lambda s: s.str.lower())
-st.write(" - ".join(f"[{name}]({url})" for name, url in zip(alpha.name, alpha.url)))
-
-st.header("Data")
-
-f"""
-[![](https://img.shields.io/badge/download-csv-brightgreen)]({url_csv})
-
-Static CSV file [ssg.csv]({url_csv}) is prepared and posted via [epogrebnyak/ssg](https://github.com/epogrebnyak/ssg).
-
-Dataset created on {meta["created"]}. A total of 
-{n} SSGs listed. 
-
-To download:
-
-```python
-import pandas as pd
-url = "{url_csv}"
-df = pd.read_csv(url_csv, parse_dates=["created", "modified"])
-```
-"""
-
-st.dataframe(_df)
-
-st.header("Citation")
-
-"""
-```
-Evgeny Pogrebnyak. (2021). Github data for static site generators (SSG) popularity (Version 0.1.2) [Data set]. 
-Zenodo. http://doi.org/10.5281/zenodo.4429834
-```
+(C) Evgeny Pogrebnyak, 2021-2023
 """
 
