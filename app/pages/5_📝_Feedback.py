@@ -1,5 +1,13 @@
 import streamlit as st
 
+st.header("Looking for own little star on Githab")
+
+"""
+Click to endorse: [![GitHub Repo stars](https://img.shields.io/github/stars/epogrebnyak/ssg-dataset?style=social)][gh]
+
+[gh]: https://github.com/epogrebnyak/ssg-dataset
+"""
+
 st.header("Citation")
 
 """
@@ -12,11 +20,8 @@ st.header("Contacts")
 
 """
 Please use GitHub [issues](https://github.com/epogrebnyak/ssg-dataset/issues) for 
-comments and suggestions or links below:
+comments and suggestions or contact using links below.
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/PogrebnyakE?label=Follow&style=social)](https://twitter.com/PogrebnyakE)
 [![Mail Badge](https://img.shields.io/badge/-e.pogrebnyak@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:e.pogrebnyak@gmail.com)](mailto:e.pogrebnyak@gmail.com)
-
-
-(C) Evgeny Pogrebnyak, 2021-2023
 """
