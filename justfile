@@ -6,7 +6,7 @@ list:
 
 # launch streamlit app
 st:
-  poetry run streamlit run streamlit_app.py
+  poetry run streamlit run streamlit_app.py --server.enableCORS=false
 
 # black and isort
 lint:  

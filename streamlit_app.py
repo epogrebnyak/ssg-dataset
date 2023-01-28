@@ -9,12 +9,12 @@ url_metadata = (
 )
 
 
-#@st.cache
+@st.cache
 def get_data():
     return pd.read_csv(url_csv, parse_dates=["created", "modified"])
 
 
-#@st.cache
+@st.cache
 def get_meta():
     return requests.get(url_metadata).json()
 
