@@ -5,7 +5,6 @@ from typing import List, Union
 
 import yaml
 
-# from pydantic import validator
 from pydantic.dataclasses import dataclass
 import pandas as pd  # type: ignore
 
@@ -22,6 +21,7 @@ class Repo:
         if "/" not in self.handle:
             raise ValueError(f"Handle must contain '/'. Got: {self.handle}")
 
+    # from pydantic import validator
     # FIXME: does not work with inherited class
     #    @validator("github_handle")
     #    def github_handle_field_must_contain_slash(cls, value: str) -> str:
