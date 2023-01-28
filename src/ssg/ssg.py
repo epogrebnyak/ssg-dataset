@@ -3,9 +3,9 @@
 from pathlib import Path
 from typing import List, Union, Dict
 
-import yaml
+import yaml  # type: ignore
 
-from pydantic.dataclasses import dataclass
+from pydantic.dataclasses import dataclass  # type: ignore
 import pandas as pd  # type: ignore
 
 from ssg.github import get_repo_state_from_handle
@@ -68,7 +68,7 @@ def extract_yaml(text: str) -> Dict:
 
 def make_generators_list(src_dict: Dict) -> List[SSG]:
     return [
-        SSG(Github(handle), lang)
+        SSG(repo=Github(handle=handle), lang=lang)
         for lang, handles in src_dict.items()
         for handle in handles
     ]

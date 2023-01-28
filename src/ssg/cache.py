@@ -5,7 +5,7 @@
 import os
 
 import requests_cache  # type: ignore
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # type: ignore
 
 __all__ = ["has_token"]
 
