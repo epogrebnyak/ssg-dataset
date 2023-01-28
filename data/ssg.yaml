@@ -23,6 +23,7 @@ JavaScript:
  - shuding/nextra
  - jnordberg/wintersmith
  - scullyio/scully
+ - react-static/react-static 
 Julia:
  - tlienart/Franklin.jl
 PHP:
