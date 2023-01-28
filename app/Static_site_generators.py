@@ -27,7 +27,7 @@ f"""
 [gh]: https://github.com/epogrebnyak/ssg-dataset
 [url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
 
-![count](https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/ssg_count.svg)
+![count](https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/app/ssg_count.svg)
 [![Download CSV](https://img.shields.io/badge/download-CSV-brightgreen)][url]
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4429834.svg)](https://doi.org/10.5281/zenodo.4429834)
 ![Release](https://img.shields.io/badge/release-{calver}-blue)
@@ -299,15 +299,3 @@ Zenodo. http://doi.org/10.5281/zenodo.4429834
 ```
 """
 
-st.header("Contacts")
-
-"""
-[![Twitter Follow](https://img.shields.io/twitter/follow/PogrebnyakE?label=Follow&style=social)](https://twitter.com/PogrebnyakE)
-[![MAIL Badge](https://img.shields.io/badge/-e.pogrebnyak@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:e.pogrebnyak@gmail.com)](mailto:e.pogrebnyak@gmail.com)
-
-Please use GitHub [issues](https://github.com/epogrebnyak/ssg-dataset/issues) to send
-comments and suggestions.
-
-
-(C) Evgeniy Pogrebnyak, 2021-2023
-"""

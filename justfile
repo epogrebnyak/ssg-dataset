@@ -4,9 +4,9 @@ package := "ssg"
 list:
    just --list
 
-# launch streamlit app
+# launch streamlit app (--server.enableCORS=false)
 app:
-  poetry run streamlit run app/streamlit_app.py --server.enableCORS=false
+  poetry run streamlit run app/Static_site_generators.py
 
 # black and isort
 lint:  
@@ -36,7 +36,7 @@ pull:
 # update csv file (project-specific) 
 update:
   poetry run python example/update.py
-  poetry run python badge.py
+  poetry run python app/badge.py
 
 # run pytest
 test:

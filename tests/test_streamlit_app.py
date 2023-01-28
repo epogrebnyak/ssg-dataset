@@ -1,4 +1,4 @@
-from app.streamlit_app import Badge
+from app.Static_site_generators import Badge
 
 
 class TestBadge:
