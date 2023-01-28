@@ -152,20 +152,23 @@ def to_dataframe(ssg_list: List[SSG]) -> pd.DataFrame:
 
 
 def yaml_to_csv(yaml_path: Union[Path, str], csv_path: Union[Path, str]):
+    """Accept list of static site generators from YAML file
+    at *yaml_path*, collect and write statistics to CSV file
+    at *csv_path*."""
     ssg_list = from_yaml(yaml_path)
     df = to_dataframe(ssg_list)
-    df.to_csv(csv_path)
     columns = [
         "name",
-        "github_handle",
-        "url",
-        "homepage",
-        "lang",
-        "repo_lang",
-        "created",
-        "modified",
         "stars",
         "forks",
         "open_issues",
+        "created",
+        "modified",
+        "lang",
+        "repo_lang",
+        "github_handle",
+        "url",
+        "homepage",
     ]
+    df[columns].to_csv(csv_path, index=False)
     return df[columns]

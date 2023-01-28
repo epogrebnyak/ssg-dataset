@@ -1,6 +1,3 @@
-from ssg import from_yaml, to_dataframe
+from ssg import yaml_to_csv
 
-ssg_list = from_yaml("data/ssg2.yaml")
-print(ssg_list)
-df = to_dataframe(ssg_list)
-df.to_csv("data/ssg.csv")
+yaml_to_csv("data/ssg2.yaml", "data/ssg.csv")
