@@ -1,8 +1,7 @@
 [![pytest](https://github.com/epogrebnyak/ssg-dataset/workflows/pytest/badge.svg)](https://github.com/epogrebnyak/ssg-dataset/actions)
+![count](app/ssg_count.svg)
 
 # Popularity of static site generators
-
-![count](app/ssg_count.svg)
 
 Static site generators are tools to create documentation, blogs and landing pages.
 
