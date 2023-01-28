@@ -238,11 +238,11 @@ ch = (
 st.altair_chart(ch, use_container_width=True)
 
 """
-Several SSG are no longer maintained - one in Ruby, Python, and JavaScript.
+Several SSG are no longer maintained - one in Ruby, Python, JavaScript, Swift and elm.
 """
 ch = (
     alt.Chart(
-        t.sort_values("modified", ascending=True).head(3),
+        t.sort_values("modified", ascending=True).head(5),
         title="Out of business",
     )
     .mark_bar()
