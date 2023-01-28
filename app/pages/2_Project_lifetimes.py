@@ -1,10 +1,10 @@
-import streamlit as st
 import altair as alt
-import pandas as pd 
+import pandas as pd
+import streamlit as st
 
-_df = st.session_state['df']
-meta = st.session_state['meta']
-github_scale = st.session_state['github_scale']
+_df = st.session_state["df"]
+meta = st.session_state["meta"]
+github_scale = st.session_state["github_scale"]
 
 st.header("Project lifetime")
 
@@ -84,4 +84,3 @@ st.altair_chart(ch, use_container_width=True)
 """
 (C) Evgeny Pogrebnyak, 2021-2023
 """
-

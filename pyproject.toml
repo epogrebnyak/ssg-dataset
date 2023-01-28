@@ -4,7 +4,7 @@ disable = "missing-function-docstring"
 
 [tool.poetry]
 name = "ssg"
-version = "0.4.0"
+version = "0.4.1"
 description = "Github data for static site generators popularity"
 authors = ["Evgeniy Pogrebnyak <e.pogrebnyak@gmail.com>"]
 readme = "README.md"

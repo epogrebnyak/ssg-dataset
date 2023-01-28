@@ -1,8 +1,9 @@
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Optional
+
 import pandas as pd
 from pybadges import badge
-from typing import Optional
-from pathlib import Path
 
 
 @dataclass
@@ -39,7 +40,8 @@ class Badge:
         path.write_text(svg)
 
 
-df = pd.read_csv("../data/ssg.csv", parse_dates=["created", "modified"])
+csv_path = Path(__file__).resolve().parent.parent / "data" / "ssg.csv"
+df = pd.read_csv(csv_path, parse_dates=["created", "modified"])
 n = len(df)
 b = Badge("SSG", str(n), "brightgreen")
 b.save(Path(__file__).resolve().parent / "ssg_count.svg")

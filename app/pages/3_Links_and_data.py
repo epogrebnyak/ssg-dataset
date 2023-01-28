@@ -1,12 +1,11 @@
-
-import streamlit as st
 import altair as alt
-import pandas as pd 
+import pandas as pd
+import streamlit as st
 
-_df = st.session_state['df']
-meta = st.session_state['meta']
-github_scale = st.session_state['github_scale']
-url_csv = st.session_state['url_csv']
+_df = st.session_state["df"]
+meta = st.session_state["meta"]
+github_scale = st.session_state["github_scale"]
+url_csv = st.session_state["url_csv"]
 st.header("Links")
 
 alpha = _df.sort_values("name", key=lambda s: s.str.lower())
@@ -36,4 +35,3 @@ st.dataframe(_df)
 """
 (C) Evgeny Pogrebnyak, 2021-2023
 """
-

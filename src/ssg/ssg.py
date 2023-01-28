@@ -1,12 +1,11 @@
 # pylint:disable=missing-function-docstring,missing-class-docstring,import-error
 
 from pathlib import Path
-from typing import List, Union, Dict
+from typing import Dict, List, Union
 
-import yaml  # type: ignore
-
-from pydantic.dataclasses import dataclass  # type: ignore
 import pandas as pd  # type: ignore
+import yaml  # type: ignore
+from pydantic.dataclasses import dataclass  # type: ignore
 
 from ssg.github import get_repo_state_from_handle
 

@@ -12,6 +12,7 @@ mkdocs-material,False,12548,2750,11,2016-01-28,2023-01-28,Python,TypeScript,squi
 mdBook,False,12245,1267,424,2015-07-07,2023-01-28,Rust,Rust,rust-lang/mdBook,https://github.com/rust-lang/mdBook/,https://rust-lang.github.io/mdBook/
 pelican,False,11355,1800,93,2010-10-16,2023-01-20,Python,HTML,getpelican/pelican,https://github.com/getpelican/pelican/,https://getpelican.com/
 stencil,False,11351,727,504,2017-02-15,2023-01-27,JavaScript,TypeScript,ionic-team/stencil,https://github.com/ionic-team/stencil/,https://stenciljs.com
+react-static,False,10216,810,1,2017-09-09,2022-04-29,JavaScript,JavaScript,react-static/react-static,https://github.com/react-static/react-static/,https://github.com/react-static/react-static/discussions
 zola,False,10211,728,189,2016-12-06,2023-01-08,Rust,Rust,getzola/zola,https://github.com/getzola/zola/,https://www.getzola.org
 octopress,False,9355,2703,250,2009-10-18,2016-02-22,Ruby,Ruby,imathis/octopress,https://github.com/imathis/octopress/,http://github.com/imathis/octopress
 gridea,False,9079,757,534,2018-03-23,2023-01-24,JavaScript,TypeScript,getgridea/gridea,https://github.com/getgridea/gridea/,https://gridea.dev
@@ -26,6 +27,7 @@ lektor,False,3649,306,244,2015-12-19,2022-12-17,Python,Python,lektor/lektor,http
 wintersmith,False,3510,341,18,2012-02-02,2019-06-23,JavaScript,CoffeeScript,jnordberg/wintersmith,https://github.com/jnordberg/wintersmith/,http://wintersmith.io/
 fastpages,True,3450,794,0,2020-02-03,2022-11-13,Python,Jupyter Notebook,fastai/fastpages,https://github.com/fastai/fastpages/,https://fastpages.fast.ai/
 Cactus,False,3438,324,100,2011-02-28,2017-07-31,Python,Python,eudicots/Cactus,https://github.com/eudicots/Cactus/,
+docfx,False,3298,769,455,2015-06-24,2023-01-28,С#,C#,dotnet/docfx,https://github.com/dotnet/docfx/,https://dotnet.github.io/docfx/
 jupyter-book,False,3194,601,520,2018-06-14,2023-01-13,Python,Python,executablebooks/jupyter-book,https://github.com/executablebooks/jupyter-book/,http://jupyterbook.org
 bookdown,False,2988,1138,178,2015-10-28,2022-06-14,R,JavaScript,rstudio/bookdown,https://github.com/rstudio/bookdown/,https://pkgs.rstudio.com/bookdown/
 hakyll,False,2538,416,118,2009-12-02,2023-01-18,Haskell,Haskell,jaspervdj/hakyll,https://github.com/jaspervdj/hakyll/,jaspervdj.be/hakyll

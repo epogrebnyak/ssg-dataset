@@ -11,8 +11,9 @@ Python:
  - squidfunk/mkdocs-material
 """
 
-from ssg.ssg import extract_yaml, Github
 import pytest
+
+from ssg.ssg import Github, extract_yaml
 
 
 def test_validator_for_github_handle_raises_error_without_slash():

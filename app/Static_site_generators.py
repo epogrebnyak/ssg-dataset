@@ -19,12 +19,12 @@ def get_meta():
     return requests.get(url_metadata).json()
 
 
-st.session_state['df'] = get_data()
-st.session_state['meta'] = get_meta()
-st.session_state['url_csv'] = url_csv
+st.session_state["df"] = get_data()
+st.session_state["meta"] = get_meta()
+st.session_state["url_csv"] = url_csv
 
-_df = st.session_state['df']
-meta = st.session_state['meta']
+_df = st.session_state["df"]
+meta = st.session_state["meta"]
 n = len(_df)
 calver = "--".join(meta["created"].split("-"))
 f"""
@@ -77,7 +77,7 @@ def palette(languages, default_color="#BEBEBE"):
 
 col_keys, col_values = palette(all_langs)
 github_scale = alt.Scale(domain=col_keys, range=col_values)
-st.session_state['github_scale'] = github_scale
+st.session_state["github_scale"] = github_scale
 
 
 selected_langs = st.multiselect(
@@ -117,4 +117,3 @@ st.altair_chart(chart, use_container_width=True)
 """
 (C) Evgeny Pogrebnyak, 2021-2023
 """
-

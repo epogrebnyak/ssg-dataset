@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional
 import requests
 from pydantic import BaseModel
 
-from ssg.cache import GH_USER, GH_TOKEN
+from ssg.cache import GH_TOKEN, GH_USER
 
 
 def url(handle: str) -> str:
@@ -118,5 +118,5 @@ def get_repo_state_from_handle(handle: str) -> RepoState:
         stars=int(repo["stargazers_count"]),
         forks=int(repo["forks_count"]),
         open_issues=int(repo["open_issues_count"]),
-        is_archived=repo["archived"]
+        is_archived=repo["archived"],
     )

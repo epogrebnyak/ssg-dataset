@@ -1,4 +1,4 @@
-from app.Static_site_generators import Badge
+from app.badge import Badge
 
 
 class TestBadge:

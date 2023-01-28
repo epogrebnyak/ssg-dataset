@@ -1,8 +1,8 @@
-import streamlit as st
 import altair as alt
+import streamlit as st
 
-_df = st.session_state['df']
-github_scale = st.session_state['github_scale']
+_df = st.session_state["df"]
+github_scale = st.session_state["github_scale"]
 
 st.header("Forks")
 """
@@ -88,4 +88,3 @@ st.altair_chart(scatter2, use_container_width=True)
 """
 (C) Evgeny Pogrebnyak, 2021-2023
 """
-

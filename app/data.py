@@ -18,6 +18,6 @@ def get_meta():
     return requests.get(url_metadata).json()
 
 
-st.session_state['df'] = get_data()
-st.session_state['meta'] = get_meta()
-st.session_state['url_csv'] = url_csv
+st.session_state["df"] = get_data()
+st.session_state["meta"] = get_meta()
+st.session_state["url_csv"] = url_csv
