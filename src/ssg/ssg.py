@@ -1,7 +1,7 @@
 # pylint:disable=missing-function-docstring,missing-class-docstring,import-error
 
 from pathlib import Path
-from typing import List, Union
+from typing import List, Union, Dict
 
 import yaml
 
@@ -62,11 +62,11 @@ def read_text(filename) -> str:
     return text if text else ""  # prevent returning None
 
 
-def extract_yaml(text: str):
+def extract_yaml(text: str) -> Dict:
     return yaml.load(text, Loader=yaml.SafeLoader)
 
 
-def make_generators_list(src_dict) -> List[SSG]:
+def make_generators_list(src_dict: Dict) -> List[SSG]:
     return [
         SSG(Github(handle), lang)
         for lang, handles in src_dict.items()
