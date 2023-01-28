@@ -23,7 +23,7 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 [Colab][colab] is a try-and-see playground with some code for charts.
 
 [colab]: https://colab.research.google.com/drive/1Mp_6Ktk-t-a1fQzggvRJauwFLXaWzjAL#scrollTo=xMZoFSeCT1m2
-[st]: https://share.streamlit.io/epogrebnyak/ssg-dataset/main
+[st]: ssg-dataset.streamlit.app/
 
 ## Dataset
 
