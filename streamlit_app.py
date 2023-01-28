@@ -9,12 +9,12 @@ url_metadata = (
 )
 
 
-@st.cache
+#@st.cache
 def get_data():
     return pd.read_csv(url_csv, parse_dates=["created", "modified"])
 
 
-@st.cache
+#@st.cache
 def get_meta():
     return requests.get(url_metadata).json()
 
@@ -308,5 +308,5 @@ Please use GitHub [issues](https://github.com/epogrebnyak/ssg-dataset/issues) to
 comments and suggestions.
 
 
-(C) Evgeniy Pogrebnyak, 2021-2022
+(C) Evgeniy Pogrebnyak, 2021-2023
 """
