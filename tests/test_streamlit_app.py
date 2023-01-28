@@ -1,4 +1,4 @@
-from streamlit_app import Badge
+from app.streamlit_app import Badge
 
 
 class TestBadge:

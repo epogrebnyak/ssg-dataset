@@ -39,7 +39,7 @@ class Badge:
         path.write_text(svg)
 
 
-df = pd.read_csv("data/ssg.csv", parse_dates=["created", "modified"])
+df = pd.read_csv("../data/ssg.csv", parse_dates=["created", "modified"])
 n = len(df)
 b = Badge("SSG", str(n), "brightgreen")
 b.save(Path(__file__).resolve().parent / "ssg_count.svg")
