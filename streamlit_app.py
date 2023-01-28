@@ -242,7 +242,7 @@ Several SSG are no longer maintained - one in Ruby, Python, JavaScript, Swift an
 """
 ch = (
     alt.Chart(
-        t.sort_values("modified", ascending=True).head(5),
+        t.sort_values("modified", ascending=True).head(10),
         title="Out of business",
     )
     .mark_bar()
