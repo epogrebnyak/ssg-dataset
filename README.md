@@ -52,7 +52,7 @@ df = pd.read_csv(url, parse_dates=["created", "modified"])
 
 ### Get a Github token
 
-You will need a Github token to retreive stats for many repos. Write out `.config.env`
+You will need a Github token to retrieve stats for many repos. Write out `.config.env`
 near to where you run your Python code:
 
 ```toml

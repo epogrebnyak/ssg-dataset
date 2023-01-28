@@ -11,7 +11,7 @@ import pandas as pd  # type: ignore
 
 from ssg.github import get_repo_state_from_handle
 
-__all__ = ["make_generators_list", "from_file"]
+__all__ = ["make_generators_list", "from_yaml"]
 
 YAML_DOC = """
 ---
@@ -69,22 +69,35 @@ Swift:
  - JohnSundell/Publish
 """
 
+from enum import Enum
+
+
+class Provider(Enum):
+    Github = "github"
+    Gitlab = "gitlab"
+
+
+#
+
 
 @dataclass
 class Repo:
     handle: str
 
+    def __post_init__(self):
+        if "/" not in self.handle:
+            raise ValueError(f"Handle must contain '/'. Got: {self.handle}")
+
+    # FIXME: does not work with inherited class
+    #    @validator("github_handle")
+    #    def github_handle_field_must_contain_slash(cls, value: str) -> str:
+    #        if "/" not in value:
+    #            raise ValueError(f"Field github_handle must contain '/'. Got: {value}")
+    #        return value
+
     @property
     def name(self):
         return self.handle.split("/")[1]
-
-
-# FIXME: does not work with inherited class
-#    @validator("github_handle")
-#    def github_handle_field_must_contain_slash(cls, value: str) -> str:
-#        if "/" not in value:
-#            raise ValueError(f"Field github_handle must contain '/'. Got: {value}")
-#        return value
 
 
 @dataclass
@@ -127,7 +140,7 @@ def make_generators_list(src_dict) -> List[SSG]:
     ]
 
 
-def from_file(path) -> List[SSG]:
+def from_yaml(path) -> List[SSG]:
     return make_generators_list(extract_yaml(read_text(path)))
 
 
@@ -139,19 +152,20 @@ def to_dataframe(ssg_list: List[SSG]) -> pd.DataFrame:
 
 
 def yaml_to_csv(yaml_path: Union[Path, str], csv_path: Union[Path, str]):
-    ssg_list = from_file(yaml_path)
+    ssg_list = from_yaml(yaml_path)
     df = to_dataframe(ssg_list)
     df.to_csv(csv_path)
     columns = [
-            "github_handle",
-            "url",
-            "homepage",
-            "lang",
-            "repo_lang",
-            "created",
-            "modified",
-            "stars",
-            "forks",
-            "open_issues",
-        ] 
+        "name",
+        "github_handle",
+        "url",
+        "homepage",
+        "lang",
+        "repo_lang",
+        "created",
+        "modified",
+        "stars",
+        "forks",
+        "open_issues",
+    ]
     return df[columns]
