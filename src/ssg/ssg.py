@@ -93,6 +93,7 @@ def yaml_to_csv(yaml_path: Union[Path, str], csv_path: Union[Path, str]):
     df = to_dataframe(ssg_list)
     columns = [
         "name",
+        "is_archived",
         "stars",
         "forks",
         "open_issues",
