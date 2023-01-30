@@ -23,6 +23,7 @@ I also share ideas on [picking the right SSG tool for your own project](https://
 ## Try live on Streamlit
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)][st]
+
 [st]: https://ssg-dataset.streamlit.app/
 
 [Streamlit app][st] lays out a data story about SSGs with several visualisations.
