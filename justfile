@@ -46,7 +46,7 @@ patch:
 
 # Make Github release using version from poetry.toml  
 release:
-  just version | xargs -I % gh release create %   
+  just version | xargs -I % gh release create % --notes-file release.md
 
 # Run pytest and pyright
 test:
