@@ -5,7 +5,20 @@
 
 Static site generators are tools to create documentation, blogs and landing pages.
 
-This repo contains Github data (stars, forks, issues, create and last modified dates) for 40+ popular open source static site generators (SSG) and code to create the dataset.
+This repo contains Github data (stars, forks, issues, create and last modified dates) for 40+ popular open source static site generators (SSG) and the code to create the dataset. There is also a Streamlit app and a Google Colab notebook to explore the dataset.
+
+## Motivation
+
+Why is this data interesting? It helps to dig into the following:
+
+- Which programming languages used to write static site generator (SSG) projects?
+- Why people are building new stuff in a field where there are dominant projects?
+- What drives a SSG adoption by users?
+- Who are SSG project maintainers and what is their motivation?
+- What makes a SSG project a success and why it might fail?
+- Are well-designed themes more important than a SSG engine?
+
+In the aftermath I am sharing thoughts on [picking the right tool for your own project](https://ssg-dataset.streamlit.app/My_favorites) based on SSGs and themes I tried for myself.
 
 ## Try live on Streamlit
 
@@ -14,7 +27,6 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 [Streamlit app][st] lays out a data story about SSGs with several visualisations.
 
 [![Streamlit Screenshot](https://user-images.githubusercontent.com/9265326/174656606-24102187-411c-462d-adb7-b8bb1a1a6db0.png)][st]
-
 
 ### Google Colab
 
@@ -60,6 +72,24 @@ token documentation is [here](https://docs.github.com/en/authentication/keeping-
 
 ### Update CSV file
 
+[yaml]: https://github.com/epogrebnyak/ssg-dataset/blob/main/data/ssg.yaml
+
+The CSV file is generated from a list of Github repos grouped by programming language.
+This repo list is stored in a [YAML][yaml] file in the following format:
+
+```yaml
+Go:
+  - gohugoio/hugo
+JavaScript:
+  - gatsbyjs/gatsby
+  - hexojs/hexo
+  - vuejs/vuepress
+Python:
+  - mkdocs/mkdocs
+  - getpelican/pelican
+  - sphinx-doc/sphinx
+```
+
 Use `ssg.yaml_to_csv()` to update CSV file:
 
 ```python
@@ -70,11 +100,17 @@ yaml_to_csv("data/ssg.yaml", "data/ssg.csv")
 
 [update]: https://github.com/epogrebnyak/ssg-dataset/blob/main/example/update.py
 
-You can also run [`example/update.py`][update] to update `data/ssg.csv`:
+You can also run [`example/update.py`][update] to make new `data/ssg.csv`:
 
 ```
 poetry run python example/update.py
 ```
+
+The `update.py` script will also writes `metadata.json` file.
+
+## Adding more SSGs to dataset
+
+You can make a PR to update SSG list, just add a new line to [YAML file][yaml].
 
 ## More links about SSG
 
@@ -84,6 +120,10 @@ poetry run python example/update.py
 
 - framework-based SSG: gatsby, next, nuxt
 - non-framework-based SSG: astro, eleventy, hugo, jekyll
+
+### Structure
+
+- [Structure of SSGs](https://about.gitlab.com/blog/2016/06/10/ssg-overview-gitlab-pages-part-2/#structure-of-ssgs) by Gitlab
 
 ### Listings
 
@@ -102,7 +142,7 @@ poetry run python example/update.py
 
 ### Archive articles
 
-- <https://snipcart.com/blog/choose-best-static-site-generator>
+- [Choose Best Static Site Generator](https://snipcart.com/blog/choose-best-static-site-generator) by snipcart
 - [Why Static Site Generators Are The Next Big Thing (2015)](https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/)
 - [Static Site Generator Trends (2020)](https://redmonk.com/rstephens/2020/05/18/static-site-generators/)
 
