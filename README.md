@@ -124,6 +124,7 @@ You can make a PR to update SSG list, just add a new line to [YAML file][yaml].
 ### Structure
 
 - [Structure of SSGs](https://about.gitlab.com/blog/2016/06/10/ssg-overview-gitlab-pages-part-2/#structure-of-ssgs) by Gitlab
+- [Create a static site generator with Python and Replit](https://docs.replit.com/tutorials/static-site-generator)
 
 ### Listings
 
@@ -142,9 +143,9 @@ You can make a PR to update SSG list, just add a new line to [YAML file][yaml].
 
 ### Archive articles
 
-- [Choose Best Static Site Generator](https://snipcart.com/blog/choose-best-static-site-generator) by snipcart
 - [Why Static Site Generators Are The Next Big Thing (2015)](https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/)
 - [Static Site Generator Trends (2020)](https://redmonk.com/rstephens/2020/05/18/static-site-generators/)
+- [Choose Best Static Site Generator](https://snipcart.com/blog/choose-best-static-site-generator) by snipcart
 
 ## Citation
 
