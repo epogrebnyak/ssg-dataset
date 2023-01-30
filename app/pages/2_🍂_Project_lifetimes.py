@@ -2,17 +2,19 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-_df = st.session_state["df"]
-meta = st.session_state["meta"]
-github_scale = st.session_state["github_scale"]
+from data import get_data, get_github_scale, get_meta
+
+_df = get_data()
+meta = get_meta()
+github_scale = get_github_scale()
 
 st.header("Project lifetime")
 
 """
 The longest-running static site generators are based on Ruby.
 
-The youngest SSG are bridgetown (again Ruby), vitepress, nuxt-content, 
-nextra and astro (JavaScript). 
+The youngest SSG are bridgetown (again Ruby), vitepress, nuxt-content,
+nextra and astro (JavaScript).
 """
 
 
@@ -79,4 +81,5 @@ ch = (
         tooltip=["name", "stars", "years", "silent"],
     )
 )
+st.altair_chart(ch, use_container_width=True)
 st.altair_chart(ch, use_container_width=True)

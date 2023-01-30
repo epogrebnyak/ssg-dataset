@@ -1,15 +1,17 @@
 import altair as alt
 import streamlit as st
 
-_df = st.session_state["df"]
-github_scale = st.session_state["github_scale"]
+from data import get_data, get_github_scale
+
+_df = get_data()
+github_scale = get_github_scale()
 
 st.header("Forks")
 """
-Forks are copies of orginal repo made by other users to submit code modifications 
+Forks are copies of orginal repo made by other users to submit code modifications
 or create own versions of software.
 
-More forks indicate either active development of a package 
+More forks indicate either active development of a package
 or code reuse in other projects.
 """
 
@@ -32,24 +34,24 @@ st.altair_chart(scatter, use_container_width=True)
 Who are people doing the forks? Consider two groups of users:
 
 - front-end engineers (FE), usually proficient with HTML, CSS and JavaScript, and
-- non-specialised (NS) users who do other kinds of work (eg backend, data analysis 
-  or tasks outside software development) and need to write a blog, lay out documentation 
+- non-specialised (NS) users who do other kinds of work (eg backend, data analysis
+  or tasks outside software development) and need to write a blog, lay out documentation
   or simply make a small website.
 
-More forks would come from FE group, while NS would likely use the software 
+More forks would come from FE group, while NS would likely use the software
 as is, will not fork (and may not even star a project on Github).
 
 Another source of forks are end-of-life projects.
-Before project is retired users may do more forks to preserve the software 
-for future development and use. 
+Before project is retired users may do more forks to preserve the software
+for future development and use.
 Notable example of this kind project and extensive forks is Octopress.
 """
 
 st.header("Open issues")
 
 """
-More open issues in repository may be due to rapid project development or 
-to accumulated technical debt. 
+More open issues in repository may be due to rapid project development or
+to accumulated technical debt.
 """
 
 ratios = _df.copy()
@@ -83,4 +85,5 @@ scatter2 = (
     )
 )
 
+st.altair_chart(scatter2, use_container_width=True)
 st.altair_chart(scatter2, use_container_width=True)
