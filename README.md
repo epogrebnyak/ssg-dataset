@@ -12,18 +12,18 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 
 Why is this data interesting? It helps to dig into the following:
 
-- Which programming languages used to write static site generator (SSG) projects?
 - Why people are building new stuff in a field where there are dominant projects?
 - What drives a SSG adoption by users?
 - Who are SSG project maintainers and what is their motivation?
 - What makes a SSG project a success and why it might fail?
 - Are well-designed themes more important than a SSG engine?
 
-In the aftermath I am sharing thoughts on [picking the right tool for your own project](https://ssg-dataset.streamlit.app/My_favorites) based on SSGs and themes I tried for myself.
+I also share ideas on [picking the right SSG tool for your own project](https://ssg-dataset.streamlit.app/My_favorites) based on SSGs I tried myself.
 
 ## Try live on Streamlit
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)][st]
+[st]: https://ssg-dataset.streamlit.app/
 
 [Streamlit app][st] lays out a data story about SSGs with several visualisations.
 
@@ -36,7 +36,6 @@ In the aftermath I am sharing thoughts on [picking the right tool for your own p
 [Colab][colab] is a notebook with data downloaded and some code for charts.
 
 [colab]: https://colab.research.google.com/drive/1Mp_6Ktk-t-a1fQzggvRJauwFLXaWzjAL#scrollTo=xMZoFSeCT1m2
-[st]: https://ssg-dataset.streamlit.app/
 
 ## Dataset
 
