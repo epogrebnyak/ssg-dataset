@@ -3,7 +3,8 @@ import pandas as pd
 import streamlit as st
 
 _df = st.session_state["df"]
-meta = st.session_state["meta"]
+n = len(_df)
+created = str(_df.modified.max().date())
 github_scale = st.session_state["github_scale"]
 url_csv = st.session_state["url_csv"]
 st.header("Links")
@@ -18,8 +19,7 @@ f"""
 
 Static CSV file [ssg.csv]({url_csv}) is prepared and posted via [epogrebnyak/ssg](https://github.com/epogrebnyak/ssg).
 
-Dataset created on {meta["created"]}. A total of 
-{len(_df)} SSGs listed. 
+Dataset created on {created}. A total of {n} SSGs listed. 
 
 To download:
 
@@ -31,7 +31,3 @@ df = pd.read_csv(url, parse_dates=["created", "modified"])
 """
 
 st.dataframe(_df)
-
-"""
-(C) Evgeny Pogrebnyak, 2021-2023
-"""

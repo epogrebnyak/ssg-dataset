@@ -4,9 +4,6 @@ import requests
 import streamlit as st
 
 url_csv = "https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv"
-url_metadata = (
-    "https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/metadata.json"
-)
 
 
 @st.cache
@@ -14,27 +11,19 @@ def get_data():
     return pd.read_csv(url_csv, parse_dates=["created", "modified"])
 
 
-@st.cache
-def get_meta():
-    return requests.get(url_metadata).json()
-
-
 st.session_state["df"] = get_data()
-st.session_state["meta"] = get_meta()
 st.session_state["url_csv"] = url_csv
 
 _df = st.session_state["df"]
-meta = st.session_state["meta"]
-n = len(_df)
-calver = "--".join(meta["created"].split("-"))
+n = len(_df) # FIXME: can use n in badge, without generating local file
+
 f"""
 [gh]: https://github.com/epogrebnyak/ssg-dataset
 [url]: https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv
-
 ![count](https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/app/ssg_count.svg)
 [![Download CSV](https://img.shields.io/badge/download-CSV-brightgreen)][url]
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4429834.svg)](https://doi.org/10.5281/zenodo.4429834)
-![Release](https://img.shields.io/badge/release-{calver}-blue)
+![release](https://badgen.net/github/release/epogrebnyak/ssg-dataset)
 [![GitHub Repo stars](https://img.shields.io/github/stars/epogrebnyak/ssg-dataset?style=social)][gh]
 """
 
@@ -112,8 +101,3 @@ chart = (
 
 
 st.altair_chart(chart, use_container_width=True)
-
-
-"""
-(C) Evgeny Pogrebnyak, 2021-2023
-"""

@@ -80,7 +80,3 @@ ch = (
     )
 )
 st.altair_chart(ch, use_container_width=True)
-
-"""
-(C) Evgeny Pogrebnyak, 2021-2023
-"""

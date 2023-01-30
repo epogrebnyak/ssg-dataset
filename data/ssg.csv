@@ -39,7 +39,9 @@ jigsaw,False,2003,180,8,2015-05-25,2023-01-25,PHP,PHP,tighten/jigsaw,https://git
 quarto-cli,False,1817,146,610,2020-09-25,2023-01-28,TypeScript,JavaScript,quarto-dev/quarto-cli,https://github.com/quarto-dev/quarto-cli/,https://quarto.org
 doks,False,1398,304,36,2020-04-15,2022-11-28,Go,HTML,h-enk/doks,https://github.com/h-enk/doks/,https://getdoks.org
 cobalt.rs,False,1176,93,67,2014-10-28,2023-01-01,Rust,Rust,cobalt-org/cobalt.rs,https://github.com/cobalt-org/cobalt.rs/,cobalt-org.github.io/
+lume,False,1100,44,20,2020-09-07,2023-01-29,JavaScript,TypeScript,lumeland/lume,https://github.com/lumeland/lume/,https://lume.land
 jbake,False,1038,326,154,2013-03-03,2022-09-21,Java,Java,jbake-org/jbake,https://github.com/jbake-org/jbake/,http://jbake.org
 bridgetown,False,866,89,59,2020-04-07,2023-01-25,Ruby,Ruby,bridgetownrb/bridgetown,https://github.com/bridgetownrb/bridgetown/,https://www.bridgetownrb.com
 Franklin.jl,False,807,99,160,2018-05-31,2023-01-05,Julia,Julia,tlienart/Franklin.jl,https://github.com/tlienart/Franklin.jl/,https://franklinjl.org
 elmstatic,False,193,7,5,2018-04-20,2021-08-25,elm,Elm,alexkorban/elmstatic,https://github.com/alexkorban/elmstatic/,
+ssg,False,190,19,17,2019-12-13,2023-01-27,PHP,PHP,statamic/ssg,https://github.com/statamic/ssg/,

@@ -1,7 +1,5 @@
 import streamlit as st
 
-st.header("Looking for own little star on Githab")
-
 """
 Click to endorse: [![GitHub Repo stars](https://img.shields.io/github/stars/epogrebnyak/ssg-dataset?style=social)][gh]
 
