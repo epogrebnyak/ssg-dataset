@@ -38,6 +38,9 @@ update:
   poetry run python example/update.py
   poetry run python app/badge.py
 
+release:
+  just version | xargs -I % gh release create %   
+
 # run pytest
 test:
   poetry run pytest
@@ -46,3 +49,6 @@ test:
 # run precommit hook
 precommit:
  pre-commit run --all-files
+
+version:
+ poetry version -s | tr -d '\r' | xargs -I % echo v%
