@@ -33,10 +33,18 @@ apidoc:
 pull:
   git pull --rebase 
 
+update-all:
+  just update
+  just patch
+  just release
+
 # update csv file (project-specific) 
 update:
   poetry run python example/update.py
   poetry run python app/badge.py
+  
+patch:
+  poetry version patch  
 
 release:
   just version | xargs -I % gh release create %   
