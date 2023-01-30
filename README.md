@@ -30,6 +30,8 @@ I also share ideas on [picking the right SSG tool for your own project](https://
 
 [![Streamlit Screenshot](https://user-images.githubusercontent.com/9265326/174656606-24102187-411c-462d-adb7-b8bb1a1a6db0.png)][st]
 
+There is also a [post in Streamlit Showcase forum about v.0.4.3 release](https://discuss.streamlit.io/t/ssg-dataset-charts-about-static-site-generators-popularity-on-github-hugo-gatsby-jekyll-sphinx-etc/36859).
+
 ### Google Colab
 
 [![Demo in Google Colab](https://img.shields.io/badge/Colab-Open-orange)][colab]

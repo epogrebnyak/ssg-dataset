@@ -64,3 +64,7 @@ version:
 # Create brightgreen SVG badge with SSG count  
 badge:   
   wc -l data/ssg.csv | xargs -I % npx badge SSG % :brightgreen > app/ssg_count.svg
+
+# Run prettier on markdown files
+prettier:
+  npx prettier *.md --write
