@@ -4,59 +4,63 @@ package := "ssg"
 list:
    just --list
 
-# launch streamlit app (--server.enableCORS=false)
+# Launch Streamlit app
 app:
   poetry run streamlit run app/Static_site_generators.py
 
-# black and isort
+# Use black and isort
 lint:  
    black .
    isort .
 
-# build documentation 
-docs:
+# Build documentation files
+docs-build:
   poetry run sphinx-build -a docs docs/site
 
-# show documentation in browser
-show:
+# Show documentation in browser
+docs-show:
   python -m http.server -d docs/site  
 
-# publish documentation to Github Pages
-pages:
+# Publish documentation to Github Pages
+docs-publish:
   poetry run ghp-import docs/site 
 
-# create rst source for API documentation
-apidoc:
+# Create RST source file for API documentation
+docs-create:
   poetry run sphinx-apidoc -o docs src/{{package}}
 
-# git pull from remote and rebase 
-pull:
-  git pull --rebase 
-
-update-all:
+# Create new CSV file, patch version and make release
+update-full:
   just update
   just patch
   just release
 
-# update csv file (project-specific) 
+# Create new CSV file and SVG badge
 update:
   poetry run python example/update.py
-  poetry run python app/badge.py
+  just badge
   
+# Bump 0.0.x version number
 patch:
   poetry version patch  
 
+# Make Github release using version from poetry.toml  
 release:
   just version | xargs -I % gh release create %   
 
-# run pytest
+# Run pytest and pyright
 test:
   poetry run pytest
   poetry run pyright src
 
-# run precommit hook
+# Run precommit hook
 precommit:
- pre-commit run --all-files
+  pre-commit run --all-files
 
+# Show package version
 version:
- poetry version -s | tr -d '\r' | xargs -I % echo v%
+  poetry version -s | tr -d '\r' | xargs -I % echo v%
+
+# Create brightgreen SVG badge with SSG count  
+badge:   
+  wc -l data/ssg.csv | xargs -I % npx badge SSG % :brightgreen > app/ssg_count.svg

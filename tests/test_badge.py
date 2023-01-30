@@ -1,4 +1,4 @@
-from app.badge import Badge
+from example.badge import Badge
 
 
 class TestBadge:

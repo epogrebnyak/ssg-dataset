@@ -15,7 +15,7 @@ st.session_state["df"] = get_data()
 st.session_state["url_csv"] = url_csv
 
 _df = st.session_state["df"]
-n = len(_df) # FIXME: can use n in badge, without generating local file
+n = len(_df)  # FIXME: can use n in badge, without generating local file
 
 f"""
 [gh]: https://github.com/epogrebnyak/ssg-dataset
