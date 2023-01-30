@@ -1,12 +1,12 @@
-import altair as alt
-import pandas as pd
 import streamlit as st
 
-_df = st.session_state["df"]
+from data import get_data, get_github_scale, url_csv
+
+_df = get_data()
+github_scale = get_github_scale()
+
 n = len(_df)
 created = str(_df.modified.max().date())
-github_scale = st.session_state["github_scale"]
-url_csv = st.session_state["url_csv"]
 st.header("Links")
 
 alpha = _df.sort_values("name", key=lambda s: s.str.lower())
@@ -19,7 +19,7 @@ f"""
 
 Static CSV file [ssg.csv]({url_csv}) is prepared and posted via [epogrebnyak/ssg](https://github.com/epogrebnyak/ssg).
 
-Dataset created on {created}. A total of {n} SSGs listed. 
+Dataset created on {created}. A total of {n} SSGs listed.
 
 To download:
 
