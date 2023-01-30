@@ -1,5 +1,6 @@
 [![pytest](https://github.com/epogrebnyak/ssg-dataset/workflows/pytest/badge.svg)](https://github.com/epogrebnyak/ssg-dataset/actions)
 ![count](app/ssg_count.svg)
+![release](https://badgen.net/github/release/epogrebnyak/ssg-dataset)
 
 # Popularity of static site generators
 
@@ -32,7 +33,7 @@ In the aftermath I am sharing thoughts on [picking the right tool for your own p
 
 [![Demo in Google Colab](https://img.shields.io/badge/Colab-Open-orange)][colab]
 
-[Colab][colab] is a try-and-see playground with some code for charts.
+[Colab][colab] is a notebook with data downloaded and some code for charts.
 
 [colab]: https://colab.research.google.com/drive/1Mp_6Ktk-t-a1fQzggvRJauwFLXaWzjAL#scrollTo=xMZoFSeCT1m2
 [st]: https://ssg-dataset.streamlit.app/
