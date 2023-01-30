@@ -28,6 +28,7 @@ Julia:
  - tlienart/Franklin.jl
 PHP:
  - tighten/jigsaw
+ - statamic/ssg
 Python:
  - mkdocs/mkdocs
  - squidfunk/mkdocs-material
@@ -56,4 +57,4 @@ TypeScript:
  - facebook/docusaurus
  - quarto-dev/quarto-cli
 С#:
- - dotnet/docfx 
+ - dotnet/docfx
