@@ -4,19 +4,11 @@ import requests
 import streamlit as st
 
 url_csv = "https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv"
-url_metadata = (
-    "https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/metadata.json"
-)
 
 
 @st.experimental_memo
 def get_data():
     return pd.read_csv(url_csv, parse_dates=["created", "modified"])
-
-
-@st.experimental_memo
-def get_meta():
-    return requests.get(url_metadata).json()
 
 
 @st.experimental_memo

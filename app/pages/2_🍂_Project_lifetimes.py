@@ -2,11 +2,11 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from data import get_data, get_github_scale, get_meta
+from data import get_data, get_github_scale
 
 _df = get_data()
-meta = get_meta()
 github_scale = get_github_scale()
+dataset_created = str(_df.modified.max().date())
 
 st.header("Project lifetime")
 
@@ -18,7 +18,7 @@ nextra and astro (JavaScript).
 """
 
 
-def lapsed(x, today=meta["created"]):
+def lapsed(x, today=dataset_created):
     t = pd.to_datetime(today)
     return (t - x).days
 
@@ -81,5 +81,4 @@ ch = (
         tooltip=["name", "stars", "years", "silent"],
     )
 )
-st.altair_chart(ch, use_container_width=True)
 st.altair_chart(ch, use_container_width=True)
