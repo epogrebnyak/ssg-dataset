@@ -4,6 +4,7 @@
     "prettier": "^2.7.1"
   },
   "dependencies": {
+    "badge": "^1.0.3",
     "badge-maker": "^3.3.1"
   }
 }
