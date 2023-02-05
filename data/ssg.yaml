@@ -24,12 +24,15 @@ JavaScript:
  - jnordberg/wintersmith
  - scullyio/scully
  - react-static/react-static
- - lumeland/lume 
+ - lumeland/lume
+ - elderjs/elderjs
+ - redwoodjs/redwood 
 Julia:
  - tlienart/Franklin.jl
 PHP:
  - tighten/jigsaw
  - statamic/ssg
+ - sculpin/sculpin
 Python:
  - mkdocs/mkdocs
  - squidfunk/mkdocs-material
