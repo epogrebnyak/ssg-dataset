@@ -10,7 +10,7 @@ This repo contains Github data (stars, forks, issues, create and last modified d
 
 ## Motivation
 
-Why is this data interesting? It helps to dig into the following:
+Why is this data interesting? It help to find answers to the following:
 
 - Why people are building new stuff in a field where there are dominant projects?
 - What drives a SSG adoption by users?
@@ -120,6 +120,10 @@ You can make a PR to update SSG list, just add a new line to [YAML file][yaml].
 
 ## More links about SSG
 
+### Recent articles
+
+- [SSGs Through the Ages by Mike Neumegen](https://cloudcannon.com/blog/ssg-history-1-before-jekyll/)
+
 ### Performance
 
 [Static Site Generators Build Performance Testing](https://ssg-build-performance-tests.netlify.app/):
@@ -146,6 +150,7 @@ You can make a PR to update SSG list, just add a new line to [YAML file][yaml].
 
 - [Gitlab](https://gitlab.com/pages?_gl=1%2a1wldy0n%2a_ga%2aMTQ2Mzg2NjA0My4xNjc0OTEyMzgw%2a_ga_ENFH3X7M5Y%2aMTY3NDkxMjM4MC4xLjEuMTY3NDkxMjQ1Ni4wLjAuMA..)
 - [Netlify CMS](https://www.netlifycms.org/docs/add-to-your-site/)
+- [Cloud Cannon](https://cloudcannon.com/)
 
 ### Archive articles
 
