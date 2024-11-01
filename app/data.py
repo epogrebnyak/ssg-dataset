@@ -6,12 +6,12 @@ import streamlit as st
 url_csv = "https://raw.githubusercontent.com/epogrebnyak/ssg-dataset/main/data/ssg.csv"
 
 
-@st.experimental_memo
+@st.cache_data
 def get_data():
     return pd.read_csv(url_csv, parse_dates=["created", "modified"])
 
 
-@st.experimental_memo
+@st.cache_data
 def palette(languages, default_color="#BEBEBE"):
     r = requests.get(
         "https://raw.githubusercontent.com/ozh/github-colors/master/colors.json"
