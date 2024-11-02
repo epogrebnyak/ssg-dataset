@@ -26,7 +26,7 @@ has a strict and consistent design, and supports runnable code snippets in Rust.
 [mdbook]: https://github.com/rust-lang/mdBook
 [vitepress]: https://github.com/vuejs/vitepress
 [jupyterbook]: https://github.com/executablebooks/jupyter-book
-[mkdocs-material]: https://github.com/vuejs/vitepress
+[mkdocs-material]: https://squidfunk.github.io/mkdocs-material/
 [doks]: https://github.com/h-enk/doks
 
 The ideal SSG has:
